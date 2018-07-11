@@ -1,0 +1,483 @@
+@model StoryEstimator.Showcase.Models.PlayObjects
+@using StoryEstimator.Showcase.Models;
+@using StoryEstimator.Showcase.Models.Data;
+@using Syncfusion.EJ2
+
+@{
+    ViewBag.Title = "Play";
+}
+
+@{
+    var roomTitle = string.Empty;
+    int estStories = 0;
+    int loggeduserId = 0;
+    int roomStatusId = 0;
+    decimal estStoryPoints = 0M;
+    var isEstimated = "false";
+    var isAvgCalculated = "false";
+    var currentUserEmail = ViewBag.CurrentUserEmail;
+    List<StoryObjects> storyData = new List<StoryObjects>();
+    if (ViewBag.RoomTitle != null && ViewBag.EstimatedStories != null && ViewBag.EstimatedStoryPoints != null)
+    {
+        roomTitle = ViewBag.RoomTitle;
+        estStories = ViewBag.EstimatedStories;
+        estStoryPoints = ViewBag.EstimatedStoryPoints;
+        loggeduserId = ViewBag.UserId;
+    }
+    if (ViewBag.RoomStatusId != null && ViewBag.RoomStatusId > 0)
+    {
+        roomStatusId = ViewBag.RoomStatusId;
+    }
+    if (Model != null)
+    {
+        if (Model.StoriesList != null && Model.StoriesList.Count > 0)
+        {
+            storyData = Model.StoriesList;
+        }
+        if (Model.StoryDetails != null && Model.StoryDetails.IsEstimated)
+        {
+            isEstimated = "true";
+        }
+        if (Model.StoryDetails != null && Model.StoryDetails.IsAvgCalculated)
+        {
+            isAvgCalculated = "true";
+        }
+    }
+}
+
+<header class="app-header navbar-fixed-top" style="padding: 0 16px !important">
+    <div style="display: flex; justify-content: space-between; height: inherit;">
+        <div id="appHeaderInner" style="height: inherit; flex:1;">
+            <div id="logo" style="margin-left: 0; line-height: 48px;">
+                @if (ViewBag.IsUserView)
+                {
+                    <img src="https://cdn.syncfusion.com/planningpoker/images/general/AppLogo.svg">
+                }
+                else
+                {
+                    <a href="#/dashboard"><img src="https://cdn.syncfusion.com/planningpoker/images/general/AppLogo.svg"></a>
+                }
+            </div>
+            <div id="summary" style="margin-left:10px;">
+                <div id="summaryText">
+                    <div class="menua customLogo app-header-ellipsis">
+                        <b title="@roomTitle">@roomTitle</b>
+                    </div>
+                    <div class="customLogoText">
+                        <i class="material-icons header-icons">assignment</i>
+                        <span id="estVsTotStories" class="header-icon-text">
+                            @estStories/@storyData.Count Completed
+                        </span>
+                        <span class="header-icons-separator">|</span>
+                        <i class="material-icons header-icons">star_half</i>
+                        <span id="totStoryPoints" class="header-icon-text">
+                            Total Story Points: @estStoryPoints.ToString("0.#####")
+                        </span>
+                        <span id="timerDivider" class="header-icons-separator hide">|</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @{
+            string displayType = "none";
+        }
+        @if ((Model != null && Model.StoryDetails != null && Model.StoryDetails.IsOwner == true) || (roomStatusId == (int)RoomStatusEnum.InProgress || roomStatusId == (int)RoomStatusEnum.Paused))
+        {
+            displayType = "flex";
+        }
+        <div class="header-btns" style="display: @displayType; justify-content: center;">
+            <div id="rTimer" class="room-timer-div">
+                <span id="roomDigitalTimerText" class="hide">Total Game Hours</span><br />
+                <span id="roomDigitalTimer" class="hide"></span>
+            </div>
+            @if (Model != null && Model.StoryDetails != null && Model.StoryDetails.IsOwner == true && roomStatusId != (int)RoomStatusEnum.Closed)
+            {
+                @if (!Model.StoryDetails.IsAllStoryEstimated)
+                {
+                    <div class="pause-btn-div hide">
+                        <ejs-button id="pauseBtn" cssClass="pause-btn e-flat" iconCss="e-icons e-play-icon" isToggle="true" content="Pause"></ejs-button>
+                    </div>
+                }
+                <div class="start-btn-div">
+                    <ejs-button id="startBtn" cssClass="hide start-btn e-success" isToggle="true" disabled="true" content="Start Playing"></ejs-button>
+                </div>
+            }
+        </div>
+        <div id="userProfile" style="margin-top: 10px; flex:1; justify-content: flex-end; display: flex;">
+            <div class="header-divider hide"></div>
+            <a id="about" href="#/about" target="_blank" title="About" class="about-icon">
+                <img id="aboutIcon" src="https://cdn.syncfusion.com/planningpoker/images/general/AboutIcon.svg">
+            </a>
+            <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" aria-expanded="true" style="display: flex;">
+                <div>
+                    <img class="img-circle" src="@ViewBag.ProfileUrl" style="height: 28px; width: 28px;">
+                </div>
+                <div id="layourcurrentusernameDiv" style="padding-left: 5px; padding-top: 5px;">
+                    <span id="layourcurrentusername" class="ellipsis">
+                        @ViewBag.UserName
+                    </span>
+                </div>
+            </a>
+            <ul class="dropdown-menu pull-right material-menu-popup" id="signout-dropdown" style="top: 40px;right: 15px;">
+                <li class="userprofile hide">
+                    <span class="popup-profile sficon-user-wf usernameicon"></span>
+                    <span class="usernamelabel ellipsis" id="usernameLabel">@ViewBag.UserName</span>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <span class="popup-profile glyphicon glyphicon-off"></span>
+                        <span>Sign out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div id="wrapper">
+    <div id="wrapper-inner" class="col-lg-9 col-sm-9 col-md-9 col-xs-9 no-padding">
+        @{
+            string hideClassName = string.Empty;
+        }
+        @if (Model != null)
+            {
+                <input type="hidden" id="isCurrentStory" value="@Model.IsCurrentStory.ToString()" />
+                <input type="hidden" id="currentStoryStatus" value="@Model.StoryStatusName" />
+                <input type="hidden" id="mapperStoryId" value="@Model.MapperStoryId" />
+                @if (Model.RoomDetails != null)
+                {
+                    <input type="hidden" id="roomId" value="@Model.RoomDetails.RoomId" />
+                    <input type="hidden" id="roomStatus" value="@Model.RoomDetails.RoomStatus" />
+                    <input type="hidden" id="currentTime" value="@DateTime.Now.ToString("M/d/yyyy HH:mm:ss")" />
+                    <input type="hidden" id="createdById" value="@Model.RoomDetails.CreatedBy" />
+                    @if (Model.RoomDetails.StartTime != null)
+                    {
+                        <input type="hidden" id="roomStartTime" value="@Model.RoomDetails.StartTime.Value.ToString("M/d/yyyy HH:mm:ss")" />
+                    }
+                    @if (Model.RoomDetails.EndTime != null)
+                    {
+                        <input type="hidden" id="roomEndTime" value="@Model.RoomDetails.EndTime.Value.ToString("M/d/yyyy HH:mm:ss")" />
+                    }
+                    @if (Model.RoomDetails.IdleTime != null && Model.RoomDetails.IdleTime.Value >= 0)
+                    {
+                        <input type="hidden" id="roomIdleTime" value="@Model.RoomDetails.IdleTime.Value" />
+                    }
+                    @if (Model.RoomDetails.TotalTime != null && Model.RoomDetails.TotalTime > 0)
+                    {
+                        <input type="hidden" id="roomTotalTime" value="@Model.RoomDetails.TotalTime" />
+                    }
+                    @if (Model.StoryDetails != null && Model.StoryDetails.IsOwner == false)
+                    {
+                        if (Model.RoomDetails.RoomStatus.ToLower() == "inprogress" || Model.RoomDetails.RoomStatus.ToLower() == "paused")
+                        {
+                            hideClassName = "hide";
+                        }
+                    }
+                }
+                @if (Model.VotingDeails != null)
+                {
+                    <input type="hidden" id="isCurrentUserVoted" value="@Model.VotingDeails.IsCurrentUserVoted.ToString()" />
+                }
+                @if (Model.StoryDetails != null)
+                {
+                    <input type="hidden" id="isOwner" value="@Model.StoryDetails.IsOwner.ToString()" />
+                    <input type="hidden" id="isAllStoryEstimated" value="@Model.StoryDetails.IsAllStoryEstimated.ToString()" />
+                }
+        }
+        @Html.Partial("~/Views/Home/_StoryList.cshtml")
+        <div>
+            <div class="play-area col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                @if (isEstimated == "true" || (isAvgCalculated == "true" && Model.RoomDetails != null && (Model.RoomDetails.RoomStatusId == (int)RoomStatusEnum.InProgress || Model.RoomDetails.RoomStatusId == (int)RoomStatusEnum.Paused)))
+                {
+                    <input type="hidden" id="isStoryEstimated" value="@Model.StoryDetails.IsEstimated.ToString()" />
+                    <input type="hidden" id="isAvgCalculated" value="@Model.StoryDetails.IsAvgCalculated.ToString()" />
+                    @Html.Partial("~/Views/Home/_TeamAverage.cshtml", Model.StoryDetails)
+                }
+                else
+                {
+                    if (Model != null && Model.StoryDetails != null)
+                    {
+                        @Html.Partial("~/Views/Home/_StoryTemplate.cshtml", Model)
+                    }
+                    else
+                    {
+                        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12' id="no-stories-div" style="height:130px">
+                            <div class="no-stories-div">
+                                <img align="middle" src="https://cdn.syncfusion.com/planningpoker/images/general/NoStories.svg" />
+                            </div>
+                            <div class='no-stories-text no-stories-div'>No stories found</div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="right-panel no-padding col-lg-3 col-sm-3 col-md-3 col-xs-3">
+        <div class="player-part bg-white">
+            @Html.Partial("~/Views/Home/_PlayerDetails.cshtml", Model)
+        </div>
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 playerfooter bg-white">
+            <div class="playerbottom"></div>
+        </div>
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 summaryplayer bg-white">
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                <div class="totalplayer">
+                    Total Player(s)
+                </div>
+                <div class="totalplayervalue">
+                    @Model.RoomDetails.UserCount
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+                <div class="totalplayer">
+                    Offline Player(s)
+                </div>
+                <div class="offlineplayervalue">
+                    @Model.RoomDetails.OfflinePlayersCount
+                </div>
+            </div>
+            <div class="summarybootom"></div>
+        </div>
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 invitelink bg-white">
+            <div class="invitetext">
+                <span style="cursor:pointer;" onclick="GetInvitationLink()"> Get Invite Link </span>
+            </div>
+        </div>
+    </div>
+    <div id="confirmDialogWrapper" class="content-wrapper">
+        <ejs-dialog id="confirmDialog" closeOnEscape="true" isModal="true" width="500px" target="#targetId"
+            beforeOpen="dialogBeforeOpen" beforeClose="dialogBeforeClose" showCloseIcon="false" visible="false" cssClass="hide">
+            <e-dialog-buttons>
+                <e-dialog-dialogbutton buttonModel="ViewBag.yesBtn" click="confirmDlgYesBtnClick"></e-dialog-dialogbutton>
+                <e-dialog-dialogbutton buttonModel="ViewBag.noBtn" click="confirmDlgNoBtnClick"></e-dialog-dialogbutton>
+            </e-dialog-buttons>
+        </ejs-dialog>
+    </div>
+    <div id="informatinDialogWrapper" class="content-wrapper">
+        <ejs-dialog id="informationDialog" closeOnEscape="false" isModal="true" width="325px" target="#targetId"
+            beforeOpen="dialogBeforeOpen" beforeClose="dialogBeforeClose" showCloseIcon="false" visible="false" cssClass="hide">
+            <e-dialog-buttons>
+                <e-dialog-dialogbutton buttonModel="ViewBag.infoBtn" click="infoDlgCloseBtnClick"></e-dialog-dialogbutton>
+            </e-dialog-buttons>
+        </ejs-dialog>
+    </div>
+    <div id="pauseDialogWrapper" class="content-wrapper">
+        <ejs-dialog id="pauseGameDialog" closeOnEscape="false" isModal="true" width="325px" target="#targetId"
+            beforeOpen="dialogBeforeOpen" beforeClose="dialogBeforeClose" showCloseIcon="false" visible="false" cssClass="hide">
+            <e-dialog-buttons>
+                <e-dialog-dialogbutton buttonModel="ViewBag.pauseDialogBtn" click="pauseDlgBtnClick"></e-dialog-dialogbutton>
+            </e-dialog-buttons>
+        </ejs-dialog>
+    </div>
+    <div id="qrCodeDialogWrapper" class="content-wrapper">
+        <ejs-dialog id="qrCodeDialog" closeOnEscape="false" isModal="true" width="325px" target="#targetId"
+            beforeOpen="dialogBeforeOpen" beforeClose="dialogBeforeClose" showCloseIcon="false" visible="false" cssClass="hide">
+            <e-dialog-buttons>
+                <e-dialog-dialogbutton buttonModel="ViewBag.qrDialogCloseBtn" click="qrCloseBtnClick"></e-dialog-dialogbutton>
+            </e-dialog-buttons>
+        </ejs-dialog>
+    </div>
+    <div id="qrCode" style="visibility:hidden"></div>
+</div>
+<p id="groupOwnerId" style="visibility: hidden">@loggeduserId</p>
+
+<script id="rowtemplate" type="text/x-template">
+    <tr class="grid-row" id="${StoryId}" onclick="gridRowClick(this)">
+        <td>
+            <div class="title-row">
+                ${if (TaskId != null && TaskUrl != null)}
+                    <span class="title-row-text" title="${TaskId} - ${StoryTitle}">
+                        ${TaskId} - ${StoryTitle}
+                    </span>
+                ${else}
+                    <span class="title-row-text" title="${StoryTitle}">
+                        ${StoryTitle}
+                    </span>
+                ${/if}
+                @if (Model != null && Model.StoryDetails != null && Model.StoryDetails.IsOwner == true && roomStatusId != (int)RoomStatusEnum.Closed)
+                {
+                    <span class="delete-icon" data-id="${StoryId}" data-title="${StoryTitle}" onclick="removeStoryClick(this)" title="Remove Story">
+                        <i class="material-icons">delete</i>
+                    </span>
+                }
+                ${if (StoryStatus === "pending")}
+                    <span class="pending-icon" title="Not Estimated">
+                        <i class="material-icons">access_time</i>
+                    </span>
+                ${else}
+                ${if (EstimatedPoint != null)}
+                    <span class="story-point-txt" title="Estimated Story Point">${EstimatedPoint}</span>
+                    <span class="estimated-icon" title="Estimated">
+                        <i class="material-icons">star_half</i>
+                    </span>
+                ${/if}
+                ${/if}
+            </div>
+            ${if (StoryListDescription != null)}
+                <div class="descrip-row" title="${StoryListDescription}">
+                    ${StoryListDescription}
+                </div>
+            ${/if}
+        </td>
+    </tr>
+</script>
+
+<script id="playertemplate" type="text/x-template">
+    <tr class="grid-row">
+        <td>
+            <div>
+                <div>
+                    ${if (ImageUrl != "")}
+                        <div>
+                            <img class="img-circle userimage" src="${ImageUrl}">
+                        </div>
+                    ${else}
+                        ${if (IsOrganizer == "true")}
+                            <div class="img-circle userimage">
+                                <span class="glyphicon glyphicon-user organizer-icon-color usericon"></span>
+                            </div>
+                        ${else}
+                            <div class="img-circle userimage">
+                                <span class="glyphicon glyphicon-user white-icon-color usericon"></span>
+                            </div>
+                        ${/if}
+                    ${/if}
+                    ${if (IsLoggedIn == "true" && IsOnline == "true" )}
+                        <div class="userstatus img-circle useractive" title="Online">
+                        </div>
+                    ${/if}
+                    ${if (IsLoggedIn == "true" && IsOnline == "false" )}
+                        <div class="userstatus img-circle useroffline" title="Offline">
+                        </div>
+                    ${/if}
+                    ${if (IsLoggedIn == "false" || IsJoined == "false")}
+                        <div class="userstatus img-circle usernotloggedin" title="Not Joined">
+                            <i class="material-icons notjoined">close</i>
+                        </div>
+                    ${/if}
+                </div>
+                ${ if (IsOwner) }
+                    <div class="playername" title="${PlayerName}&#13;${EmailId}">${PlayerName}</div>
+                ${else}
+                    <div class="playername" title="${PlayerName}">${PlayerName}</div>
+                ${/if}
+
+                ${ if (IsOrganizer == "true") }
+                    <div class="storytime">(Organizer)</div>
+                ${else}
+                    ${if (StoryEstimatedStatus != null && StoryEstimatedStatus == 4) }
+                        <div class="storytime">(Not Participated)</div>
+                    ${else}
+                        <div class="storytime">${StoryEstimateTime}</div>
+                    ${/if}
+                ${/if}
+                ${ if (IsValidStoryStatus) }
+                    ${ if (IsEveryUserVoted) }
+                        <div>
+                            ${if (IsOrganizer == "false") }
+                                ${if (StoryEstimatedStatus != null ) }
+                                    ${if (StoryEstimatedPoint != null ) }
+                                        <div class="storypoint">
+                                            <span>${StoryEstimatedPoint}</span>
+                                        </div>
+                                    ${else}
+                                        ${if (StoryEstimatedStatus == 3 )}
+                                            <div class="storypoint">
+                                                <i>?</i>
+                                            </div>
+                                        ${else}
+                                            ${if (StoryEstimatedStatus == 2) }
+                                                <div class="storypoint">
+                                                    <p class="material-icons" style="font-size:20px">free_breakfast</p>
+                                                </div>
+                                            ${/if}
+                                        ${/if}
+                                    ${/if}
+                                ${else}
+                                    ${if (IsLoggedIn == "true" && IsOrganizer == "false" && IsOnline == "true")}
+                                        <div class="storystatus panelwaitingWord">
+                                            Waiting...
+                                        </div>
+                                    ${/if}
+                                ${/if}
+                            ${/if}
+                        </div>
+                    ${else}
+                        <div>
+                            ${if (IsOrganizer == "false") }
+                                ${ if (IsCurrentUser) }
+                                    ${ if (StoryEstimatedStatus != null ) }
+                                        ${ if (StoryEstimatedPoint != null ) }
+                                            <div class="storypoint">
+                                                <span>${StoryEstimatedPoint}</span>
+                                            </div>
+                                        ${else}
+                                            ${if (StoryEstimatedStatus == 3 )}
+                                                <div class="storypoint">
+                                                    <i>?</i>
+                                                </div>
+                                            ${else}
+                                                ${if (StoryEstimatedStatus == 2) }
+                                                    <div class="storypoint">
+                                                        <p class="material-icons" style="font-size:20px">free_breakfast</p>
+                                                    </div>
+                                                ${/if}
+                                            ${/if}
+                                        ${/if}
+                                    ${else}
+                                        ${if (IsLoggedIn == "true" && IsOrganizer == "false" && IsOnline == "true")}
+                                            <div class="storystatus panelwaitingWord">
+                                                Waiting...
+                                            </div>
+                                        ${/if}
+                                    ${/if}
+                                ${else}
+                                    ${ if (StoryEstimatedStatus != null ) }
+                                        <div class="tickmarkImage">
+                                            <img src="https://cdn.syncfusion.com/planningpoker/images/playarea/tickmark.svg" />
+                                        </div>
+                                    ${else}
+                                        ${if (IsLoggedIn == "true" && IsOrganizer == "false" && IsOnline == "true")}
+                                            <div class="storystatus panelwaitingWord">
+                                                Waiting...
+                                            </div>
+                                        ${/if}
+                                    ${/if}
+                                ${/if}
+                            ${/if}
+                        </div>
+                    ${/if}
+                ${/if}
+            </div>
+        </td>
+    </tr>
+</script>
+
+<script type="text/javascript">
+    var CurrentUserEmail = "@currentUserEmail";
+    $(document).ready(function () {
+        if (!String.prototype.startsWith) {
+            String.prototype.startsWith = function (searchString, position) {
+                position = position || 0;
+                return this.indexOf(searchString, position) === position;
+            };
+        }
+        
+        var resizeTimer;
+        $(window).resize(function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                ResizeHeight();
+            }, 200);
+        });
+
+        if (@isEstimated == true || @isAvgCalculated == true) {
+            isTeamAvgView = true;
+        }
+        else {
+            isTeamAvgView = false;
+        }
+    });
+</script>
+
+@Html.EJS().ScriptManager()

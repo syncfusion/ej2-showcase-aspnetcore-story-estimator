@@ -1,0 +1,90 @@
+﻿@using Syncfusion.EJ2
+@using System.Web
+@using StoryEstimator.Showcase.Models.Data
+@model StoryEstimator.Showcase.Models.DashboardWidget
+
+@if (Model.StoryDetailsList != null && Model.StoryDetailsList.Count > 0)
+{
+    <div class="dashboardpagelistview" id="dashboardpagelistviewstory">
+        @foreach (var item in Model.StoryDetailsList)
+        {
+            <div class="row story-dashboardcards no-margin" style="margin-right: 0px; margin-top: 10px;">
+                <div>
+                    @if (@item.IsOwner)
+                    {
+                        string chkId = "story_" + item.StoryId;
+                        <span class="storycontainer">
+                            <ejs-checkbox value="@item.StoryId" name="storycheckbox" id="@chkId" change="onCheckBoxClick" cssClass="story-checkbox"></ejs-checkbox>
+                        </span>
+                    }
+                    <div class="col-lg-9 col-sm-9 col-md-9 col-xs-9 story-dasboardtitle ellipsis" style="display: inline-block; padding-left: 0; padding-right: 0px;">
+                        @if (!string.IsNullOrWhiteSpace(item.TaskId))
+                        {
+                            if (!string.IsNullOrWhiteSpace(item.TaskUrl))
+                            {
+                                <a class="dashboardstoryurl" href="@item.TaskUrl" target="_blank" id="storiesUrl">@item.TaskId</a><span> - </span>
+                            }
+                            else
+                            {
+                                <span>@item.TaskId - </span>
+                            }
+                        }
+                        <span>@item.StoryTitle</span>
+                    </div>
+                    <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2 no-padding">
+                        @if (item.StoryStatusId == (int)StoryStatusEnum.Estimated)
+                        {
+                            <span style="float: right; right: -16px;">
+                                <span title="Estimated" class="storycounticonspan"><i class="material-icons storylisticons starticon-closed">star_half</i></span>
+                                <span class="storylistcount" title="Story Point">@item.EstimatedPoint.Value.ToString("0.#####")</span>
+                            </span>
+                        }
+                        else
+                        {
+                            <span title="Not Estimated" class="storycounticonspan"><i class="material-icons storylisticons pendingroundicon">query_builder</i></span>
+                        }
+                    </div>
+                </div>
+                <div class="story-dashboarddescription ellipsis">
+                    @Html.Raw(HttpUtility.HtmlDecode(item.StoryDescription))
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div><img src="https://cdn.syncfusion.com/planningpoker/images/general/NoStories.svg" /></div>
+    <div class="noresultsclass">No stories found.</div>
+}
+<script>
+    $(document).ready(function () {
+        $('.ellipsis').each(function () {
+            var $ele = $(this);
+            if (this.offsetWidth < this.scrollWidth)
+                $ele.attr('title', $ele.text());
+            if (this.offsetHeight < this.scrollHeight)
+                $ele.attr('title', $ele.text());
+        });
+
+        $(".storygroup").removeClass("hide");
+
+        var resizeTimer;
+        $(window).resize(function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                resizeDashboardStoryHeight();
+            }, 200);
+        });
+
+        resizeDashboardStoryHeight();
+
+        function resizeDashboardStoryHeight() {
+            var storytoppaddingpage = parseInt($("#div-storyPage").css('padding-top'));
+            var storylistheaderpadding = parseInt($("#storylistheader").css('padding-bottom'));
+            $("#dashboardpagelistviewstory").css("height", window.listviewheight - storytoppaddingpage - storylistheaderpadding);
+        }
+    });
+</script>
+
+@Html.EJS().ScriptManager()

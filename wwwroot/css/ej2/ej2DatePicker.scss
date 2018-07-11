@@ -1,0 +1,187 @@
+﻿// sass-lint:disable quotes
+@import "../Common/Colors.scss";
+// sass-lint:enable quotes
+
+.e-calendar {
+    .e-header {
+        .e-date-icon-prev {
+            &::before {
+                content: "" !important;
+            }
+        }
+    }
+}
+
+.e-calendar {
+    .e-header {
+        .e-date-icon-next {
+            &::before {
+                content: "" !important;
+            }
+        }
+    }
+}
+
+.e-input-group {
+    &.e-date-wrapper {
+        border-color: $color-input-border !important;
+    }
+}
+
+/*calendar Special date css*/
+span.e-icons.highlight {
+    display: block;
+    margin-left: 4px;
+    margin-top: -13px;
+}
+
+span {
+    &.e-icons {
+        &.highlight {
+            color: $color-0000ff;
+        }
+    }
+}
+
+span {
+    &.e-icons {
+        &.highlight {
+            &:before {
+                color: $color-0000ff;
+            }
+        }
+    }
+}
+
+span {
+    &.e-icons {
+        &.highlight {
+            &:before {
+                content: "\e865";
+                font-size: 4px;
+                font-weight: normal;
+                margin-right: 3px;
+                position: relative;
+                top: -1px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.e-bigger {
+    &.e-calendar {
+        span {
+            &.e-icons {
+                &.highlight {
+                    &:before {
+                        top: -3px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.e-bigger {
+    .e-calendar {
+        span {
+            &.e-icons {
+                &.highlight {
+                    &:before {
+                        top: -3px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.e-selected {
+    span {
+        &.e-icons {
+            &.highlight {
+                &:before {
+                    color: $color-fff;
+                }
+            }
+        }
+    }
+}
+
+span {
+    &.e-icons {
+        &.highlight {
+            font-weight: bold;
+            font-size: 14px;
+        }
+    }
+}
+
+.e-calendar {
+    .e-content {
+        span {
+            &.special {
+                font-weight: bold;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.e-calendar {
+    .e-content {
+        span {
+            &.special {
+                border-radius: 50%;
+            }
+        }
+    }
+}
+
+span {
+    &.special {
+        &.e-day {
+            &.special-date {
+                color: $color-ff4500;
+            }
+        }
+    }
+}
+
+div {
+	&.e-calendar {
+		&.e-control {
+			&.e-keyboard {
+				> div {
+					&.e-content {
+						&.e-month {
+							> table {
+								&.e-control {
+									&.e-keyboard {
+										> tbody {
+											> tr {
+												> td {
+													&.e-cell {
+														&.e-disabled {
+															&.e-overlay {
+																pointer-events: all !important;
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/*calendar Special date css --end*/
+

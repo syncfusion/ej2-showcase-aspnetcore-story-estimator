@@ -1,0 +1,114 @@
+﻿// sass-lint:disable quotes
+@import "../Common/Colors.scss";
+// sass-lint:enable quotes
+
+.alertdlg-icon {
+    border: 4px solid transparent;
+    border-radius: 50%;
+    box-sizing: content-box;
+    cursor: default;
+    height: 80px;
+    margin: 20px auto 30px;
+    padding: 0;
+    position: relative;
+    user-select: none;
+    width: 80px;
+}
+
+.alertdlg-icon {
+    &.alertdlg-success [class^=alertdlg-success-circular-line][class$=left] {
+        border-radius: 120px 0 0 120px;
+        left: -33px;
+        top: -7px;
+        transform: rotate(-45deg);
+        transform-origin: 60px 60px;
+    }
+}
+
+.alertdlg-icon {
+    &.alertdlg-success [class^=alertdlg-success-circular-line] {
+        height: 120px;
+        position: absolute;
+        width: 60px;
+    }
+}
+
+
+.alertdlg-icon {
+    &.alertdlg-success [class^=alertdlg-success-line][class$=tip] {
+        left: 14px;
+        top: 46px;
+        transform: rotate(45deg);
+        width: 25px;
+    }
+}
+
+.alertdlg-icon {
+    &.alertdlg-success [class^=alertdlg-success-line] {
+        background-color: $color-alertdialog-icon-background;
+        border-radius: 2px;
+        display: block;
+        height: 5px;
+        position: absolute;
+        z-index: 2;
+    }
+}
+
+.alertdlg-icon {
+    &.alertdlg-success [class^=alertdlg-success-line][class$=long] {
+        right: 8px;
+        top: 38px;
+        transform: rotate(-45deg);
+        width: 47px;
+    }
+}
+
+.alertdlg-icon {
+    &.alertdlg-success [class^=alertdlg-success-line] {
+        background-color: $color-alertdialog-icon-background;
+        border-radius: 2px;
+        display: block;
+        height: 5px;
+        position: absolute;
+        z-index: 2;
+    }
+}
+
+.alertdlg-icon {
+    &.alertdlg-success {
+        .alertdlg-success-ring {
+            border: 4px solid $color-alertdialog-success-border;
+            border-radius: 50%;
+            box-sizing: content-box;
+            height: 80px;
+            left: -4px;
+            position: absolute;
+            top: -4px;
+            width: 80px;
+            z-index: 2;
+        }
+    }
+}
+
+.alertdlg-content {
+    color: $color-btn-content-black;
+    float: none;
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+#commonAlertDialog {
+    .e-dlg-header-content {
+        display: none;
+    }
+}
+
+#commonAlertDialog_dialog-content {
+    padding-top: 20px;
+}

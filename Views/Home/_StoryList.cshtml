@@ -1,0 +1,71 @@
+﻿@{
+    int totalStories = 0;
+    if (ViewBag.TotalStories != null && ViewBag.TotalStories != 0)
+    {
+        totalStories = ViewBag.TotalStories;
+    }
+}
+
+<script>
+    $(document).ready(function () {
+        if (@totalStories == 0) {
+            $(".search").find('span').addClass("disabled");
+            $('#increased-width-Id').attr('readonly', true);
+            $('#increased-width-Id').addClass('input-disabled');
+        }
+    });
+</script>
+
+<span id="hamburger" class="e-icons menu hide"></span>
+<ejs-sidebar id="leftPanel" enableGestures="false" type="Push" >
+    <e-content-template>
+        <div class="storyPart bg-white">
+            <div id="filterWrapper" class="filter-wrapper">
+                <span class="filter-text-outer hide">
+                    <span class="filter-text">
+                        Pending
+                    </span>
+                    <span class="filter-close" onclick="RemoveFilterClick()">
+                        <i class="material-icons close-icon">close</i>
+                    </span>
+                </span>
+                <span id="close" class="e-icons"></span>
+            </div>
+            <div class="search-wrapper bg-white hide">
+                <div class="search">
+                    <div class='e-float-input'>
+                        <input class='e-input search-txt increased-width' id="increased-width-Id" type='text' placeholder='Search Stories'>
+                    </div>
+                    <span id="closeSearchIcon"><i class="material-icons searchstorys" id="plancloseiconid" style="display:none" onclick="storyCloseIconsClick()">close</i></span>
+                    <span class="e-search-icon e-icons search-btn"></span>
+                    <div class="dropdown story-filter">
+                        <span class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="material-icons icon-button">more_vert</i>
+                        </span>
+                        <ul class="dropdown-menu pull-left story-filter-ul">
+                            <li id="allFilter">
+                                <a><span class="glyphicon glyphicon-ok"></span>All</a>
+                            </li>
+                            <li id="compFilter">
+                                <a> <span class="glyphicon no-icon"></span>Completed</a>
+                            </li>
+                            <li id="pendFilter">
+                                <a> <span class="glyphicon no-icon"></span>Pending</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <ejs-grid id="storyListGrid" dataSource="ViewBag.StoryDataList" queryCellInfo="tooltip" rowTemplate="#rowtemplate"
+                actionBegin="actionBegin" actionComplete="actionComplete" created="create" dataBound="dataBoundEvt" load="load">
+                <e-grid-columns>
+                    <e-grid-column field="StoryId"></e-grid-column>
+                    <e-grid-column field="StoryTitle"></e-grid-column>
+                    <e-grid-column field="StoryDescription"></e-grid-column>
+                    <e-grid-column field="TaskId"></e-grid-column>
+                    <e-grid-column field="StoryListDescription"></e-grid-column>
+                </e-grid-columns>
+            </ejs-grid>
+        </div>
+    </e-content-template>
+</ejs-sidebar>

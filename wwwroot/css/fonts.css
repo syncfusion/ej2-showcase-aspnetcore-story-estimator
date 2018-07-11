@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'Planningpoker';
+    src: url('./fonts/Planningpoker.ttf') format('truetype'), url('./fonts/Planningpoker.woff') format('woff'), url('./fonts/Planningpoker.eot') format('eot'), url('./fonts/Planningpoker.svg?#Planningpoker') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="sficon-"], [class*=" sficon-"] {
+ font-family: 'Planningpoker' !important;
+speak: none;
+font-size: 55px;
+font-style: normal;
+font-weight: normal;
+font-variant: normal;
+text-transform: none;
+line-height: 1;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
+.sficon-add-csv-01:before { content: "\e900"; }
+.sficon-microsoft-excel-2013-01:before { content: "\e901"; }
+.sficon-jira:before { content: "\e902"; }
+.sficon-user-wf:before { content: "\e903"; }
+.sficon-microsoft-office-2013-02:before { content: "\e904"; }
+.sficon-facebook:before { content: "\e905"; }
+.sficon-linkedin:before { content: "\e906"; }
+
+@font-face {
+    font-family: 'sb-icons';
+    src: url('./fonts/controls.ttf?gcjn6a') format('truetype'), url('./fonts/controls.woff?gcjn6a') format('woff'), url('./fonts/controls.svg?gcjn6a#sbicons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.e-sb-icon {
+    font-family: 'sb-icons';
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-accumulation-chart::before {
+    content: '\e71d';
+}
+
+.icon-btn::before {
+    content: '\e702';
+}
+
+.icon-checkbox::before {
+    content: '\e722';
+}
+
+.icon-circulargauge::before {
+    content: '\e725';
+}
+
+.icon-dialog::before {
+    content: '\e708';
+}
+
+.icon-grid::before {
+    content: '\e700';
+}
+
+.icon-maskedtextbox::before {
+    content: '\e709';
+}
+
+.icon-radiobutton::before {
+    content: '\e72c';
+}
+
+.icon-sidebar::before {
+    content: '\e70a';
+}
+
+.icon-spinner::before {
+    content: '\e70e';
+}
+
+.icon-splitbutton::before {
+    content: '\e719';
+}
+
+.icon-toast::before {
+    content: '\e71a';
+}
+
+.icon-uploader::before {
+    content: '\e730';
+}

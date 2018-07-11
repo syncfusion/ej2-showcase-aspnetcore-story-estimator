@@ -1,0 +1,205 @@
+﻿// sass-lint:disable quotes
+@import "../Common/Colors.scss";
+// sass-lint:enable quotes
+
+.confirmdialog-title {
+    color: $color-primary;
+    display: block;
+    font-size: 30px !important;
+    font-weight: 500;
+    margin: 0 0 .4em;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    word-wrap: break-word;
+}
+
+.confirmdialog-content {
+    color: $color-primary!important;
+    float: none;
+    font-size: 18px !important;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.confirmdialog-icon {
+    &.confirmdialog-warning {
+        border-color: $color-confirmdialog-warning-border;
+        color: $color-confirmdialog-warning;
+        font-size: 60px !important;
+        line-height: 80px;
+        text-align: center;
+    }
+}
+
+.confirmdialog-icon {
+    border: 4px solid transparent;
+    border-radius: 50%;
+    box-sizing: content-box;
+    cursor: default;
+    height: 80px;
+    margin: 20px auto 30px;
+    padding: 0;
+    position: relative;
+    user-select: none;
+    width: 80px !important;
+}
+
+#confirmDialog {
+    .e-dlg-header-content {
+        display: none;
+    }
+}
+
+#confirmDialog_dialog-content {
+    padding-top: 20px;
+}
+
+.dialgueHeaderremove {
+    .e-dlg-header-content {
+        display: none;
+    }
+}
+
+.confirmdialog-bold-content {
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    color: rgba(0,0,0,.87);
+}
+
+#informationDialog {
+    .e-dlg-header-content {
+        display: none;
+    }
+}
+
+#informationDialog_dialog-content {
+    padding-top: 10px;
+}
+
+.informationDialogButton {
+    background: #E38721 !important;
+    width: auto !important;
+    color:#fff !important;
+}
+
+.pauseDialogButton {
+    background: #18BD38 !important;
+    color : #fff !important;
+}
+
+.confirmdialog-icon {
+    &.confirmdialog-success {
+        border-color: green;
+        color: green;
+        font-size: 60px !important;
+        line-height: 80px;
+        text-align: center;
+    }
+}
+
+#pauseGameDialog {
+    .e-dlg-header-content {
+        display: none;
+    }
+}
+
+#pauseGameDialog {
+    .e-footer-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+#informationDialog {
+    .e-footer-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+#confirmDialog {
+    .e-footer-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* smartphones, iPhone, portrait 480x320 phones */
+@media (min-width:320px) {
+    #confirmDialog {
+        width: 250px !important;
+    }
+}
+
+/* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+@media (min-width:481px) {
+    #confirmDialog {
+        width: 300px !important;
+    }
+}
+
+/* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+@media (min-width:641px) {
+    #confirmDialog {
+        width: 400px !important;
+    }
+}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (min-width:961px) {
+    #confirmDialog {
+        width: 500px !important;
+    }
+}
+
+/* big landscape tablets, laptops, and desktops */
+@media (min-width:1025px) {
+    #confirmDialog {
+        width: 500px !important;
+    }
+}
+
+/* hi-res laptops and desktops */
+@media (min-width:1281px) {
+    #confirmDialog {
+        width: 500px !important;
+    }
+}
+
+#qrCodeDialog {
+    .e-footer-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: -10px;
+    }
+}
+
+
+.qrCodeDialogButton {
+    width: 96px !important;
+    background: #E38721 !important;
+    color: #fff !important;
+    padding-top: 5px;
+}
+
+.alertDlgPrimaryButton {
+    background-color: #2196f3 !important;
+    border-color: transparent !important;
+    color: #fff !important;
+}
+
+.alertDlgPrimaryButton:hover {
+    background-color: #0B7EDB !important;
+}

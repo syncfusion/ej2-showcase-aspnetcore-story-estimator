@@ -1,0 +1,71 @@
+﻿@model StoryEstimator.Showcase.Models.DashboardWidget
+@if (Model.RoomDetailsList.Count > 0)
+{
+    <div style="padding-left: 16px; padding-right: 16px; padding-top: 16px;" id="roomlistrow-div">
+        <div class="row" id="dashboardroomrow">
+            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12" id="dashboardroomcolumn">
+                <div class="e-input-group searchInputGroup">
+                    <input class="e-input dashboardsearch-div" type="text" id="searchrooms" placeholder="Search Rooms" onkeyup="searchroomkeypress(event)">
+                    <span id="closeSearchIcon"><i class="material-icons searchdashbooard" id="closeiconid" style="display:none;font-size:20px;" onclick="closeRoomIconsClick()">close</i></span>
+                    <span id="roomSearchIcon"><i class="material-icons searchdashbooard" id="roomsiconid" onclick="roomIconsClick()">search</i></span>
+                    <div id="div-searchFilter">
+                        <div class="dropdown">
+                            <span class="dropdown-toggle" data-toggle="dropdown"><i class="material-icons icon-button">more_horiz</i></span>
+                            <ul class="dropdown-menu pull-left" id="searchFilters">
+                                <li><a id="all-rooms" class="primary" onclick="allRoomsDetails()"><span class="glyphicon glyphicon-ok" id="all-span"></span>All</a></li>
+                                <li> <a id="completed-rooms" class="primary" onclick="completedRoomsDetails()"><span class="test-icon" id="completed-span"></span> Completed </a> </li>
+                                <li> <a id="pending-rooms" class="primary" onclick="pendingRoomsDetails()"><span class="test-icon" id="pending-span"></span> Pending </a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="roomdetails">
+            @Html.Partial("~/Views/Home/_Roomlist.cshtml", Model)
+        </div>
+    </div>
+}
+else
+{
+    <div style="padding-top: 10px;">
+        @if (Model.QuickFilter == "myroom")
+        {
+            <div id="Noroomemptymessage">You have not created any rooms yet.</div>
+        }
+        else
+        {
+            <div id="Noroomemptymessage">You have not been invited to any rooms yet.</div>
+        }
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            window.roomlistCount = 0;
+
+            var resizeTimer;
+            $(window).resize(function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function () {
+                    resizeDashboardHeight();
+                }, 200);
+            });
+            resizeDashboardHeight();
+
+            function resizeDashboardHeight() {
+                var windowheight = $(window).height();
+                var appheaderheight = $('.app-header').height();
+                $("#dashboardPage-div").css("height", windowheight - appheaderheight);
+                var paddingPage = parseInt($("#dashboardPage-div").css('padding-top'));
+                var quickfilterheight = $('#dashboardquickfilter-divs').height();
+                var roomlistheight = parseInt($('#roomlistrow-div').css('padding-top'));
+                var roomheaderrow = $('#dashboardroomrow').height();
+                var paddingroomheader = parseInt($("#dashboardroomrow").css('padding-bottom'));
+                listviewheight = windowheight - appheaderheight - roomheaderrow - paddingPage - paddingroomheader;
+                var roomlistscrollheight = listviewheight - quickfilterheight - roomlistheight;
+                $("#dashboardroomsid").css("height", windowheight - appheaderheight - paddingPage);
+                $("#dashboardpagelistviewroom").css("height", roomlistscrollheight);
+            }
+        });
+    </script>
+}

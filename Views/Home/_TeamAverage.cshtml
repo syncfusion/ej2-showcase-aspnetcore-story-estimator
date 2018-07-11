@@ -1,0 +1,258 @@
+﻿@model StoryEstimator.Showcase.Models.StoryObjects
+@using StoryEstimator.Showcase.Models.Data;
+@using StoryEstimator.Showcase.Utils;
+@using Syncfusion.EJ2
+
+@{
+    int totalStories = 1;
+    int storyId = 0;
+    int roomStatusId = 0;
+    bool hasTimerValue = false;
+    string storyStartTime = string.Empty;
+    string storyEndTime = string.Empty;
+    int storyIdleTime = 0;
+    int storyTotalTime = 0;
+    bool isCheckPendingStory = false;
+
+
+    if (ViewBag.CheckPendingStory != null)
+    {
+        isCheckPendingStory = ViewBag.CheckPendingStory;
+    }
+    if (ViewBag.StoryId != null && ViewBag.StoryId != 0)
+    {
+        storyId = ViewBag.StoryId;
+    }
+    if (ViewBag.TotalStories != null && ViewBag.TotalStories != 0)
+    {
+        totalStories = ViewBag.TotalStories;
+    }
+    if (ViewBag.RoomStatusId != null && ViewBag.RoomStatusId > 0)
+    {
+        roomStatusId = ViewBag.RoomStatusId;
+    }
+    if (ViewBag.HasTimer != null && ViewBag.HasTimer == true)
+    {
+        hasTimerValue = ViewBag.HasTimer;
+    }
+    if (ViewBag.StoryStartTime != null)
+    {
+        storyStartTime = ViewBag.StoryStartTime.ToString("M/d/yyyy HH:mm:ss");
+    }
+    if (ViewBag.StoryEndTime != null)
+    {
+        storyEndTime = ViewBag.StoryEndTime.ToString("M/d/yyyy HH:mm:ss");
+    }
+    if (ViewBag.StoryIdleTime != null)
+    {
+        storyIdleTime = ViewBag.StoryIdleTime;
+    }
+    if (ViewBag.StoryTotalTime != null)
+    {
+        storyTotalTime = ViewBag.StoryTotalTime;
+    }
+    string userMsg = string.Empty;
+    string userMsgClass = "hide";
+    string userViewMsg = string.Empty;
+    string userViewMsgClass = "hide";
+}
+
+@if (Model != null)
+{
+    if (Model.ErrorMessage != null)
+    {
+        <section class="content">
+            <div class="play-area-inner">
+                <span>@Model.ErrorMessage</span>
+            </div>
+        </section>
+    }
+    else
+    {
+        <section class="content">
+            <input type="hidden" id="totalStories" value="@Model.TotalStories" />
+            <input type="hidden" id="totalEstimatedStories" value="@Model.TotalEstimatedStories" />
+            <input type="hidden" id="totalEstimatedStoryPoints" value="@Model.TotalEstimatedStoryPoints" />
+            <input type="hidden" id="isAllStoryEstimated" value="@Model.IsAllStoryEstimated.ToString()" />
+            <input type="hidden" id="estimatedTime" value="@Model.EstimatedTime" />
+            <input type="hidden" id="isEstimated" value="@Model.IsEstimated.ToString()" />
+            <input type="hidden" id="currentTime" value="@DateTime.Now.ToString("M/d/yyyy HH:mm:ss")" />
+            <input type="hidden" id="storyStartTime" value="@storyStartTime" />
+            <input type="hidden" id="storyEndTime" value="@storyEndTime" />
+            <input type="hidden" id="storyIdleTime" value="@storyIdleTime" />
+            <input type="hidden" id="storyTotalTime" value="@storyTotalTime" />
+            <div class="play-area-inner">
+                <div class="play-area-content">
+                    @if (Model != null && Model.IsOwner == true)
+                    {
+                        userViewMsg = ValidationMessages.UserViewMessage;
+                        userViewMsgClass = string.Empty;
+                    }
+                    @if (Model != null && Model.IsOwner == false && roomStatusId == (int)StoryStatusEnum.Paused)
+                    {
+                        userMsg = ValidationMessages.GamePausedMessage;
+                        userMsgClass = "";
+                    }
+                    <div id="userView" class="user-view @userViewMsgClass">
+                        <p id="userViewMessage" class="warningmsguser">
+                            This is the organizer view. <a href="#/playuser" class="link-colored-content" target="_blank" onclick="enableStartBtn()">Click here</a>
+                            @userViewMsg
+                        </p>
+                    </div>
+                    <div id="waitforOrganizer" class="waiting-organizer @userMsgClass">
+                        @userMsg
+                    </div>
+                    <div class="mobile-story-timer hide"></div>
+                    <div class="row no-margin">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 no-padding stroy-detail-div">
+                            <div id="storyContent">
+                                <div class="shown" data-id="@Model.StoryId" data-status="@Model.StoryStatusName">
+                                    <div class="storyTitle">
+                                        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 story-title-inner no-padding">
+                                            @if (Model.TaskId != null && @Model.TaskUrl != null)
+                                            {
+                                                <a href="@Model.TaskUrl" class="link-colored-content" target="_blank">@Model.TaskId</a><span> - </span>
+                                            }
+                                            <b>@Model.StoryTitle</b>
+                                        </div>
+                                    </div>
+                                    <div class="storyDescription" id="storydetailsarea">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 story-desc-inner no-padding">
+                                            <p id="showmore" style="text-align:justify">
+                                                <span id="storylengthtext"> @Model.StoryListDescription</span>
+                                                <span id="storyhiddentext" style="display:none"> @Model.StoryListDescription</span>
+                                                <a onclick="ShowMore()" class="link-colored-content" style="display:none;" id="showmorelink">Show More</a>
+                                            </p>
+                                            <p id="showless" style="display:none;text-align:justify">
+                                                @Model.StoryListDescription
+                                                &nbsp;&nbsp;<a class="link-colored-content" onclick="ShowLess()">Show Less</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 final-time-div">
+                            @if (hasTimerValue || (Model != null && Model.IsEstimated == true))
+                            {
+                                string labelText = "Story Timer";
+                                if (Model != null && Model.IsEstimated == true)
+                                {
+                                    labelText = "Time Taken";
+                                }
+                                <span class="final-time-header">@labelText</span>
+                                <span id="storyDigitalTimer" class="final-time-value">@(Model.EstimatedTime != null ? Helper.FormatEstimatedTime(Model.EstimatedTime.Value) : "00:00:00")</span>
+                            }
+                        </div>
+                    </div>
+                    <hr class="chart-top-border" />
+                    <div class="row no-margin chart-areas">
+                        <div class="row no-margin">
+                            @if (Model != null && Model.IsOwner == true)
+                            {
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding chart-title text-align-center">
+                                    Team Average
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 no-padding"></div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 no-padding chart-title text-align-center">
+                                    Team Average
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 blink-containter text-align-right">
+                                    <span class="blink-label">Status:</span>
+                                    @if (Model != null && Model.IsEstimated == false)
+                                    {
+                                        <span class="blink">Estimating...</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="no-blink">Estimated.</span>
+                                    }
+                                </div>
+                            }
+                        </div>
+                        @{ 
+                            var dataLabel = new
+                            {
+                                visible = true,
+                                name = "Text",
+                                position = "Inside",
+                                template = "<div>${point.text}</div>",
+                                font = new
+                                {
+                                    color = "white",
+                                    fontWeight = "600",
+                                    size = "14px",
+                                }
+                            };
+                        }
+                        <ejs-accumulationchart theme="Material" id="teamAverageChart" enableSmartLabels="true" selectionMode="Point" animationComplete="chartAnimationComplete" textRender="chartTextRender">
+                            <e-accumulationchart-tooltipsettings enable="true" format="${point.x}"></e-accumulationchart-tooltipsettings>
+                            <e-accumulationchart-legendsettings toggleVisibility=false visible="true" position="Bottom"></e-accumulationchart-legendsettings>
+                            <e-accumulation-series-collection>
+                                <e-accumulation-series xName="EstimatedPoint" yName="PlayerCount" startAngle="0" endAngle="360" dataLabel="@dataLabel">
+                                </e-accumulation-series>
+                            </e-accumulation-series-collection>
+                        </ejs-accumulationchart>
+                    </div>
+                </div>
+                @{
+                    string footerClass = "hide";
+                }
+                @if (Model != null && Model.IsOwner == true)
+                {
+                    <hr id="btnFooterTop" />
+                    footerClass = string.Empty;
+                }
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn-footer @footerClass">
+                    @{
+                        string playAgainClass = "hide";
+                        string nextStoryClass = "hide";
+                    }
+                    @if (Model != null && Model.IsOwner == true)
+                    {
+                        if (roomStatusId != (int)RoomStatusEnum.Closed)
+                        {
+                            playAgainClass = string.Empty;
+                        }
+                        nextStoryClass = string.Empty;
+                    }
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 btn-footer-anchor text-align-left">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 no-padding">
+                        @if (Model != null && Model.IsEstimated == false)
+                        {
+                            <button id="finishVoting" class="finish-voting-btn @nextStoryClass" onclick="FinishVotingClick()">
+                                <i class="material-icons">done</i>
+                                <span>Finish Voting</span>
+                            </button>
+                        }
+                    </div>
+                    <input type="hidden" id="isCheckPendingStoryTeam" value="@isCheckPendingStory" />
+                    @if ((storyId != totalStories || (storyId == totalStories && isCheckPendingStory)) && Model != null && Model.IsOwner == true)
+                    {
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-align-right btn-footer-anchor">
+                            <a id="nextStory" href="javascript:void(0)" onclick="GetNextStoryClick()" class="footer-link @nextStoryClass"><i class="material-icons">fast_forward</i><span class="footer-btn-text">NEXT STORY</span></a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    }
+}
+else
+{
+    <section class="content">
+        <div class="play-area-inner">
+            <span>server error</span>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+    var roomStatusId = @roomStatusId;
+</script>
+
+@Html.EJS().ScriptManager()

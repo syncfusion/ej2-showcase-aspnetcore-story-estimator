@@ -1,0 +1,740 @@
+﻿// sass-lint:disable quotes
+@import "../Common/Colors.scss";
+@import "../Common/Fonts.scss";
+// sass-lint:enable quotes
+
+#storyestimatorpageid {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#dashboardcontainer {
+    border: 1px solid $color-border;
+}
+
+.dashboardheading {
+    border: 0.5px solid $color-border;
+    font-size: 18px;
+    font-weight: $font-bold;
+    height: 50px;
+}
+
+.dashboardpanelbody {
+    height: 400px;
+    overflow-y: auto;
+    padding: 0px;
+}
+
+.dashboardcards {
+    border-bottom: 1px solid $color-custom-grid-row-bottom;
+    height: 64px;
+    padding-right: 16px;
+    padding-left: 16px;
+}
+
+.dasboardroomtitle {
+    color: $color-theme !important;
+    font-size: 13px;
+    font-weight: $font-bold;
+    height: 18px;
+    line-height: 1.2;
+    padding-bottom: 5px;
+}
+
+.dashboardroomdescription {
+    color: $color-secondary;
+    font-size: 12px;
+    font-weight: $font-normal;
+    height: 25px;
+    line-height: 1.6;
+    width: 95%;
+}
+
+.db-room-title {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 10px;
+}
+
+.db-room-summary {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 10px;
+}
+
+.story-dashboardcards {
+    border-bottom: 0.5px solid $color-border;
+    height: 54px;
+    padding-left: 16px;
+}
+
+.story-dasboardtitle {
+    color: $color-primary;
+    font-size: 14px;
+    font-weight: $font-bold;
+    height: 23px;
+    line-height: 1.2;
+    width: 78%;
+}
+
+.story-dashboarddescription {
+    color: $color-secondary;
+    font-size: 13px;
+    font-weight: $font-normal;
+    height: 16px;
+    line-height: 1.2;
+    width: 80%;
+    padding-left:28px;
+}
+
+.dashboardpagelistview {
+    margin-left: -15px;
+    margin-right: -15px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.dashboardstoryurl {
+    color: $color-0983a0 !important;
+    font-size: 14px;
+    font-weight: $font-bold;
+    line-height: 1.2;
+}
+
+.test-icon {
+    padding-right: 26px !important;
+}
+
+#roomNameDashboard {
+    font-size: 18px;
+    font-weight: $font-bold;
+}
+
+.storylistfields {
+    color: $color-secondary;
+    font-size: 12px;
+    font-weight: $font-bold;
+}
+
+.searchdashbooard {
+    color: $color-secondary;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1.4;
+    position: relative;
+}
+
+#dashboardroomsid {
+    border-right: 1px solid $color-border;
+}
+
+#searchstory,
+#searchrooms {
+    color: $color-secondary;
+    font-size: 12px;
+    font-weight: $font-normal;
+    line-height: 1.1;
+    padding: 0;
+}
+
+#roomdetails {
+    .active {
+            background-color: $color-custom-grid-row-active;
+    }
+}
+
+.searchInputGroup {
+    margin-bottom: 0 !important;
+}
+
+#dashboardcard-maindiv :hover {
+    background-color: $color-custom-grid-row-hover;
+}
+
+.noresultsclass {
+    font-size: 18px;
+}
+
+#storyestimatorpageid {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#emptyStoryMessage {
+    color: $color-iconbutton;
+    font-size: 14px;
+    font-weight: $font-bold;
+    margin-top: 24px;
+    opacity: 0.87;
+}
+
+#emptyRoomMessage {
+    color: $color-emptyroommessage;
+    font-size: 27px;
+    font-weight: $font-normal;
+    line-height: 1.2;
+    padding-bottom: 20px;
+}
+
+#createRoominNoRoomPage {
+    background-color: $color-1a237e;
+    border-radius: 4px;
+    font-size: 20px;
+    height: 50px;
+    width: 200px;
+}
+
+#noRoomPageContainer {
+    background: $color-white;
+}
+
+#noRoom-Container {
+    height: 550px;
+}
+
+#searchFilters {
+    left: -95px;
+    top: 30px;
+}
+
+#dashboardPage-div {
+    background-color: $color-white;
+    /*padding: 16px;*/
+}
+
+#emptyMessageStoryPage {
+    /*padding-top: 15%;*/
+}
+
+#div-emptyMessageStoryPage,
+#div-emptyroommessage {
+    /*margin-top: 20px;*/
+    text-align: center;
+}
+
+#actionFilters-Room {
+    left: -90px;
+    top: 25px;
+}
+
+#div-searchFilter {   
+    padding-right: 24px;   
+}
+
+#roomSearchIcon {
+    padding-right: 15px;
+}
+
+#closeSearchIcon {
+    padding-right: 15px;
+}
+
+#dashboardroomcolumn {
+    padding-left: 20px;
+}
+
+#noRoomFont-column {
+    font-size: 200px;
+    text-align: center;
+}
+
+#noRoomMessage-Column {
+    padding-top: 10%;
+    text-align: center;
+}
+
+#noRoomContentSection {
+    padding-top: 10%;
+}
+
+#emptystoryIcon {
+    color: $color-e1e1e1;
+    width: 72px;
+}
+
+#Noroomemptymessage {
+    float: left;
+    font-size: 16px;
+    font-weight: $font-normal;
+    padding-left: 5px;
+}
+
+.roomlistcount {
+    bottom: 3px;
+    color: $color-primary;
+    font-size: 12px;
+    font-weight: $font-bold;
+    line-height: 15px;
+    position: relative;
+}
+
+.roomlisticons {
+    color: $color-7D7D7D;
+    font-size: 16px !important;
+}
+
+.storylistcount {
+    bottom: 4px;
+    color: $color-232323;
+    font-size: 13px;
+    font-weight: $font-bold;
+    line-height: 15px;
+    position: relative;
+}
+
+.starticon-closed {
+    color: $color-4caf50;
+    font-size: 21px !important;
+}
+
+.pendingroundicon {
+    color: $color-ffb300;
+    float: right;
+    font-size: 21px !important;
+}
+
+.roomiconcolumns {
+    padding-left: 7px;
+    padding-right: 12px;
+}
+
+#importdialog_dialog-content {
+    padding-bottom: 5px;
+    position: relative;
+    top: -10px;
+}
+
+#importBtnDiv .e-split-btn-wrapper {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    display: table-cell;
+}
+
+#importstorybutton {
+    background-color: $color-dashboard-button-backgroundcolor;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    border-right-color: $color-border !important;
+    color: $color-dashboard-button-color;
+    text-transform: capitalize;
+    width: 95px;
+    height: 28px;
+}
+
+#importstorybutton_dropdownbtn {
+    background-color: $color-dashboard-button-backgroundcolor !important;
+}
+
+#createroombutton:hover {
+    background-color: $color-white;
+    border-color: transparent;
+    color: $color-primary;
+}
+
+#createroombutton:focus {
+    background-color: $color-white;
+    border-color: transparent;
+    color: $color-primary;
+}
+
+#createroombutton {
+    border-color: transparent;
+    text-transform: capitalize;
+}
+
+#createroomdialog {
+    top: 30px !important;
+}
+
+#createroomdialog
+    .e-dlg-header-content {
+            padding: 0px !important;
+}
+
+#createroomdialog
+    .e-dlg-closeicon-btn {
+    display: none !important;
+}
+
+#createroomheader {    
+    text-align: center;
+}
+
+.createroomheaderclass {
+    color: $color-primary !important;
+    font-size: 16px;
+    font-weight: $font-bold;
+    line-height: 19px;   
+}
+
+.createroomdialogfields {
+    color: $color-757575 !important;
+    font-size: 16px !important;
+    font-weight: $font-normal !important;
+    line-height: 24px !important;
+}
+
+#roomdescriptioninput:focus {
+    border-bottom: 2px solid $color-theme !important;
+}
+
+.cardtypesection {
+    padding: 6px;
+}
+
+.cardtypevalues {
+    color: $color-primary !important;
+    font-size: 16px !important;
+    font-weight: $font-normal !important;
+    line-height: 19px !important;
+    margin-right: 10px;
+    padding-bottom: 40px;
+}
+
+#cardtypenames {
+    border-bottom: 0.5px solid $color-border;
+}
+
+.div-roomfields {
+    padding: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#breakiconinroom {
+    color: $color-primary;
+}
+
+#div-cardvalue {
+    height: 217px;
+    overflow-y: auto;
+}
+
+#roomplayersinput:focus {
+    border-bottom: 2px solid $color-theme !important;
+}
+
+#importdialog .e-dlg-closeicon-btn {
+    display: none !important;
+}
+
+.cardtypelabel {
+    color: $color-primary !important;
+    font-size: 16px !important;
+    font-weight: $font-normal !important;
+    line-height: 19px !important;
+    margin-left: 8px;
+}
+
+#playercomment {
+    color: $color-secondary;
+    font-size: 12px;
+}
+
+#label_roomhourminuteinput {
+    text-align: center !important;
+}
+
+.dropdown-backdrop {
+    left: unset !important;
+}
+
+#createroom-columndiv {
+    border-right: 1px solid $color-border;
+    margin-top: 20px;
+    padding-right: 0px !important;
+}
+
+#selectcardvalue-header {
+    margin-top: 24px;
+}
+
+#removestorybutton {
+    background-color: $color-dashboard-button-backgroundcolor;
+    border-color: transparent;
+    color: $color-dashboard-button-color;
+    text-transform: capitalize !important;
+    width: 100px;
+    height: 28px;
+}
+
+#startgamestorybutton {
+    background-color: $color-dashboardgreen;
+    border-color: transparent;
+    color: $color-white;
+    text-transform: capitalize !important;
+    width: 100px;
+    height: 28px;
+}
+
+#deleteroomdialog_title {
+    color: $color-primary;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: $font-bold;
+}
+
+#deleteroomdialog_dialog-content {
+    color: $color-secondary;
+    font-size: 12px;
+    font-weight: $font-normal;
+    line-height: 18px;
+    padding-bottom: 0;
+}
+
+#deleteroomdialog {
+    max-height: 154px !important;
+}
+#deleteroomdialog .e-dlg-header-content .e-btn.e-dlg-closeicon-btn {
+    display:none!important;
+}
+#dashboardquickfilter-divs > li > a {
+    background: $color-navtabsdashboard-background;
+    border: none;
+    border-bottom: $color-navtabsdashboard-background;
+    margin-right: unset;
+    border-radius: unset;
+    border-bottom: 3px solid $color-navtabsdashboard-background !important;
+    color: $color-dashboardnav;
+    font-size: 13px;
+    font-weight: $font-bold;
+    line-height: 34px;
+    text-align: center;
+    height: inherit;
+    padding: 0 !important;
+}
+
+#dashboardquickfilter-divs {
+    border-bottom: 1px solid $color-navtabsdashboard-background !important;
+    height: 40px;
+}
+
+#dashboardquickfilter-divs > li {
+    height: inherit;
+}
+
+#dashboardquickfilter-divs > li.active > a {
+    background: $color-navtabsdashboard-background;
+    border: none !important;
+    border-bottom: 4px solid $color-dashboardnavactive !important;
+}
+
+
+@media (max-width:960px) {
+    #signout-dropdown {
+        top: 48px !important;
+    }
+
+    .roomiconcolumns {
+        padding-left: 0;
+        padding-right: 7px;
+    }
+}
+
+@media (min-width:1367px) {
+
+    #searchstory,
+    #searchrooms,
+    .dashboardroomdescription,
+    .story-dashboarddescription {
+        font-size: 14px !important;
+    }
+
+    #dashboardquickfilter-divs > li > a,
+    .storylistcount,
+    .roomlistcount,
+    #emptyStoryText {
+        font-size: 15px !important;
+    }
+
+    .dashboardcards {
+        height: 72px !important;
+    }
+
+    .dasboardroomtitle {
+        font-size: 15px !important;
+        height: 22px !important;
+    }
+
+    .db-room-title {
+        padding-top: 16px !important;
+    }
+
+    .db-room-summary {
+        padding-top: 16px !important;
+    }
+
+    .story-dashboardcards {
+        height: 60px !important;
+    }
+
+    .story-dasboardtitle {
+        font-size: 16px !important;
+        height: 25px !important;
+    }
+
+    .roomlisticons {
+        font-size: 21px !important;
+    }
+
+    .storycontainer > input {
+        margin-top: 4px !important;
+    }
+
+    .pendingroundicon {
+        bottom: 3.5px !important;
+    }
+}
+
+.story-checkbox {
+    float: left;
+    height: 15px;
+    margin-right: 13px;
+    margin-top: 1px;
+    width: 15px;
+}
+
+.cardtypeclass .e-label {
+    color: $color-primary !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+}
+
+#roomhourminuteinput {
+    text-align: center;
+}
+
+#emptyStoryText {
+    font-size: 14px;
+    margin: 20px 0;
+}
+
+#Noinvitedroomemptymessage {
+    float: left;
+    font-size: 16px;
+    font-weight: 400;
+    padding-left: 5px;
+}
+
+#removestorybutton:disabled {
+    opacity: 0.5;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+#roomlivestatus {
+    color: $color-red;
+    font-size: 10px;
+    position: relative;
+    top: -12px;
+    font-weight: $font-normal;
+}
+
+#roomlivestatusicon {
+    color: $color-red;
+    font-size: 8px !important;
+    padding-right: 2px;
+}
+
+.e-float-input input, .e-float-input textarea {
+    font-size: 12px !important;
+}
+
+#roomhourminuteinput {
+    font-size: 12px !important;
+}
+
+#importdialog_title {
+    font-size: 14px !important;
+    padding-bottom: 16px !important;
+}
+
+.deleteRoomSuccessbuttons {
+    background: #E38721 !important;
+    color: #FFFFFF !important;
+}
+
+.e-file-status.e-validation-fails  {
+    display: none !important;
+}
+
+.importStorySavebuttons {
+    background: #E38721 !important;
+    color: #FFFFFF !important;
+}
+
+.importStorySavebuttons:disabled {
+    opacity:0.5;
+}
+
+.createRoomSavebuttons {
+    background: #E38721 !important;
+    color: #FFFFFF !important;
+}
+
+#createroomdialog .e-footer-content .e-btn.dlg-btn-secondary {
+    height: 26px !important;
+    width: 72px !important;
+}
+
+#createroomdialog .e-footer-content .e-btn.e-flat.e-primary {
+    height: 26px !important;
+    width: 72px !important;
+}
+
+#importdialog .e-dlg-header-content {
+    padding: 15px !important;
+}
+
+#importdialog .e-footer-content .e-btn.dlg-btn-secondary {
+    height: 26px !important;
+    width: 72px !important;
+}
+
+#importdialog .e-footer-content .e-btn.e-flat.e-primary {
+    height: 26px !important;
+    width: 72px !important;
+}
+
+@media (max-width: 800px) {
+    #Noroomemptymessage {
+        font-size: 12px !important;
+    }
+
+    #Noinvitedroomemptymessage {
+        font-size: 12px !important;
+    }
+}
+
+#createroombutton:disabled {
+    background-color: $color-white !important;
+    opacity: 0.5;
+}
+
+.roomicons {
+    padding-left: 2px;
+    padding-right: 4px;
+}
+
+.roomcolumnsicons {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+
+.roomexceedcolumns {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.roomcolumnsview {
+    padding-left: 2px;
+    padding-right: 0px;
+}
+
+.roomcolumns {
+    padding-left: 1px;
+    padding-right: 1px;
+}
+
+#importdialog .e-dlg-content {
+    padding: 0px !important;
+}

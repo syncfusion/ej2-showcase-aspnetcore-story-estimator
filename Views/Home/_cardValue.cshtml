@@ -1,0 +1,24 @@
+﻿@model StoryEstimator.Showcase.Models.DashboardWidget
+
+@if (Model.CardValuesList.Count > 0)
+{
+    <div id="div-cardvalue">
+        @foreach (var item in Model.CardValuesList)
+        {
+            if (item.CardValue == (decimal)0.50)
+            {
+                <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2 cardtypevalues">½</div>
+            }
+            else
+            {
+                <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2 cardtypevalues">@item.CardValue.ToString("0.####")</div>
+            }
+        }
+        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2 cardtypevalues">
+            ?
+        </div>
+        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2 cardtypevalues">
+            <i class="material-icons" id="breakiconinroom">free_breakfast</i>
+        </div>
+    </div>
+}

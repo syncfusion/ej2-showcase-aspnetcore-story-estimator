@@ -1,0 +1,115 @@
+﻿/*! Note: 
+    1. Before adding color codes, please check whether the color code is already present or not.
+    2. Add the color codes in their series and arrange it alphabetically
+    3. Follow the below naming conventions to add color code
+
+          Color code        Color Variable
+        ----------------------------------------
+			#AAAAAA		- 	$color_AA
+            #ABABAB     -   $color_AB
+            #ABCABC     -   $color_ABC
+            #ABCDEF     -   $color_ABCDEF
+**/
+
+
+// **************************** Color values by color code ********************************
+$color-border: #e4e8eb;
+$color-border-bottom: #e2e7ea;
+$color-border-left: #e8ecee;
+$color-inputbordercolor: #979797;
+$color-placeholder: #bfbfbf;
+$color-shadow: #e8eaeb;
+$color-theme: #1d275f;
+$color-white: white;
+$color-red: #FF0000;
+$color-primary: #1f1f1f;
+$color-ddl-input-bg: #f7faff;
+$color-hover-background: rgba(158,158,158,0.2);
+$color-icon: rgba(0,0,0,.54);
+$color-body: #f7f7f7;
+$color-border: rgba(0,0,0,0.12);
+$color-custom-grid-row-bottom: #E3E3E6;
+$color-secondary: #717171;
+$color-0983a0: #0983a0;
+$color-custom-grid-row-active: #E1ECFF;
+$color-custom-grid-row-hover: #E8EEF8;
+$color-iconbutton: #141414;
+$color-emptyroommessage: #c5c5c5;
+$color-green: #1ab394;
+$color-1a237e: #1A237E;
+$color-e1e1e1: #E1E1E1;
+$color-7D7D7D: #7D7D7D;
+$color-232323: #232323;
+$color-4caf50: #4CAF50;
+$color-ffb300: #FFB300;
+$color-e0e0e0: #e0e0e0;
+$color-ed5565: #ed5565;
+$color-67c6e4: #67C6E4;
+$color-e4e8eb: #e4e8eb;
+$color-e2e7ea: #e2e7ea;
+$color-e8eaeb: #e8eaeb;
+$color-e8ecee: #e8ecee;
+$color-f44336: #f44336;
+$color-ff0000: #ff0000;
+$color-f7f7f7: #f7f7f7;
+$color-a964a8: #a964a8;
+$color-337ab7: #337ab7;
+$color-888: #888;
+$color-333: #333;
+$color-eee: #eee;
+$color-ddl-title: #bfbfbf;
+$color-dashboard-button-backgroundcolor: #e5e5e5;
+$color-dashboard-button-color: #1f1f1f;
+$color-757575: #757575;
+$color-dashboardgreen: #4CAF50;
+$color-navtabsdashboard-background: #f5f4f4;
+$color-dashboardnav: #141414;
+$color-dashboardnavactive: #E38721;
+$color-input-border: #1D275F;
+$color-0000ff: #0000ff;
+$color-fff: #fff;
+$color-ff4500: #ff4500;
+$color-alertdialog-icon-background: #a5dc86;
+$color-alertdialog-success-border: rgba(165,220,134,.2);
+$color-btn-content-black: #212121;
+$color-btn-blue: #265d8c;
+$color-btn-blue-hover: #204d74;
+$color-btn-content-white: #ffffff;
+$color-btn-background-gray: $color-e0e0e0;
+$color-btn-disabled: #bcbcbc;
+$color-btn-background-gray-hover: $color-ddl-title;
+$color-btn-red-background: $color-ed5565;
+$color-btn-red-hover: #e92f42;
+$color-btn-secondary: #7f7f7f;
+$color-danger-button: #E85959;
+$color-danger-button-hover: #EA4949;
+$color-success-button: #4CAF50;
+$color-success-button-hover: #47CD4C;
+$color-card-shadow: rgba(0, 0, 0, 0.2);
+$color-editable-input-focus: #66afe9;
+$color-plan-btn: #E38721;
+$color-confirmdialog-warning: #f8bb86;
+$color-confirmdialog-warning-border: #facea8;
+$color-wait-org-color: #1F1F1F;
+$color-descrip-row: #717171;
+$color-delete-icon: #878787;
+$color-pending-icon: #FFBE4F;
+$color-estimated-icon: #4CAF50;
+$color-filter-text-outer: #cbcbcb;
+$color-filter-text: rgba(0,0,0,.87);
+$color-close-icon-hover: #8f8f8f;
+$color-link: #0983a0;
+$color-progress-background: rgba(0, 0, 0, 0.3);
+$color-descrip-border-bottom: #D5D5D5;
+$color-black: black;
+$color-plan-btn-hover: #D77D1C;
+$color-user-view-bg-color: #fbf4c3;
+$color-wait-org-bg-color: #FFEDED;
+$color-final-time-header: #717171;
+$color-dropdown-divider: #e5e5e5;
+$color-listview-title: #1F1F1F;
+$color-838383: #838383;
+$color-user-active: #6BCC2D;
+$color-listview-description: #717171;
+$color-blink-label: #808080;
+$color-no-blink-label: #008000;

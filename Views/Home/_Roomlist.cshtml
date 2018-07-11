@@ -1,0 +1,380 @@
+﻿@using StoryEstimator.Showcase.Models.Data;
+@model StoryEstimator.Showcase.Models.DashboardWidget
+@{
+    var DefaultRoomId = 0;
+    var activeRoomUserId = 0;
+    int? storyCount = 0;
+    var currentUserId = 4;
+    var isStartGameVisible = false;
+    var isImportRemoveVisible = false;
+    var IsActiveStoryStartGameVisible = false;
+    var IsActiveImportRemoveVisible = false;
+    var RoomGuid = string.Empty;
+    int roomCount = 0;
+    if (Model.RoomDetailsList != null && Model.RoomDetailsList.Count > 0)
+    {
+        roomCount = Model.RoomDetailsList.Count;
+    }
+}
+
+<style type="text/css">
+    .blink_text {
+        -webkit-animation-name: blinker;
+        -webkit-animation-duration: 1s;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-iteration-count: infinite;
+        -moz-animation-name: blinker;
+        -moz-animation-duration: 1s;
+        -moz-animation-timing-function: linear;
+        -moz-animation-iteration-count: infinite;
+        -o-animation-name: blinker;
+        animation-name: blinker;
+        -o-animation-duration: 1s;
+        animation-duration: 1s;
+        -o-animation-timing-function: linear;
+        animation-timing-function: linear;
+        -o-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        color: red;
+    }
+
+    @@-moz-keyframes blinker {
+        0% {
+            opacity: 1.0;
+        }
+
+        50% {
+            opacity: 0.0;
+        }
+
+        100% {
+            opacity: 1.0;
+        }
+    }
+
+    @@-webkit-keyframes blinker {
+        0% {
+            opacity: 1.0;
+        }
+
+        50% {
+            opacity: 0.0;
+        }
+
+        100% {
+            opacity: 1.0;
+        }
+    }
+
+    @@-ms-keyframes blinker {
+        0% {
+            opacity: 1.0;
+        }
+
+        50% {
+            opacity: 0.0;
+        }
+
+        100% {
+            opacity: 1.0;
+        }
+    }
+
+    @@keyframes blinker {
+        0% {
+            opacity: 1.0;
+        }
+
+        50% {
+            opacity: 0.0;
+        }
+
+        100% {
+            opacity: 1.0;
+        }
+    }
+</style>
+
+<input type="hidden" class="roomCounts" value="@roomCount" />
+@if (Model.RoomDetailsList != null && Model.RoomDetailsList.Count > 0)
+{
+    var roomlistcount = 0;
+    <div class="dashboardpagelistview" id="dashboardpagelistviewroom">
+
+        @foreach (var item in Model.RoomDetailsList)
+        {
+            int roomStatusId = Convert.ToInt32(item.RoomStatusId);
+            var addactive = "";
+            roomlistcount++;
+            if (Model.IsActiveRoomIdAvailable)
+            {
+                if (item.RoomId == Model.ActiveRoomId)
+                {
+                    DefaultRoomId = Convert.ToInt32(item.RoomId);
+                    activeRoomUserId = Convert.ToInt32(item.CreatedBy);
+                    addactive = "active";
+                    storyCount = item.StoriesCount;
+                    RoomGuid = item.RoomGuid;
+                }
+                if (roomStatusId == (int)RoomStatusEnum.Open || roomStatusId == (int)RoomStatusEnum.Stopped)
+                {
+                    if (item.RoomId == Model.ActiveRoomId)
+                    {
+                        isStartGameVisible = true;
+                        IsActiveStoryStartGameVisible = true;
+                    }
+                    else
+                    {
+                        IsActiveStoryStartGameVisible = true;
+                    }
+                }
+                else
+                {
+                    if (item.RoomId == Model.ActiveRoomId)
+                    {
+                        isStartGameVisible = false;
+                        IsActiveStoryStartGameVisible = false;
+                    }
+                    else
+                    {
+                        IsActiveStoryStartGameVisible = false;
+                    }
+                }
+                if (roomStatusId != (int)RoomStatusEnum.Closed)
+                {
+                    if (item.RoomId == Model.ActiveRoomId)
+                    {
+                        isImportRemoveVisible = true;
+                        IsActiveImportRemoveVisible = true;
+                    }
+                    else
+                    {
+                        IsActiveImportRemoveVisible = true;
+                    }
+                }
+                else
+                {
+                    if (item.RoomId == Model.ActiveRoomId)
+                    {
+                        isImportRemoveVisible = false;
+                        IsActiveImportRemoveVisible = false;
+                    }
+                    else
+                    {
+                        IsActiveImportRemoveVisible = false;
+                    }
+                }
+            }
+            else
+            {
+                if (roomlistcount == 1)
+                {
+                    DefaultRoomId = Convert.ToInt32(item.RoomId);
+                    activeRoomUserId = Convert.ToInt32(item.CreatedBy);
+                    addactive = "active";
+                    storyCount = item.StoriesCount;
+                    RoomGuid = item.RoomGuid;
+                }
+                if (roomStatusId == (int)RoomStatusEnum.Open || roomStatusId == (int)RoomStatusEnum.Stopped)
+                {
+                    if (roomlistcount == 1)
+                    {
+                        isStartGameVisible = true;
+                        IsActiveStoryStartGameVisible = true;
+                    }
+                    else
+                    {
+                        IsActiveStoryStartGameVisible = true;
+                    }
+                }
+                else
+                {
+                    if (roomlistcount == 1)
+                    {
+                        isStartGameVisible = false;
+                        IsActiveStoryStartGameVisible = false;
+                    }
+                    else
+                    {
+                        IsActiveStoryStartGameVisible = false;
+                    }
+                }
+                if (roomStatusId != (int)RoomStatusEnum.Closed)
+                {
+                    if (roomlistcount == 1)
+                    {
+                        isImportRemoveVisible = true;
+                        IsActiveImportRemoveVisible = true;
+                    }
+                    else
+                    {
+                        IsActiveImportRemoveVisible = true;
+                    }
+                }
+                else
+                {
+                    if (roomlistcount == 1)
+                    {
+                        isImportRemoveVisible = false;
+                        IsActiveImportRemoveVisible = false;
+                    }
+                    else
+                    {
+                        IsActiveImportRemoveVisible = false;
+                    }
+                }
+            }
+            <div id="dashboardcard-maindiv" style="padding: 0;">
+                <div class="row dashboardcards @addactive" onclick="storiesDetails(this)" data-roomId="@item.RoomId" data-isimportremovevisible="@IsActiveImportRemoveVisible" data-isstartgamevisible="@IsActiveStoryStartGameVisible" data-activeUserId="@item.CreatedBy" data-storyCount="@item.StoriesCount" data-roomGuid="@item.RoomGuid" style="margin-left: 0px; margin-right: 0px;">
+                    <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 db-room-title">
+                        @if (roomStatusId == (int)RoomStatusEnum.InProgress || roomStatusId == (int)RoomStatusEnum.Paused)
+                        {
+                            <a class="dasboardroomtitle roomnametitle ellipsis" href="#/play" target="_blank" title="Play area" style="display: inline-block; padding-right: 5px;">@item.RoomName</a>
+                            <span id="roomlivestatus"><i class="fa fa-circle blink_text" id="roomlivestatusicon"></i>Live</span>
+                        }
+                        else
+                        {
+                            <a class="dasboardroomtitle ellipsis" href="#/play" target="_blank" title="@item.RoomName" style="display: inline-block; width: 150px; padding-right: 5px;">@item.RoomName</a>
+                        }
+                    </div>
+                    <div align="right" class="col-lg-6 col-sm-6 col-md-6 col-xs-6 db-room-summary">
+                        <table>
+                            <tr>
+                                <td class="roomliststatistics roomiconcolumns">
+                                    @if (roomStatusId == (int)RoomStatusEnum.Closed)
+                                    {
+                                        <span style="float: right;">
+                                            <span title="Estimated" class="roomcounticonspan"><i class="material-icons roomlisticons starticon-closed">star_half</i></span>
+                                            @if (item.StoryPointsCount == null)
+                                            {
+                                                item.StoryPointsCount = 0;
+                                            }
+                                            <span class="roomlistcount storypointcountdiv" id="storypointcountdiv" title="Story Point" style="bottom: 5px;">@item.StoryPointsCount.Value.ToString("0.##")</span>
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span title="Pending" class="roomcounticonspan"><i class="material-icons roomlisticons pendingroundicon" style="position: relative;bottom: 2.5px;">query_builder</i></span>
+                                    }
+                                </td>
+                                <td class="roomliststatistics roomiconcolumns">
+                                    <span title="Story count" class="roomcounticonspan"><i class="material-icons roomlisticons">assignment</i></span>
+                                    <span class="roomlistcount roomstorycount storiescountdiv roomcountdiv" id="storiescountdiv" title="Story count">@item.StoriesCount</span>
+                                </td>
+                                <td class="roomliststatistics roomiconcolumns">
+                                    <span class="roomcounticonspan" title="Players count"><i class="material-icons roomlisticons">supervisor_account</i></span>
+                                    <span class="roomlistcount usercountdiv" id="usercountdiv" title="Players count">@item.UserCount</span>
+                                </td>
+                                @if (item.IsCreatedUser && Model.QuickFilter == "myroom")
+                                {
+                                    <td class="roomliststatistics roomiconcolumns" style="position: relative;">
+                                        <span class="roomcounticonspan dropdown-toggle" data-toggle="dropdown" style="margin-right: 10px;"><i class="material-icons icon-button roomlisticons" style="padding: 3px 5px 5px 4px; bottom: 1px;font-size:20px !important">more_vert</i></span>
+                                        <ul class="dropdown-menu pull-left" id="roomFilters" style="left: -85px; top: 20px;overflow: visible;">
+                                            <li><a class="primary" onclick="deleteRoomClick(@item.RoomId, '@item.RoomName')">Delete</a></li>
+                                        </ul>
+                                    </td>
+                                }
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="dashboardroomdescription ellipsis" id="storydescription" title="@item.Description">
+                        @Html.Raw(item.Description)
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    if (Model.QuickFilter == "myroom")
+    {
+        <div id="Noroomemptymessage">No rooms found.</div>
+    }
+    else
+    {
+        <div id="Noinvitedroomemptymessage">No rooms found.</div>
+    }
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        defaultId = @DefaultRoomId;
+        roomGuid = "@RoomGuid";
+        defaultStoryCount = @storyCount;
+        activeRoomUserId = "@activeRoomUserId";
+        isStartgamevisible = "@isStartGameVisible";
+        isImportRemoveVisible = "@isImportRemoveVisible";
+        var currentUserId = "@currentUserId";
+        roomlistCount = @Model.RoomDetailsList.Count;
+        window.roomsCounts = @Model.RoomDetailsList.Count;
+        $('.roomnametitle').each(function () {
+            var $ele = $(this);
+            var f = $ele.context.innerText;
+            var newStr = f.substring(0, 25) + "..";
+            if (f.length > 25) {
+                $ele.attr('title', f);
+                $ele.context.innerText = newStr;
+            }
+        });
+
+        $('.roomcountdiv').each(function () {
+            var $ele = $(this);
+            var f = $ele.context.innerText;
+            var newStr = f.substring(0, 3) + "..";
+            if (f.length > 3) {
+                $ele.attr('title', 'Story count ' + f);
+                $ele.context.innerText = newStr;
+            }
+        });
+
+        $('.usercountdiv').each(function () {
+            var $ele = $(this);
+            var f = $ele.context.innerText;
+            var newStr = f.substring(0, 2) + "..";
+            if (f.length > 2) {
+                $ele.attr('title', 'Players count' + f);
+                $ele.context.innerText = newStr;
+            }
+        });
+
+        var totalCount = $(".roomCounts").val();
+        if (totalCount == 0) {
+            var searchTexts = document.getElementById('searchrooms');
+            if (searchTexts.value.trim() == "") {
+                $('#searchrooms').attr('readonly', true);
+                $('#searchrooms').addClass('input-disabled');
+                $('#roomSearchIcon').addClass('disabled');
+            }
+        }
+        else {
+            $('#roomSearchIcon').removeClass('disabled');
+            $('#searchrooms').attr('readonly', false);
+            $('#searchrooms').removeClass('input-disabled');
+        }
+
+        var resizeTimer;
+        $(window).resize(function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                resizeDashboardHeight();
+            }, 200);
+        });
+        resizeDashboardHeight();
+
+        function resizeDashboardHeight() {
+            var windowheight = $(window).height();
+            var appheaderheight = $('.app-header').height();
+            $("#dashboardPage-div").css("height", windowheight - appheaderheight);
+            var paddingPage = parseInt($("#dashboardPage-div").css('padding-top'));
+            var quickfilterheight = $('#dashboardquickfilter-divs').height();
+            var roomlistheight = parseInt($('#roomlistrow-div').css('padding-top'));
+            var roomheaderrow = $('#dashboardroomrow').height();
+            var paddingroomheader = parseInt($("#dashboardroomrow").css('padding-bottom'));
+            listviewheight = windowheight - appheaderheight - roomheaderrow - paddingPage - paddingroomheader;
+            var roomlistscrollheight = listviewheight - quickfilterheight - roomlistheight;
+            $("#dashboardroomsid").css("height", windowheight - appheaderheight - paddingPage);
+            $("#dashboardpagelistviewroom").css("height", roomlistscrollheight);
+        }
+    });
+</script>

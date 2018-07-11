@@ -1,0 +1,72 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/dist/cssminify/ej2.min.css",
+    "inputFiles": [
+      "wwwroot/css/ej2/ej2-notifications.css",
+      "wwwroot/css/ej2/material.css",
+      "wwwroot/dist/css/ej2/ej2Grid.css",
+      "wwwroot/dist/css/ej2/ej2DatePicker.css",
+      "wwwroot/dist/css/ej2/ej2Dialog.css",
+      "wwwroot/dist/css/ej2/ej2Dropdown.css",
+      "wwwroot/dist/css/ej2/ej2Toast.css",
+      "wwwroot/dist/css/Components/*.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/dist/cssminify/site.min.css",
+    "inputFiles": [
+      "wwwroot/dist/css/site.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/dist/cssminify/dashboard.min.css",
+    "inputFiles": [
+      "wwwroot/dist/css/Dashboard/dashboard.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/dist/cssminify/play.min.css",
+    "inputFiles": [
+      "wwwroot/dist/css/Play/Play.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/dist/cssminify/about.min.css",
+    "inputFiles": [
+      "wwwroot/dist/css/About/About.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/dist/jsminify/site.min.js",
+    "inputFiles": [
+      "wwwroot/js/site.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/dist/jsminify/dashboard.min.js",
+    "inputFiles": [
+      "wwwroot/js/dashboard.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/dist/jsminify/play.min.js",
+    "inputFiles": [
+      "wwwroot/js/play.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    },
+    "sourceMap": false
+  }
+]

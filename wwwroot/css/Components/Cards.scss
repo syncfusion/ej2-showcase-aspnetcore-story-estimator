@@ -1,0 +1,140 @@
+﻿// sass-lint:disable quotes
+@import "../Common/Colors.scss";
+// sass-lint:enable quotes
+
+.card-container {
+    margin-top: 3%;
+    padding-left: 30px;
+}
+
+.card {
+    background: #DFF4FF;
+    border: 1px solid #DFF4FF;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 $color-card-shadow;
+    display: inline-block;
+    height: 100px;
+    margin: 10px;
+    transition: .2s;
+    width: 75px;
+}
+
+@media (min-width:1367px) {
+    .card,
+    .down-card,
+    .down-card-owner {
+        height: 140px !important;
+        width: 105px !important;
+    }
+
+    .card-text {
+        line-height: 140px !important;
+    }
+
+    .tickmarkimage {
+        margin-left: 34px !important;
+        margin-top: 51px !important;
+    }
+}
+
+.card:hover {
+    background: #D2E2FD;
+    border: 1px solid #D2E2FD;
+    box-shadow: 0 8px 16px 0 $color-card-shadow;
+    cursor: pointer;
+}
+
+.card:disabled,
+.card[disabled] {
+    cursor: not-allowed;
+}
+
+.card-text {
+    line-height: 100px;
+    padding: 2px 16px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.card-text-span {
+    font-size: 18px;
+}
+
+.card.active {
+    background-color: #0051A3;
+    border: 1px solid #0051A3;
+    color: $color-white;
+}
+
+.card.active .glyphicon {
+    color: $color-white;
+}
+
+.hide-cards {
+    display: none;
+}
+
+.voting-status-container {
+    margin-top: 3%;
+    padding-left: 30px;
+}
+
+.down-card {
+    background: #DFF4FF;
+    border: 1px solid #DFF4FF;
+    box-shadow: 0 4px 8px 0 $color-card-shadow;
+    border-radius: 5px;
+    color: $color-white;
+    display: inline-block;
+    height: 100px;
+    margin: 10px;
+    width: 75px;
+}
+
+.down-card-owner {
+    background: #0051A3;
+    border: 1px solid #0051A3;
+    border-radius: 5px;
+    color: $color-white;
+    display: inline-block;
+    height: 100px;
+    margin: 10px;
+    width: 75px;
+}
+
+.down-card-icon {
+    font-size: 30px !important;
+    padding: 34px 0 0 22px;
+}
+
+.down-card-container {
+    float: left;
+}
+
+.down-card-name {
+    margin-left: 15px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 70px;
+}
+
+.down-card-point {
+    font-size: 20px;
+    padding-top: 50%;
+    text-align: center;
+}
+
+.voting-card-loader {
+    color: #373737;
+    font-size: 11px;
+    font-style: italic;
+    padding-top: 60%;
+    text-align: center
+}
+
+.tickmarkimage{
+    margin-left:18.5px;
+    margin-top:33px;
+}

@@ -1,0 +1,119 @@
+﻿@using Syncfusion.EJ2
+@model StoryEstimator.Showcase.Models.DashboardWidget
+
+<header class="app-header navbar-fixed-top" style="padding: 0 16px !important">
+    <div style="display: flex; justify-content: space-between; height: inherit;">
+        <div style="height: inherit; flex:1;">
+            <div id="appHeaderInner" class="default-logo">
+                <a href="#/dashboard">
+                    <img id="logoImage" src="https://cdn.syncfusion.com/planningpoker/images/general/story_estimator_logo.svg">
+                </a>
+            </div>
+        </div>
+        <div align="right" style="padding-top: 10px;">
+            <ejs-button id="createroombutton" content="Create Room" style="height: 28px; display: none;"></ejs-button>
+            <ejs-dialog id="createroomdialog" closeOnEscape="false" isModal="true" width="898px" height="510px" target="#targetId"
+                        beforeOpen="dialogBeforeOpen" created="roomCreated" beforeClose="dialogBeforeClose" showCloseIcon="true" visible="false" cssClass="hide">
+                <e-dialog-buttons>
+                    <e-dialog-dialogbutton buttonModel="ViewBag.createRoomCancelBtn" click="cancelRoomClick"></e-dialog-dialogbutton>
+                    <e-dialog-dialogbutton buttonModel="ViewBag.createRoomBtn" click="createRoomClick"></e-dialog-dialogbutton>
+                </e-dialog-buttons>
+            </ejs-dialog>
+        </div>
+        <div id="userProfile" style="margin-top: 10px; flex:1; justify-content: flex-end; display: flex;">
+            <div class="header-divider hide"></div>
+            <a id="about" href="#/about" target="_blank" title="About" class="about-icon">
+                <img id="aboutIcon" src="https://cdn.syncfusion.com/planningpoker/images/general/AboutIcon.svg">
+            </a>
+            <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" aria-expanded="true" style="display: flex;">
+                <div>
+                    <img class="img-circle" src="~/images/4.png" style="height: 28px; width: 28px;">
+                </div>
+                <div id="layourcurrentusernameDiv" style="padding-left: 5px; padding-top: 5px;">
+                    <span id="layourcurrentusername" class="ellipsis">
+                        Andrew Fuller
+                    </span>
+                </div>
+            </a>
+            <ul class="dropdown-menu pull-right material-menu-popup" id="signout-dropdown" style="top: 40px;right: 15px;">
+                <li class="userprofile hide">
+                    <span class="popup-profile sficon-user-wf usernameicon"></span>
+                    <span class="usernamelabel ellipsis" id="usernameLabel">Andrew Fuller</span>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <span class="popup-profile glyphicon glyphicon-off"></span>
+                        <span>Sign out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="row" id="dashboardPage-div" style="padding-top: 1px;">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="dashboardroomsid" style="padding-right: 0px;">
+        <ul class="nav nav-tabs" id="dashboardquickfilter-divs">
+            <li class="active" id="myroomTab" style="width:50%">
+                <a id="myroom" data-toggle="tab">My Rooms</a>
+            </li>
+            <li id="invitedTab" style="width:50%">
+                <a id="invitedroom" data-toggle="tab">Invited Rooms</a>
+            </li>
+        </ul>
+        <div id="roomsearchandfilterview">
+            @Html.Partial("~/Views/Home/_RoomFilter.cshtml", Model)
+        </div>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding-left: 16px; padding-top: 15px; padding-right: 30px;" id="div-storyPage">
+        <div style="padding-bottom: 10px; display: none" id="storylistheader">
+            <div class="col-xs-5 col-sm-5 col-lg-5 col-md-5 no-padding">
+                <div class="e-input-group storygroup">
+                    <input class="e-input dashboardsearch-div" id="searchstory" placeholder="Search Stories" onkeyup="searchstorykeypress(event)">
+                    <span id="closeSearchIcon"><i class="material-icons searchdashbooard" id="storycloseiconid" style="display: none; font-size: 20px;" onclick="closeStoryIconsClick()">close</i></span>
+                    <span><i class="material-icons searchdashbooard" id="storiesiconid" onclick="storyIconsClick()">search</i></span>
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-lg-2 col-md-2" id="storylistheaderEmpty"></div>
+            <div class="col-xs-5 col-sm-5 col-lg-5 col-md-5 no-padding" id="storylistheaderBtns" style="display: table">
+                <div style="display: table-cell">
+                    <a id="startgamestorybutton" href="#/play" target="_blank" style="visibility: hidden">Play Game</a>
+                </div>
+                <div style="display: table-cell">
+                    <ejs-button id="removestorybutton" content="Remove" style="visibility: hidden"></ejs-button>
+                    <ejs-dialog id="confirmDialog" closeOnEscape="true" isModal="true" width="500px" target="#targetId" 
+                        beforeOpen="dialogBeforeOpen" beforeClose="dialogBeforeClose" showCloseIcon="false" visible="false" cssClass="hide">
+                        <e-dialog-buttons> 
+                            <e-dialog-dialogbutton buttonModel="ViewBag.yesBtn" click="storyDeleteYesBtnClick"></e-dialog-dialogbutton> 
+                            <e-dialog-dialogbutton buttonModel="ViewBag.noBtn" click="storyDeleteNoBtnClick"></e-dialog-dialogbutton> 
+                        </e-dialog-buttons>
+                    </ejs-dialog>
+                </div>
+                <div id="importBtnDiv" style="visibility: hidden">
+                    <ejs-splitbutton id="importstorybutton" click="ImportClick" select="ImportSelect" items="ViewBag.items" content="Import Story"></ejs-splitbutton>
+                </div>
+            </div>
+        </div>
+        <div id="storyList">
+
+        </div>
+    </div>
+
+    <div id="importdialogWrapper" class="content-wrapper">
+        <ejs-dialog id="importdialog" closeOnEscape="false" isModal="true" width="330px" target="#targetId"
+            beforeOpen="dialogBeforeOpen" beforeClose="dialogBeforeClose" showCloseIcon="true" visible="false" cssClass="hide">
+            <e-dialog-buttons>
+                <e-dialog-dialogbutton buttonModel="ViewBag.importCancelBtn" click="importCancelClick"></e-dialog-dialogbutton>
+                <e-dialog-dialogbutton buttonModel="ViewBag.importStoryBtn" click="importBtnClick"></e-dialog-dialogbutton>
+            </e-dialog-buttons>
+        </ejs-dialog>
+    </div>
+    <ejs-dialog id="deleteroomdialog" closeOnEscape="false" isModal="true" height="154px" width="278px" target="#targetId" content="Once you delete this Room, it cannot be undone."
+        beforeOpen="dialogBeforeOpen" beforeClose="dialogBeforeClose" showCloseIcon="true" cssClass="hide" header="Delete This Room?">
+        <e-dialog-buttons>
+            <e-dialog-dialogbutton buttonModel="ViewBag.cancelBtn" click="cancelDeleteRoomClick"></e-dialog-dialogbutton>
+            <e-dialog-dialogbutton buttonModel="ViewBag.delRoomBtn" click="deleteRoomBtnClick"></e-dialog-dialogbutton>
+        </e-dialog-buttons>
+    </ejs-dialog>
+</div>
+
+@Html.EJS().ScriptManager()

@@ -1,0 +1,31 @@
+﻿// sass-lint:disable quotes
+@import "../Common/Colors.scss";
+// sass-lint:enable quotes
+
+.link-content {
+	color: $color-primary;
+	cursor: pointer;
+
+	&:hover {
+		color: $color-primary;
+	}
+}
+
+.link-colored-content {
+	color: $color-link !important;
+	cursor: pointer;
+
+	&:hover {
+		color: $color-link !important;
+	}
+}
+
+.link-secondary-colored-content {
+    color: $color-primary !important;
+    cursor: pointer;
+
+    &:hover {
+        color: $color-primary !important;
+    }
+}
+
