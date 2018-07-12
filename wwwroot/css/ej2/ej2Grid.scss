@@ -1,0 +1,78 @@
+﻿// sass-lint:disable quotes
+@import "../Common/Colors.scss";
+// sass-lint:enable quotes
+
+/* EJ2 Grid design changes*/
+
+.e-pager {
+    opacity: 1 !important;
+}
+
+.e-grid 
+.e-rowcell, 
+.e-grid 
+.e-detailrowcollapse, 
+.e-grid 
+.e-detailrowexpand {
+    opacity: 1 !important;
+}
+
+.e-grid 
+.e-rowcell, 
+.e-grid 
+.e-gridcontent, 
+.e-grid 
+.e-gridheader, 
+.e-grid 
+.e-headercontent, 
+.e-grid 
+.e-groupdroparea, 
+.e-grid 
+.e-gridfooter {
+    overflow: visible !important;
+}
+
+.e-content {
+    overflow: visible !important;
+}
+
+.e-grid {
+    &.e-responsive {
+        .e-rowcell,
+        .e-headercelldiv {
+            overflow: hidden !important
+        }
+    }
+}
+
+.e-gridcontent {
+    .e-table {
+        tr {
+            td {
+                &:last-child {
+                    overflow: visible !important;
+                }
+            }
+        }
+    }
+}
+
+.e-pager {
+    .e-currentitem {
+        background: $color-input-border none repeat scroll 0 0 !important;
+    }
+}
+
+.e-pager {
+    .e-currentitem {
+        &:hover {
+            background: $color-input-border none repeat scroll 0 0 !important;
+        }
+    }
+}
+
+.e-grid {
+    .e-search {
+        height: calc(100% - 11px) !important;
+    }
+}

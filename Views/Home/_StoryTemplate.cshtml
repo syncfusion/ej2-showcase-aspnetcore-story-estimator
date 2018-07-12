@@ -1,0 +1,372 @@
+﻿@model StoryEstimator.Showcase.Models.PlayObjects
+@using StoryEstimator.Showcase.Models.Data
+@using StoryEstimator.Showcase.Utils;
+@using Syncfusion.EJ2
+
+@{
+    int totalStories = 1;
+    int storyId = 0;
+    var roomStatusId = 0;
+    var storyDescription = string.Empty;
+    bool isCheckPendingStory = false;    
+    bool hasTimerValue = false;
+
+    if (ViewBag.CheckPendingStory != null)
+    {
+        isCheckPendingStory = ViewBag.CheckPendingStory;
+    }   
+    if (ViewBag.StoryId != null && ViewBag.StoryId != 0)
+    {
+        storyId = ViewBag.StoryId;
+    }
+    if (ViewBag.TotalStories != null && ViewBag.TotalStories != 0)
+    {
+        totalStories = ViewBag.TotalStories;
+    }
+    if (ViewBag.HasTimer != null && ViewBag.HasTimer == true)
+    {
+        hasTimerValue = ViewBag.HasTimer;
+    }
+}
+
+@if (Model != null)
+{
+    if (Model.ErrorMessage != null)
+    {
+        <div class="play-area-inner">
+            <span id="storyTemplate">@Model.ErrorMessage</span>
+        </div>
+    }
+    else
+    {
+        <div class="play-area-inner">
+            @{
+                string userViewMsg = string.Empty;
+                string userMsg = ValidationMessages.WaitForOrganizerMessage;
+                string userViewMsgClass = "hide";
+                string userMsgClass = "hide";
+                string storyClass = "col-lg-8 col-md-8 col-sm-8 col-xs-8";
+                string gaugeClass = "col-lg-4 col-md-4 col-sm-4 col-xs-4";
+            }
+            @if (Model.StoryDetails != null && Model.StoryDetails.IsOwner == true)
+            {
+                userViewMsg = ValidationMessages.UserViewMessage;
+                userViewMsgClass = string.Empty;
+            }
+            @if (Model.StoryDetails != null && Model.StoryDetails.IsOwner == false && !Model.StoryDetails.IsCurrentStory && Model.StoryDetails.StoryStatusId == (int)StoryStatusEnum.Open)
+            {
+                userMsg = ValidationMessages.WaitForOrganizerMessage;
+                userMsgClass = string.Empty;
+            }
+            @if (Model.StoryDetails != null && Model.StoryDetails.StoryStatusId == (int)StoryStatusEnum.Paused)
+            {
+                userMsgClass = string.Empty;
+                userMsg = Model.StoryDetails.IsOwner == true ? ValidationMessages.GamePausedOwnerMessage : ValidationMessages.GamePausedUserMessage;
+
+                if (Model.VotingDeails != null && Model.VotingDeails.StoryPlayerList != null && Model.VotingDeails.StoryPlayerList.Count > 0)
+                {
+                    foreach(var player in Model.VotingDeails.StoryPlayerList)
+                    {
+                        if (player.IsCurrentUser && player.EstimationStatusId != null && Model.StoryDetails.IsOwner != true)
+                        {
+                            userMsg = ValidationMessages.GamePausedMessage;
+                        }
+                    }
+                }
+            }
+            @if (Model.RoomDetails != null && Model.RoomDetails.Timer == null)
+            {
+                storyClass = "col-lg-12 col-md-12 col-sm-12 col-xs-12";
+                gaugeClass = string.Empty;
+            }
+            <input type="hidden" id="hasTimer" value="@hasTimerValue.ToString()" />
+            <div id="userView" class="user-view @userViewMsgClass">
+                <p id="userViewMessage" class="warningmsguser">
+                    This is the organizer view. <a href="#/playuser" class="link-colored-content" target="_blank" onclick="enableStartBtn()">Click here</a>
+                    @userViewMsg
+                </p>
+            </div>
+            <div id="waitforOrganizer" class="waiting-organizer @userMsgClass">
+               <p id="organizerMessage" title="@userMsg" class="warningmsguser">@userMsg</p> 
+            </div>
+            <div class="mobile-story-timer hide"></div>
+            <div class="row no-margin" id="storyTemplate">
+                <div class="@storyClass no-padding stroy-detail-div">
+                    @if (Model.StoryDetails != null)
+                    {
+                        roomStatusId = Model.StoryDetails.StoryStatusId;
+                        storyDescription = @Model.StoryDetails.StoryListDescription;
+                        <input type="hidden" id="storyStatus" value="@Model.StoryDetails.StoryStatusName" />
+                        <input type="hidden" id="currentTime" value="@DateTime.Now.ToString("M/d/yyyy HH:mm:ss")" />
+                        @if (Model.StoryDetails.StartTime != null)
+                        {
+                            <input type="hidden" id="storyStartTime" value="@Model.StoryDetails.StartTime.Value.ToString("M/d/yyyy HH:mm:ss")" />
+                        }
+                        @if (Model.StoryDetails.EndTime != null)
+                        {
+                            <input type="hidden" id="storyEndTime" value="@Model.StoryDetails.EndTime.Value.ToString("M/d/yyyy HH:mm:ss")" />
+                        }
+                        @if (Model.StoryDetails.IdleTime != null && Model.StoryDetails.IdleTime.Value >= 0)
+                        {
+                            <input type="hidden" id="storyIdleTime" value="@Model.StoryDetails.IdleTime.Value" />
+                        }
+                        @if (Model.StoryDetails.TotalTime != null && Model.StoryDetails.TotalTime > 0)
+                        {
+                            <input type="hidden" id="storyTotalTime" value="@Model.StoryDetails.TotalTime" />
+                        }
+                        <div id="storyContent">
+                            <div id="story-@storyId" class="shown" data-id="@Model.StoryDetails.StoryId" data-status="@Model.StoryDetails.StoryStatusName">
+                                <div class="storyTitle">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 story-title-inner no-padding">
+                                        @if (Model.StoryDetails.TaskId != null && @Model.StoryDetails.TaskUrl != null)
+                                        {
+                                            <a href="javascript:void(0);" class="link-colored-content" target="_blank">@Model.StoryDetails.TaskId</a><span> - </span>
+                                        }
+
+                                        <b>@Model.StoryDetails.StoryTitle</b>
+                                    </div>
+                                </div>
+                                <div class="storyDescription" id="storydetailsarea">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 story-desc-inner no-padding">
+                                        <p id="showmore" style="text-align:justify">
+                                            <span id="storylengthtext"> @Model.StoryDetails.StoryListDescription</span>
+                                            <span id="storyhiddentext" style="display:none"> @Model.StoryDetails.StoryListDescription</span>
+                                            <a onclick="ShowMore()" style="display:none;" id="showmorelink">Show More</a>
+                                        </p>
+                                        <p id="showless" style="display:none;text-align:justify">
+                                            @Model.StoryDetails.StoryListDescription
+                                            &nbsp;&nbsp;<a onclick="ShowLess()">Show Less</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div id="storyContent">
+                            <span>No stories found.</span>
+                        </div>
+                    }
+                </div>
+                @if (Model.RoomDetails != null && Model.RoomDetails.Timer != null && Model.RoomDetails.Timer.Value > 0)
+                {
+                    <div class="@gaugeClass no-padding story-timer-div">
+                        <div id="gaugeContent">
+                            <div id="storyDigitalTimerText">Story Timer:</div>
+                            @if (Model.VotingDeails != null && Model.VotingDeails.IsCurrentUserVoted)
+                            {
+                                <input type="hidden" id="timeTakenToVote" value="@Model.VotingDeails.TimeTakenToVote" />
+                            }
+                            <input type="hidden" id="storyTimer" value="@Model.RoomDetails.Timer.Value" />
+                            @{
+                                var lineStyle = new
+                                {
+                                    width = "0",
+                                };
+                                var majorTicks = new
+                                {
+                                    color = "white",
+                                    offset = -5,
+                                    height = 12,
+                                };
+                                var minorTicks = new
+                                {
+                                    width = "0",
+                                };
+                                var labelStyle = new
+                                {
+                                    offset = -10,
+                                    useRangeColor = true,
+                                    font = new
+                                    {
+                                        color = "#424242",
+                                        size = "13px",
+                                        fontFamily = "Roboto",
+                                    }
+                                };
+                                List<Syncfusion.EJ2.CircularGauge.CircularGaugePointer> pointers = new List<Syncfusion.EJ2.CircularGauge.CircularGaugePointer>();
+                                pointers.Add(new Syncfusion.EJ2.CircularGauge.CircularGaugePointer
+                                {
+                                    Radius = "65%",
+                                    Color = "#000000",
+                                    Cap = new
+                                    {
+                                        radius = 6,
+                                        border = new
+                                        {
+                                            color = "#000000",
+                                            width = 6,
+                                        },
+                                    },
+                                    Animation = new
+                                    {
+                                        enable = true,
+                                        duration = 100,
+                                    }
+                                });
+                                List<Syncfusion.EJ2.CircularGauge.CircularGaugeRange> ranges = new List<Syncfusion.EJ2.CircularGauge.CircularGaugeRange>();
+                                ranges.Add(new Syncfusion.EJ2.CircularGauge.CircularGaugeRange
+                                {
+                                    StartWidth = "10px",
+                                    EndWidth = "10px",
+                                    Radius = "102%",
+                                    Color = "#69d5e8"
+                                });
+                                ranges.Add(new Syncfusion.EJ2.CircularGauge.CircularGaugeRange
+                                {
+                                    StartWidth = "10px",
+                                    EndWidth = "10px",
+                                    Radius = "102%",
+                                    Color = "#ed7373"
+                                });
+                            }
+                            <ejs-circulargauge id="timerGauge" enablePointerDrag="false" height="150px" width="200px">
+                                <e-circulargauge-axes>
+                                    <e-circulargauge-axis lineStyle="@lineStyle" labelStyle="@labelStyle" minorTicks="@minorTicks" majorTicks="@majorTicks"
+                                        startAngle="-90" endAngle="90" radius="100%" pointers="@pointers" ranges="@ranges"></e-circulargauge-axis>
+                                </e-circulargauge-axes>
+                            </ejs-circulargauge>
+                            <span id="storyDigitalTimer"></span>
+                        </div>
+                    </div>
+                }
+            </div>
+            <hr class="descrip-bottom-border" />
+            <div class="row no-margin cards-area">
+                @if (Model.StoryDetails != null && !Model.StoryDetails.IsOwner && Model.StoryDetails.StoryStatusId == (int)StoryStatusEnum.InProgress && Model.VotingDeails != null && !Model.VotingDeails.IsCurrentUserVoted)
+                {
+                    <div id="cardContainer" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 card-container">
+                        @if (Model.CardDetails != null && Model.CardDetails.Count > 0 && Model.StoryDetails != null)
+                        {
+                            foreach (var cardDetail in Model.CardDetails)
+                            {
+                                <div class="card" id="card-@cardDetail.CardValueId" onclick="CardClick(this)">
+                                    <div class="card-text">
+                                        <span class="card-text-span">
+                                            <b>
+                                                @if (cardDetail.CardValue == (decimal) 0.50)
+                                                {
+                                                    <span>½</span>
+                                                }
+                                                else
+                                                {
+                                                    @cardDetail.CardValue.ToString("0.#####")
+                                                }                                               
+                                            </b>
+                                        </span>
+                                    </div>
+                                </div>
+                            }
+                            int index = Model.CardDetails[Model.CardDetails.Count - 1].CardValueId + 1;
+                            int nextindex = index + 1;
+                            <div class="card" id="card-@index" title="Not sure" onclick="CardClick(this)">
+                                <div class="card-text">
+                                    <span class="card-text-span">
+                                        <b>
+                                            ?
+                                        </b>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card" id="card-@nextindex" title="Need a break" onclick="CardClick(this)">
+                                <div class="card-text">
+                                    <span class="card-text-span">
+                                        <b>
+                                            <i class="material-icons">free_breakfast</i>
+                                        </b>
+                                    </span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                @if (Model.StoryDetails != null && ((Model.StoryDetails.IsOwner && Model.StoryDetails.StoryStatusId != (int)StoryStatusEnum.Open) || (Model.StoryDetails.StoryStatusId != (int)StoryStatusEnum.Open && Model.VotingDeails != null && Model.VotingDeails.IsCurrentUserVoted)))
+                {
+                    @Html.Partial("~/Views/Home/_VotingStatus.cshtml", Model.VotingDeails)
+                }
+                @if (Model.StoryDetails != null && !Model.StoryDetails.IsCurrentStory && Model.StoryDetails.StoryStatusId == (int)StoryStatusEnum.Open)
+                {
+                    <input type="hidden" id="isShowMore" value="true" />
+                }
+            </div>
+        </div>
+        string footerClass = "hide";
+        string footerTopClass = "hide";
+        if (Model.StoryDetails != null && Model.StoryDetails.IsOwner)
+        {
+            if (Model.StoryDetails.StoryStatusId != (int)StoryStatusEnum.Open)
+            {
+                footerTopClass = string.Empty;
+                footerClass = string.Empty;
+            }
+        }
+        else
+        {
+            if (Model.StoryDetails != null && Model.StoryDetails.StoryStatusId == (int)StoryStatusEnum.InProgress && Model.VotingDeails != null && !Model.VotingDeails.IsCurrentUserVoted)
+            {
+                footerTopClass = string.Empty;
+                footerClass = string.Empty;
+            }
+        }
+        <hr id="btnFooterTop" class="@footerTopClass" />
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn-footer @footerClass">
+            @{
+                string resetClass = "hide";
+                string skipStoryClass = "hide";
+                string flipClass = "hide";
+                string estimateClass = "hide";
+            }
+            @if (Model.StoryDetails != null)
+            {
+                if (Model.StoryDetails.IsOwner == true)
+                {
+                    if (Model.StoryDetails.StoryStatusId != (int)StoryStatusEnum.Open)
+                    {
+                        resetClass = string.Empty;
+                        skipStoryClass = string.Empty;
+                        flipClass = string.Empty;
+                    }
+                }
+                else
+                {
+                    if (Model.StoryDetails.StoryStatusId == (int)StoryStatusEnum.InProgress && Model.VotingDeails != null && !Model.VotingDeails.IsCurrentUserVoted)
+                    {
+                        estimateClass = string.Empty;
+                    }
+                }
+            }
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 btn-footer-anchor">
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="display: flex;justify-content: center;">
+                <button id="flipButton" class="flip-btn @flipClass" onclick="FlipClick()">
+                    <i class="material-icons">exit_to_app</i>
+                    <span>Flip</span>
+                </button>
+                <button id="estimateButton" style="width:130px" class="estimate-btn @estimateClass" disabled="disabled" onclick="EstimateClick()">
+                    <i class="material-icons">thumb_up</i>
+                    <span>Estimate</span>
+                </button>
+            </div>       
+            <input type="hidden" id="isCheckPendingStoryTemplate" value="@isCheckPendingStory" />
+            @if (((storyId != totalStories) || (storyId == totalStories && isCheckPendingStory)) && Model.StoryDetails != null && Model.StoryDetails.IsOwner == true)
+            {
+                <div id="story-@storyId" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 btn-footer-anchor">
+                    <a id="skipStory" href="javascript:void(0)" onclick="GetNextStoryClick()" class="footer-link @skipStoryClass"><i class="material-icons">redo</i><span class="footer-btn-text">SKIP THE STORY</span></a>
+                </div>
+            }
+        </div>
+    }
+}
+else
+{
+    <div class="play-area-inner">
+        <span id="storyTemplate">No stories found.</span>
+    </div>
+}
+<script type="text/javascript">
+    var roomStatusId = @roomStatusId;
+</script>
+
+@Html.EJS().ScriptManager()

@@ -1,0 +1,207 @@
+﻿// sass-lint:disable quotes
+@import "../Common/Colors.scss";
+// sass-lint:enable quotes
+
+
+.search-wrapper {
+    padding: 16px 16px 35px;
+}
+
+.search {
+    display: inline-flex;
+    float: left;
+    width: 92%;
+
+    .e-float-input {
+        margin-top: 0;
+    }
+}
+
+.search-btn {
+    cursor: pointer;
+    float: right;
+    padding: 5px;
+    z-index: 1;
+}
+
+.search-txt {
+    border-color: $color-input-border !important;
+    border-width: 0 !important;
+    font-size: 14px !important;
+    width: 110%;
+}
+
+.e-grid .e-gridcontent tr:first-child td {
+    border-top: 1px solid $color-custom-grid-row-bottom;
+}
+
+.title-row-text {
+    color: $color-wait-org-color;
+    float: left;
+    font-size: 13px;
+    font-weight: 500;
+    overflow: hidden;
+    padding-bottom: 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 60%;
+}
+
+@media (min-width:1367px) {
+    .title-row-text,
+    #increased-width-Id {
+        font-size: 15px !important;
+    }
+
+    .descrip-row,
+    .story-point-txt {
+        font-size: 14px !important;
+    }
+
+    .estimated-icon .material-icons,
+    .pending-icon .material-icons {
+        font-size: 23px !important;
+    }
+
+    .delete-icon .material-icons {
+        font-size: 21px !important;
+    }
+}
+
+.descrip-row {
+    color: $color-descrip-row;
+    float: left;
+    font-size: 12px;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 90%;
+}
+
+.grid-row.active {
+    background-color: $color-custom-grid-row-active;
+}
+
+.grid-row {
+    td {
+        border-bottom: 1px solid $color-custom-grid-row-bottom;
+        padding: 14px 16px 13px 16px;
+        width: 100%;
+    }
+
+    :hover {
+        background-color: $color-custom-grid-row-hover;
+    }
+}
+
+#storyListGrid_content_table .e-emptyrow td {
+    padding: 14px 15px 13px 21px;
+}
+
+.no-icon {
+    padding-left: 15px;
+}
+
+.delete-icon {
+    color: $color-delete-icon;
+    float: right;
+    margin-left: 10px;
+}
+
+.delete-icon .material-icons {
+    font-size: 19px;
+    margin-top: -5px;
+}
+
+.delete-icon:hover {
+    cursor: pointer !important;
+}
+
+.pending-icon {
+    color: $color-pending-icon;
+    float: right;
+    margin-left: 10px;
+}
+
+.pending-icon .material-icons {
+    font-size: 21px;
+    margin-top: -6px;
+}
+
+.story-point-txt {
+    float: right;
+    font-weight: 500;
+    margin-left: 3px;
+    margin-top: -3px;
+}
+
+.estimated-icon {
+    color: $color-estimated-icon;
+    float: right;
+}
+
+.estimated-icon .material-icons {
+    font-size: 21px;
+    margin-top: -6px;
+}
+
+.increased-width {
+    width: 110% !important;
+}
+
+.story-filter {
+    left: 6px;
+}
+
+.story-filter-ul {
+    left: -110px !important;
+    min-width: 115px !important;
+    top: 35px !important;
+}
+
+.story-filter-ul > li > a {
+    padding: 8px 24px !important;
+}
+
+.e-search-icon::before {
+    content: '';
+}
+
+.filter-wrapper {
+    padding: 5px 0 5px 16px;
+}
+
+.filter-text-outer {
+    background-color: $color-filter-text-outer;
+    border-radius: 16px;
+    float: left;
+    height: 17px;
+    line-height: 22px;
+    padding: 0 4px 0 12px;
+}
+
+.filter-text {
+    color: $color-filter-text;
+    font-size: 12px;
+    position: relative;
+    top: -5px;
+}
+
+.filter-close {
+    font-family: e-icons;
+    margin-left: 2px;
+    position: relative;
+    text-align: center;
+    top: -4px;
+
+    .close-icon {
+        font-size: 11px;
+    }
+
+    .close-icon:hover {
+        background-color: $color-close-icon-hover;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+}

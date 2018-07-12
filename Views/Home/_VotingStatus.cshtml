@@ -1,0 +1,164 @@
+﻿@model StoryEstimator.Showcase.Models.VotingStatusObjects
+@using StoryEstimator.Showcase.Models.Data;
+
+@{
+    bool isEveryUserVoted = false;
+    DateTime startTime = new DateTime();
+    int totalTime = 0;
+    DateTime storyStartTime = new DateTime();
+    int storyTotalTime = 0;
+    if (ViewBag.IsEveryUserVoted != null)
+    {
+        isEveryUserVoted = ViewBag.IsEveryUserVoted;
+    }
+    if (ViewBag.StartTime != null)
+    {
+        startTime = ViewBag.StartTime;
+    }
+    if (ViewBag.TotalTime != null)
+    {
+        totalTime = ViewBag.TotalTime;
+    }
+    if (ViewBag.StoryStartTime != null)
+    {
+        storyStartTime = ViewBag.StoryStartTime;
+    }
+    if (ViewBag.StoryTotalTime != null)
+    {
+        storyTotalTime = ViewBag.StoryTotalTime;
+    }
+}
+
+
+@if (Model != null)
+{
+    if (Model.ErrorMessage != null)
+    {
+        <section class="content">
+            <div class="votingStatusContainer">
+                <span>@Model.ErrorMessage</span>
+            </div>
+        </section>
+    }
+    else
+    {
+        bool isOwner = Model.IsOwner;
+        <section class="content">
+            <div id="votingStatusContainer">
+                <input type="hidden" id="isEveryUserVoted" value="@isEveryUserVoted.ToString()" />
+                <input type="hidden" id="mapperStoryId" value="@Model.MapperStoryId"/>
+                <input type="hidden" id="currentTime" value="@DateTime.Now.ToString("M/d/yyyy HH:mm:ss")"/>
+                <input type="hidden" id="roomStartTime" value="@startTime.ToString("M/d/yyyy HH:mm:ss")"/>
+                <input type="hidden" id="roomTotalTime" value="@totalTime"/>
+                <input type="hidden" id="storyStartTime" value="@storyStartTime.ToString("M/d/yyyy HH:mm:ss")"/>
+                <input type="hidden" id="storyTotalTime" value="@storyTotalTime"/>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 voting-status-container">
+                    @if (Model.StoryPlayerList != null && Model.StoryPlayerList.Count > 0)
+                    {
+                        foreach (var storyPlayer in Model.StoryPlayerList)
+                        {
+                            <div class="down-card-container">
+                                @{
+                                    string className = "down-card";
+                                }
+                                @if (storyPlayer.IsCurrentUser || storyPlayer.EstimationStatusId != null)
+                                {
+                                    className = "down-card-owner";
+                                }
+                                <div class="@className" id="card-@storyPlayer.UserId">
+                                    @if (isEveryUserVoted)
+                                    {
+                                        if (storyPlayer.EstimatedPoint != null)
+                                        {
+                                            if (storyPlayer.EstimatedPoint == (decimal)0.5)
+                                            {
+                                                    <p class="down-card-point">½</p>
+                                            }
+                                            else
+                                            {
+                                                    <p class="down-card-point">@storyPlayer.EstimatedPoint.Value.ToString("0.#####")</p>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (storyPlayer.EstimationStatusId == (int)StoryPlayerEstimationStatusEnum.NotSure)
+                                            {
+                                                    <p class="down-card-point">?</p>
+                                            }
+                                            else
+                                            {
+                                                    <i class="material-icons down-card-icon">free_breakfast</i>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (storyPlayer.IsCurrentUser)
+                                        {
+                                            if (storyPlayer.EstimationStatusId != null)
+                                            {
+                                                if (storyPlayer.EstimatedPoint != null)
+                                                {
+                                                    if (storyPlayer.EstimatedPoint == (decimal)0.5)
+                                                    {
+                                                        <p class="down-card-point">½</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="down-card-point">@storyPlayer.EstimatedPoint.Value.ToString("0.#####")</p>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    if (storyPlayer.EstimationStatusId == (int)StoryPlayerEstimationStatusEnum.NotSure)
+                                                    {
+                                                        <p class="down-card-point">?</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="material-icons down-card-icon">free_breakfast</i>
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (storyPlayer.EstimationStatusId != null)
+                                            {
+                                                <img class="tickmarkimage" src="https://cdn.syncfusion.com/planningpoker/images/playarea/tickmarkwhite.svg"/>
+                                            }
+                                            else
+                                            {
+                                                <p title="Waiting to vote" class="voting-card-loader">Waiting...</p>
+                                            }
+                                        }
+                                    }
+                                </div>
+                                @if (storyPlayer.IsCurrentUser)
+                                {
+                                    <div class="down-card-name" title="@storyPlayer.UserName">
+                                        You
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="down-card-name" title="@storyPlayer.UserName">
+                                        @storyPlayer.UserName
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </section>
+    }
+}
+else
+{
+    <section class="content">
+        <div id="votingStatusContainer">
+            <span>server error</span>
+        </div>
+    </section>
+}

@@ -1,0 +1,36 @@
+﻿@using Syncfusion.EJ2
+
+@{
+    var fileType = ViewBag.FileType;
+}
+
+<div class="form-field" id="importstoryForm">
+    <div>
+        <label class="errorLabel" id="errorimporystory" style="display: none;position: relative;padding-left: 15px;"></label>
+    </div>
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+        <div>
+            @if (fileType == "excel")
+            {
+                <a href="/ImportTemplates/ImportTemplate.xlsx" id="downloadexceltemplate" style="color: blue; text-decoration: none;" title="1. Download the sample template.&#13;2. Fill in the data and upload the template.&#13;3. File status will be displayed in the result file. If needed, rectify any errors and upload the data again."> Download Template</a>
+            }
+            else
+            {
+                <a href="/ImportTemplates/ImportTemplate.csv" id="downloadsampletemplate" style="color: blue; text-decoration: none;" title="1. Download the sample template.&#13;2. Fill in the data and upload the template.&#13;3. File status will be displayed in the result file. If needed, rectify any errors and upload the data again."> Download Template</a>
+            }
+        </div>
+        <div style="padding-top: 10px;">
+            @if (fileType == "excel")
+            {
+                <ejs-uploader id="UploadXmlFile" autoUpload="true" multiple="false" allowedExtensions=".xlsx, .xls" selected="uploadFileChange" removing="fileremoving"></ejs-uploader>
+            }
+            else
+            {
+                <ejs-uploader id="UploadXmlFile" autoUpload="true" multiple="false" allowedExtensions=".csv" selected="uploadFileChange" removing="fileremoving"></ejs-uploader>
+            }
+            <span id="uploads" style="margin-left: 125px; top: 30px; width: 250px; position: absolute; font-size: 12px; line-height: 18px; padding-bottom: 0;">No file chosen</span>
+        </div>
+    </div>
+</div>
+
+@Html.EJS().ScriptManager()

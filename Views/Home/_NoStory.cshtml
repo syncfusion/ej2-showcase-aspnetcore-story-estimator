@@ -1,0 +1,45 @@
+﻿
+<div id="emptyMessageStoryPage">   
+    <div id="div-emptyMessageStoryPage" style="height:115px">
+        <div><img id="addStoryImage" src="https://cdn.syncfusion.com/planningpoker/images/general/AddStories.svg" /></div>
+        <div id="emptyStoryMessage">Add your stories</div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var searchText = document.getElementById('searchstory');
+        if (searchText.value.trim() == "") {
+            $(".storygroup").addClass("hide");
+        }
+
+        var resizeTimer;
+        $(window).resize(function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                resizeDashboardNoStoryHeight();
+            }, 200);
+        });
+
+        resizeDashboardNoStoryHeight();
+
+        function resizeDashboardNoStoryHeight() {
+            var windowheight = $(window).height();
+            var appheaderheight = $('.app-header').height();
+            var paddingPage = parseInt($("#div-storyPage").css('padding-top'));
+            $("#div-storyPage").css("height", windowheight - (appheaderheight + paddingPage));
+            var nostoryheight = $('#div-storyPage').outerHeight();
+            var emptymessageHeight = $("#div-emptyMessageStoryPage").outerHeight();
+            var paddingroomheaderleft = parseInt($("#div-storyPage").css('padding-left'));
+            var nostorywidth = $('#div-storyPage').width() + paddingroomheaderleft;
+            var paddingleftForemptyPage = nostorywidth / 2;
+            var secpaddingleftForemptyPage = paddingleftForemptyPage / 2;
+            var paddingtopForemptyPage = (nostoryheight /2) + (emptymessageHeight /2 );
+            var secpaddingtopForemptyPage = paddingtopForemptyPage / 2;           
+            $("#emptyMessageStoryPage").css("padding-top", secpaddingtopForemptyPage);
+            $("#emptyMessageStoryPage").css("padding-left", secpaddingleftForemptyPage);
+            $("#emptyMessageStoryPage").css("padding-right", secpaddingleftForemptyPage);
+            $("#emptyMessageStoryPage").css("padding-bottom", secpaddingtopForemptyPage);
+        }
+    });
+</script>

@@ -1,0 +1,84 @@
+﻿// sass-lint:disable quotes
+@import "../Common/Colors.scss";
+// sass-lint:enable quotes
+
+.dropdown-menu {
+    left: 18px;
+    margin-top: -5px;
+    min-width: 100px;
+    top: 16%;
+    background-color: $color-white !important;
+
+    a {
+        border-radius: 2px;
+        color: $color-primary;
+        display: block;
+        line-height: initial;
+        overflow: hidden;
+        padding: 5px 8px;
+        position: relative;
+        text-overflow: ellipsis;
+
+        &:hover {
+            background-color: $color-ddl-input-bg !important;
+            outline: 0;
+            text-decoration: none;
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        list-style: none;
+        padding: 0;
+        text-align: left;
+    }
+}
+
+.dropdown-menu 
+    > li 
+        > a {
+    border-radius: 0;
+    color: $color-primary;
+    font-size: 13px;
+    font-weight: 400;
+    height: 32px;
+    padding: 8px 15px 8px 12px;
+    text-align: left;
+}
+
+.dropdown-menu {
+    > li {
+        > a {
+            > i, > .fa, > .glyphicon {
+                padding-right: 10px;
+            }
+        }
+    }
+}
+
+.dropdown-menu {
+    > li {
+        > a {
+            &:hover,
+            &:focus {
+                color: $color-primary;
+                background: $color-hover-background!important;
+                border-radius: 0px;
+            }
+        }
+    }
+}
+
+.dropdown-menu {
+    > li {
+        > a {
+            &.font-bold {
+                font-weight: 500;
+            }
+        }
+    }
+}

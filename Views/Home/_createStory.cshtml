@@ -1,0 +1,92 @@
+﻿@using Syncfusion.EJ2
+@model StoryEstimator.Showcase.Models.DashboardWidget
+
+<form id="form-element">
+    <div class="row">
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6" id="createroom-columndiv">
+            <div class="primarycolor createroomheaderclass" id="createroomheader">Create Room</div>
+            <div id="createroomparent-div">
+                <div style="margin-right: 20px;">
+                    <div class='row div-roomfields'>
+                        <div class='col-lg-12 col-sm-12 col-md-12 col-xs-12'>
+                            <div class="e-float-input">
+                                <input type="text" required="" id="roomnameinput" style="padding-top: 5px;">
+                                <span class="e-float-line"></span>
+                                <label class="e-float-text createroomdialogfields required" id="roomnameLabel">Room Name</label>
+                                <label class="errorLabel" id="errorroomname"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row div-roomfields' style="padding-bottom: 0px;">
+                        <div class='col-lg-12 col-sm-12 col-md-12 col-xs-12'>
+                            <div class="e-float-input">
+                                <label class="createroomdialogfields" id="roomdescriptionLabel">Description</label>
+                                <textarea id="roomdescriptioninput" name="description" class="e-input" rows="1" cols="35" style="height: 46px; max-height:100%;max-width:100%;min-width:100%"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row div-roomfields'>
+                        <div class='col-lg-10 col-sm-10 col-md-10 col-xs-10'>
+                            <label class="e-float-text createroomdialogfields" id="roomtimerLabel" style="padding-left: 15px;">Story Timer</label>
+                            <div id="playercomment" style="padding-top: 30px;">Set timer for a story</div>
+                        </div>
+                        <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2" style="padding-left: 0px;">
+                            <ejs-maskedtextbox id="roomhourminuteinput" mask="[0-5][0-9]" promptChar="0" placeholder="MM" floatLabelType="Always"></ejs-maskedtextbox>
+                        </div>
+                        <label class="errorLabel" id="errorroomhourminute" style="padding-left: 15px;"></label>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                            <div class="e-float-input">
+                                <label class="createroomdialogfields" id="roomplayersLabel">Add Players</label>
+                                <textarea id="roomplayersinput" name="player" class="e-input" rows="1" cols="35" style="height:46px; max-height:100%;max-width:100%;min-width:100%"></textarea>
+                                <label class="errorLabel" id="errorroomplayers"></label>
+                                <div id="playercomment">Use commas to separate emails</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
+            <div class="primarycolor createroomheaderclass" id="selectcardvalue-header">Select card value</div>
+            <div id="cardtypenames">
+                <div class="row" style="padding: 20px; padding-left: 10px;">
+                    @if (Model.CardTypeList.Count > 0)
+                    {
+                        var r = 0;
+                        foreach (var item in Model.CardTypeList)
+                        {
+                            r++;
+                            string radioId = "radio_" + item.CardTypeId;
+                            if (r == 1)
+                            {
+                                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 cardtypesection">
+                                    <ejs-radiobutton cssClass="cardtypeclass" name="cardtype" change="getCardType" id="@radioId" value="@item.CardTypeId" checked="true" label="@item.CardType"></ejs-radiobutton><br>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6 cardtypesection">
+                                    <ejs-radiobutton cssClass="cardtypeclass" name="cardtype" change="getCardType" id="@radioId" value="@item.CardTypeId" label="@item.CardType"></ejs-radiobutton><br>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+            <div style="padding: 40px;">
+                <div class="row" id="cardTypeValuediv">
+                    @Html.Partial("~/Views/Home/_cardValue.cshtml", Model)
+                </div>
+            </div>
+            <label class="errorLabel" id="errorcardtype"></label>
+        </div>
+    </div>
+    <label class="errorLabel" id="errorcreateroom"></label>
+    <div id="dialogWrapper" class="content-wrapper">
+        <div id="commonAlertDialog"></div>
+    </div>
+</form>
+
+@Html.EJS().ScriptManager()

@@ -1,0 +1,43 @@
+﻿// sass-lint:disable quotes
+@import "../Common/Colors.scss";
+// sass-lint:enable quotes
+
+.quickFilter li a {
+    line-height: 0.5;
+    font-size: 13px;
+}
+
+.quickFilter li.active a {
+    background: $color-theme !important;
+    color: $color-white !important;
+    line-height: 0.5;
+    border-color: $color-theme !important;
+    border-top-right-radius: unset !important;
+    border-top-left-radius: unset !important;
+}
+
+.quickFilter li.active a:hover {
+    background: $color-theme;    
+    line-height: 0.5;
+    cursor: pointer;
+    border-color: $color-theme;
+    border-top-right-radius: unset;
+    border-top-left-radius: unset;
+}
+
+.quickFilter li a:hover {
+    line-height: 0.5;
+    color: $color-primary;
+    border-top-right-radius: unset;
+    border-top-left-radius: unset;
+    border-color: $color-eee;
+}
+
+.quickFilter {
+    padding-left: 15px;
+    padding-bottom: 20px;
+}
+
+.quickFilter .nav-tabs {
+    border-bottom: 0;
+}

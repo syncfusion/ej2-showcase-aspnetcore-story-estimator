@@ -1,0 +1,8 @@
+﻿// sass-lint:disable quotes
+@import "../Common/Colors.scss";
+// sass-lint:enable quotes
+
+div[aria-expanded=true].e-ddl > .e-float-text,
+.e-float-input.e-input-focus.e-ddl > .e-float-text {
+    color: $color-theme !important;
+}

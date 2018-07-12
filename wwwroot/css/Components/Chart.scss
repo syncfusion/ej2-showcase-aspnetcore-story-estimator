@@ -1,0 +1,45 @@
+﻿// sass-lint:disable quotes
+@import "../Common/Colors.scss";
+// sass-lint:enable quotes
+
+.chart-area {
+    overflow-y: auto;
+    overflow-x :hidden;
+}
+
+
+#teamAverageChart_border {
+    fill: transparent;
+}
+
+.editable-story-point {
+    color: $color-67c6e4;
+}
+
+.editable-story-point:hover {
+    cursor: pointer;
+}
+
+.editable-click,
+a .editable-click,
+a .editable-click:hover {
+    border-bottom: dashed 1px $color-67c6e4 !important;
+}
+
+.editable-input .form-control:focus {
+    border-color: $color-editable-input-focus;
+}
+
+.editable-buttons .btn-primary {
+    background-color: $color-plan-btn;
+    border-color: $color-plan-btn;
+}
+
+.editable-buttons .btn-primary:hover {
+    background-color: $color-plan-btn;
+    border-color: $color-plan-btn;
+}
+
+.editable-buttons .btn-primary i {
+    color: $color-white;
+}

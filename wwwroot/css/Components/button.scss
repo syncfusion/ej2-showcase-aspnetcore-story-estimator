@@ -1,0 +1,225 @@
+﻿// sass-lint:disable quotes
+@import "../Common/Colors.scss";
+// sass-lint:enable quotes
+
+/*Blue button*/
+.e-btn {
+    &.btn-blue {
+        background-color: $color-btn-blue;
+        color: $color-btn-content-white;
+    }
+}
+
+.e-btn {
+    &.btn-blue {
+        &:hover,
+        &:focus {
+            background-color: $color-btn-blue-hover;
+            color: $color-btn-content-white;
+        }
+    }
+}
+
+.e-btn {
+    &.btn-blue {
+        &:active,
+        &.e-active {
+            background-color: $color-btn-blue-hover;
+            color: $color-btn-content-white;
+        }
+    }
+}
+
+.e-btn {
+    &.btn-blue {
+        &:disabled {
+            background-color: $color-btn-background-gray;
+            box-shadow: none;
+            color: $color-btn-disabled;
+        }
+    }
+}
+
+/*Gray button*/
+
+.e-btn {
+    &.btn-gray {
+        background-color: $color-btn-background-gray;
+        color: $color-btn-content-black;
+    }
+}
+
+.e-btn {
+    &.btn-gray {
+        &:hover,
+        &:focus {
+            background-color: $color-btn-background-gray-hover;
+            color: $color-btn-content-black;
+        }
+    }
+}
+
+.e-btn {
+    &.btn-gray {
+        &:active,
+        &.e-active {
+            background-color: $color-btn-background-gray-hover;
+            color: $color-btn-content-black;
+        }
+    }
+}
+
+.e-btn {
+    &.btn-gray {
+        &:disabled {
+            background-color: $color-btn-background-gray;
+            box-shadow: none;
+            color: $color-btn-disabled;
+        }
+    }
+}
+
+/*Red button*/
+
+.e-btn {
+    &.btn-red {
+        background-color: $color-btn-red-background !important;
+        color: $color-btn-content-white !important;
+    }
+}
+
+.e-btn {
+    &.btn-red {
+        &:hover,
+        &:focus {
+            background-color: $color-btn-red-hover !important;
+            color: $color-btn-content-white !important;
+        }
+    }
+}
+
+.e-btn {
+    &.btn-red {
+        &:active,
+        &.e-active {
+            background-color: $color-btn-red-hover !important;
+            color: $color-btn-content-white !important;
+        }
+    }
+}
+
+.e-btn {
+    &.btn-red {
+        &:disabled {
+            background-color: $color-btn-background-gray;
+            box-shadow: none;
+            color: $color-btn-disabled;
+        }
+    }
+}
+
+.e-btn {
+    &:disabled {
+        cursor: not-allowed;
+    }
+}
+
+.dlg-btn-secondary {
+    color: $color-btn-secondary !important;
+}
+
+.confirmdlg-buttons {
+    border-radius: 5px !important;
+    font-size: 15px !important;
+    height: 38px !important;
+    margin-bottom: 15px !important;
+    margin-left: 10px !important;
+    margin-top: 15px !important;
+    width: 125px !important;
+}
+
+.confirmdlg-secondary-button {
+    margin-right: 21% !important;
+}
+
+.alertDlgButton {
+    border-radius: 5px !important;
+    font-size: 17px !important;
+    height: 38px !important;
+    margin-bottom: 15px !important;
+    margin-right: 41% !important;
+    margin-top: 15px !important;
+    width: 19% !important;
+}
+
+.btn-smaller {
+    font-size: 8px !important;
+    height: 22px !important;
+    line-height: 21px !important;
+    padding: 0px 6px !important;
+}
+
+.icon-button {
+    height: 26px;
+    padding: 2px;
+    width: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: $color-iconbutton!important;
+    position:absolute;
+}
+
+.icon-button:hover {
+    background: $color-hover-background!important;
+}
+
+.e-play-icon::before {
+    content: '\e798';
+}
+
+.e-pause-icon::before {
+    content: '\e753';
+}
+
+/*.e-btn.e-flat:active, .e-btn.e-flat.e-active {
+    background-color: transparent !important;
+}*/
+
+.e-btn.e-danger {
+    background-color: $color-danger-button !important;
+}
+
+.e-btn.e-danger:hover {
+    background-color: $color-danger-button-hover !important;
+}
+
+.e-btn.e-success {
+    background-color: $color-success-button !important;
+}
+
+.e-btn.e-success:hover {
+    background-color: $color-success-button-hover !important;
+}
+
+
+.informationdlg-button {
+    border-radius: 5px !important;
+    font-size: 15px !important;
+    height: 38px !important;
+    margin-bottom: 15px !important;
+    margin-left: 10px !important;
+    margin-top: 15px !important;
+}
+
+.alertDlgPrimaryButton {
+    background-color: #2196f3 !important;
+    border-color: transparent !important;
+    color: #fff !important;
+}
+
+.alertDlgPrimaryButton:hover {
+    background-color: $color-btn-blue-hover !important;
+}
+.buttonfontsize{
+    font-size : 13px !important;
+}

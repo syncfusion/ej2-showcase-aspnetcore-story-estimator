@@ -1,0 +1,663 @@
+﻿// sass-lint:disable quotes
+@import "../Common/Colors.scss";
+@import "../Common/Fonts.scss";
+// sass-lint:enable quotes
+
+.menua {
+    color: $color-white;
+    font-size: 16px;
+    text-decoration: none !important;
+}
+
+.menua {
+    img {
+        display: none;
+    }
+}
+
+.menua {
+    .arrowdown {
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 8px solid $color-white;
+        display: none;
+        height: 0;
+        position: fixed;
+        top: 24px;
+        width: 0;
+    }
+}
+
+.menua {
+    &:hover {
+        color: $color-white !important;
+    }
+}
+
+.menua {
+    &:hover {
+        .arrowdown {
+            display: inline;
+        }
+    }
+}
+
+.open {
+    .arrowdown {
+        display: inline;
+    }
+}
+
+.main-nav,
+.right-menu,
+.app-header {
+    a {
+        font-size: 16px;
+    }
+}
+
+/*.main-nav,
+.right-menu,
+.app-header {
+    .dropdown-menu {
+        a {
+            color: $color-a4b1ba;
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 1em 3em;
+            text-decoration: none;
+            transition: color 0.15s ease-out 0s;
+        }
+    }
+}*/
+
+
+/*.main-nav,
+.right-menu,
+.app-header {
+    .dropdown-menu {
+        a {
+            &:hover {
+                background-color: none;
+                color: $color-input-border;
+            }
+        }
+    }
+}*/
+
+.main-nav,
+.right-menu,
+.app-header {
+    .material-menu-popup {
+        border: 1px  $color-e4e8eb;
+        border-radius: 0;
+        margin-top: 0;
+    }
+}
+
+.main-nav,
+.right-menu,
+.app-header {
+    .login-dropdown {
+        right: -15px;
+        top: 54px;
+    }
+}
+
+.main-nav {
+    .link {
+        .glyphicon {
+            display: none;
+        }
+    }
+}
+
+.main-nav {
+    .product {
+        padding-left: 20px;
+    }
+}
+
+.navbar,
+.navbar.navbar-default {
+    background-color: $color-white;
+    color: $color-btn-content-black;
+    font-size: 14px;
+    height: 45px;
+    min-height: 45px;
+}
+
+.navbar,
+.navbar.navbar-default {
+    li {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+.sub-menu_container {
+    overflow: hidden;
+    text-align: center;
+    width: auto;
+}
+
+.sub-menu_container {
+    li {
+        display: inline-block;
+        list-style: none;
+    }
+}
+
+.sub-menu_container {
+    ul {
+        li {
+            a {
+                background-color: $color-white;
+                border: $color-white solid 1px;
+                color: $color-333;
+                display: inline-block;
+                height: 41px;
+                line-height: 32px;
+                margin: 2px;
+                min-height: 35px;
+                min-width: 35px;
+                padding: 5px 5px 0px 5px;
+                text-align: center;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+/* Media query tab view*/
+.tab-view {
+    .logo-menu {
+        left: 30px;
+    }
+}
+
+.tab-view {
+    .main-nav {
+        .link {
+            .glyphicon {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+.tab-view {
+    .main-nav {
+        .link {
+            span {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .app-header {
+        .right-menu {
+            .account {
+                .username {
+                    img {
+                        border-radius: 50%;
+                        display: inline-block;
+                        height: 20px;
+                        margin-top: 18px;
+                        width: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 780px) {
+    .tab-view {
+        .arrowdown {
+            margin-left: -20px;
+        }
+    }
+
+    .app-header {
+        padding-left: 5px;
+    }
+
+    .menua {
+        margin-right: -15px;
+    }
+
+    .menua img {
+        border-radius: 50%;
+        display: inline-block;
+        height: 30px;
+        margin-top: -5px;
+    }
+
+    .menua {
+        .arrowdown {
+            top: 25px;
+        }
+    }
+
+    .menua {
+        span {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .sub-menu {
+        padding: 0 30px 0 24px;
+    }
+
+    .sub-menu {
+        ul {
+            padding-left: 0;
+        }
+    }
+
+    .menua {
+        margin-right: -15px;
+    }
+
+    .menua {
+        img {
+            border-radius: 50%;
+            display: block;
+            display: inline-block;
+            height: 30px;
+            margin-top: -50px;
+        }
+    }
+
+    .menua {
+        .arrowdown {
+            top: 25px;
+        }
+    }
+
+    .link {
+        left: 15px;
+        top: -20px;
+    }
+
+    .sub-menu_container {
+        ul {
+            transition: all ease 750ms;
+            white-space: nowrap;
+        }
+    }
+
+    .sub-menu_container {
+        li {
+            padding-left: 0px !important;
+        }
+    }
+
+    .main-nav {
+        a {
+            display: none !important;
+            padding-left: 0px !important;
+        }
+    }
+
+    .main-nav {
+        .product {
+            padding-left: 5px !important;
+        }
+    }
+
+    .mobile-menu, 
+    .username {
+        display: inline-block;
+    }
+}
+
+@media (max-width: 400px) {
+    .main-nav {
+        a {
+            span {
+                display: none !important;
+            }
+        }
+    }
+}
+/*Header Design*/
+.navbar-right {
+    ~ .navbar-right {
+        margin-right: -15px;
+    }
+}
+
+.app-header {
+    background: $color-theme none repeat scroll 0 0;
+    border-bottom: 1px solid $color-e2e7ea;
+    box-shadow: 0 1px 1px -1px $color-e8eaeb;
+    height: 48px;
+    left: 0;
+    padding: 0 16px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%; 
+}
+
+.app-header {
+    .link,
+    .main-nav {
+        display: inline-block;
+        height: 100%;
+        position: relative;
+    }
+}
+
+.app-header {
+    .main-nav {
+        left: 8px;
+    }
+}
+
+.app-header {
+    .link {
+        &::after {
+            right: 0;
+            top: -14px;
+        }
+    }
+}
+
+.app-header {
+    .right-menu {
+        &::after {
+            border-left: 1px solid $color-e8ecee;
+            content: "";
+            display: inline-block;
+            height: 64px;
+            position: absolute;
+            top: 0px;
+            width: 1px;
+        }
+    }
+}
+
+.app-header {
+    .link, 
+    .main-nav {
+        display: inline-block;
+        height: 100%;
+        position: relative;
+    }
+}
+
+.app-header {
+    .link {
+        a {
+            color: $color-white;
+            display: inline-block;
+            font-weight: 100;
+            height: 100%;
+            padding: 17px 30px;
+            text-decoration: none;
+            transition: color 0.15s ease-out 0s;
+            width: 100%;
+        }
+    }
+}
+
+.app-header {
+    .active {
+        a {
+            color: $color-white;
+            font-weight: 600;
+        }
+    }
+}
+
+.right-menu {
+    a {
+        color: $color-white;
+        display: inline-block;
+        font-weight: 400;
+        height: 100%;
+        padding: 20px 0 17px 30px;
+        transition: color 0.15s ease-out 0s;
+        width: 100%;
+        text-decoration: none;
+    }
+}
+
+.mobile-menu {
+    display: none;
+}
+
+.popupMenuWrapper {
+    position: relative;
+}
+
+.app-header {
+    .right-menu {
+        .account {
+            .username {
+                img {
+                    border-radius: 50%;
+                    display: inline-block;
+                    height: 36px;
+                    width: 36px;
+                }
+            }
+        }
+    }
+}
+
+/* Sub-Menu responsive scrollable design*/
+.pn-ProductNav,
+.pn-RoomProfileNav,
+.pn-ReleaseNav {
+	border-color: $color-white;
+	font-size: 0;
+	overflow: hidden;
+	position: relative;
+	white-space: nowrap;
+}
+
+.pn-ProductNav_Contents,
+.pn-RoomProfileNav_Contents,
+.pn-ReleaseNav_Contents {
+	position: relative;
+	transition: transform 0.2s ease-in-out 0s, -webkit-transform 0.2s ease-in-out 0s;
+}
+
+.pn-ProductNav_Contents-no-transition,
+.pn-RoomProfileNav_Contents-no-transition,
+.pn-ReleaseNav_Contents-no-transition {
+	transition: none 0s ease 0s;
+}
+
+.pn-ProductNav_Link,
+.pn-RoomProfileNav_Link {
+    -moz-box-align: center;
+    align-items: center;
+    border: 1px solid transparent;
+    color: $color-888;
+    display: inline-flex;
+    font-family: -apple-system,sans-serif;
+    font-size: 1.2rem;
+    min-height: 44px;
+    padding: 0 11px;
+    text-decoration: none;
+}
+
+.pn-ProductNav_Link {
+    + .pn-ProductNav_Link {
+        border-left-color: $color-eee;
+    }
+}
+
+.pn-RoomProfileNav_Link {
+    + .pn-RoomProfileNav_Link {
+       border-left-color: $color-eee;
+    }
+}
+
+#divs {
+    .selected {
+        border-bottom: 3px solid $color-input-border;
+        font-weight: bold;
+    }
+}
+
+.pn-ProductNav_Indicator,
+.pn-RoomProfileNav_Indicator {
+    background-color: transparent;
+    bottom: 0;
+    height: 4px;
+    left: 0;
+    position: absolute;
+    transform-origin: 0 0 0;
+    transition: transform 0.2s ease-in-out 0s, background-color 0.2s ease-in-out 0s, -webkit-transform 0.2s ease-in-out 0s;
+    width: 100px;
+}
+
+
+.pn-Advancer {
+    -moz-appearance: none;
+    background: transparent none repeat scroll 0 0;
+    border: 0 none;
+    bottom: 0;
+    display: none;
+    height: 20px;
+    opacity: 50;
+    padding: 0;
+    position: absolute;
+    transition: opacity 0.3s ease 0s;
+    top: 65px;
+}
+
+.app-header {
+    .right-menu {
+        padding-left: 28px;
+        padding-right: 30px;
+        position: absolute;
+        right: 5px;
+        top: 0px;
+    }
+}
+
+.defaultLogo {
+    cursor: pointer;
+    padding-top: 6px;
+}
+
+.defaultLogo a:hover {
+    color: transparent !important;
+}
+
+.customLogo {
+    cursor: default;
+    font-size: 14px;
+    padding-top: 6px;
+}
+
+@media (min-width:1367px) {
+    .customLogo {
+        font-size: 16px !important;
+        padding-top: 4px !important;
+    }
+
+    #layourcurrentusername {
+        font-size: 15px !important;
+    }
+
+    .header-icon-text {
+        font-size: 13px !important;
+    }
+
+    .header-icons-separator {
+        font-size: 14px !important;
+        top: -4px !important;
+    }
+}
+
+.customLogoText {
+    padding-left: 0px;
+}
+
+.headerfont {
+    color: $color-white;
+    font-size: 24px;
+    font-family: Handel Gothic;
+    line-height: 28px;
+    opacity: 100;
+    font-weight: $font-normal;
+}
+
+.header-icon-text {
+    color: $color-white;
+    display: table-cell;
+    font-size: 11px;
+    opacity: 0.7;
+    padding-bottom: 6px;
+    padding-left: 5px;
+    vertical-align: middle;
+}
+
+.header-icons {
+    color: $color-white;
+    display: table-cell !important;
+    font-size: 13px !important;
+    opacity: 0.7;
+}
+
+.header-icons-separator {
+    color: $color-white;
+    display: table-cell;
+    opacity: .5;
+    padding-left: 8px;
+    padding-right: 8px;
+    position: relative;
+    top: -3px;
+    vertical-align: middle;
+}
+
+#layourcurrentusernameDiv {
+    width: auto;
+}
+
+#layourcurrentusername {
+    color: $color-white;
+    display: inline-block;
+    font-size: 13px;
+}
+
+.userprofile {
+    font-size: 13px;
+    font-weight: 400;
+    height: 30px;
+}
+
+.usernamelabelclass {
+    left: 38px;
+    margin-top: 5px;
+    overflow: hidden;
+    position: absolute;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 90px;
+}
+
+.usernameiconclass {
+    font-size: 13px !important;
+    padding-left: 10px;
+    position: relative;
+    top: 6px;
+}
+
+.img-circle {
+    border-radius: 50%;
+    vertical-align: middle;
+}

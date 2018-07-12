@@ -1,0 +1,31 @@
+﻿@model StoryEstimator.Showcase.Models.PlayObjects
+
+<div>
+    @if (Model != null && Model.RoomDetails != null && Model.RoomDetails.IsOwner)
+    {
+        <div class="search-wrapper bg-white playersearch hide">
+            <div class="search" style="width: 100%;">
+                <div class='e-float-input'>
+                    <input class='e-input search-player increased-width' id="player-increased-width-Id" type='text' placeholder='Search Players'>
+                </div>
+                <span id="closeSearchIcon"><i class="material-icons searchstorys" id="playercloseiconid" style="display:none" onclick="playerCloseIconsClick()">close</i></span>
+                <span class="e-search-icon e-icons search-player-btn"></span>
+            </div>
+        </div>
+    }
+    <ejs-grid id="playerListGrid" dataSource="ViewBag.PlayerDataList" queryCellInfo="tooltip" rowTemplate="#playertemplate">
+        <e-grid-columns>
+            <e-grid-column field="PlayerName"></e-grid-column>
+            <e-grid-column field="PlayerStatus"></e-grid-column>
+            <e-grid-column field="IsLoggedIn"></e-grid-column>
+            <e-grid-column field="StoryEstimatedPoint"></e-grid-column>
+            <e-grid-column field="StoryEstimateTime"></e-grid-column>
+            <e-grid-column field="IsOrganizer"></e-grid-column>
+            <e-grid-column field="IsOnline"></e-grid-column>
+            <e-grid-column field="StoryEstimatedStatus"></e-grid-column>
+        </e-grid-columns>
+    </ejs-grid>
+</div>
+
+
+

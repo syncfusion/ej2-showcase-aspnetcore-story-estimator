@@ -1,0 +1,130 @@
+﻿<header class="app-header navbar-fixed-top" style="padding: 0 16px !important">
+    <div style="display: flex; justify-content: space-between; height: inherit;">
+        <div style="height: inherit; flex:1;">
+            <div id="appHeaderInner" class="default-logo">
+                <a href="#/dashboard">
+                    <img id="logoImage" src="https://cdn.syncfusion.com/planningpoker/images/general/story_estimator_logo.svg">
+                </a>
+            </div>
+        </div>
+        <div id="userProfile" style="margin-top: 10px; flex:1; justify-content: flex-end; display: flex;">
+            <div class="header-divider hide"></div>
+            <a id="about" href="#/about" title="About" class="about-icon">
+                <img id="aboutIcon" src="https://cdn.syncfusion.com/planningpoker/images/general/AboutIcon.svg">
+            </a>
+            <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" aria-expanded="true" style="display: flex;">
+                <div>
+                    <img class="img-circle" src="~/images/4.png" style="height: 28px; width: 28px;">
+                </div>
+                <div id="layourcurrentusernameDiv" style="padding-left: 5px; padding-top: 5px;">
+                    <span id="layourcurrentusername" class="ellipsis">
+                        Andrew Fuller
+                    </span>
+                </div>
+            </a>
+            <ul class="dropdown-menu pull-right material-menu-popup" id="signout-dropdown" style="top: 40px;right: 15px;">
+                <li class="userprofile hide">
+                    <span class="popup-profile sficon-user-wf usernameicon"></span>
+                    <span class="usernamelabel ellipsis" id="usernameLabel">Andrew Fuller</span>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <span class="popup-profile glyphicon glyphicon-off"></span>
+                        <span>Sign out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="about-container">
+    <div class='about-heading'>About this sample</div>
+    <div class='about-description'>
+        Story Estimator is an agile-based tool for estimating stories by using planning poker. Planning poker is an agile estimating and planning technique that is based on consensus. Agile teams around the world use this kind of tool to estimate how long it will take to complete a certain amount of work. This application is implemented by using Essential JS 2 for ASP.NET Core and Essential JS 2 pure JavaScript controls.
+    </div>
+    <div class='list-heading'>List of EJ2 components used in this sample</div>
+    <div class='about-component'>
+        <div class='control-item'>
+            <span class="icon-accumulation-chart e-sb-icon control-icon"></span>
+            <a class='control-name' href="https://ej2.syncfusion.com/aspnetcore/documentation/accumulation-chart/getting-started.html" target="_blank">AccumulationChart</a>
+        </div>
+        <div class='control-item'>
+            <span class="icon-btn e-sb-icon control-icon"></span>
+            <a class='control-name' href="https://ej2.syncfusion.com/aspnetcore/documentation/button/getting-started-core.html" target="_blank">Button</a>
+        </div>
+        <div class='control-item'>
+            <span class="icon-checkbox e-sb-icon control-icon"></span>
+            <a class='control-name' href="https://ej2.syncfusion.com/aspnetcore/documentation/check-box/getting-started-core.html" target="_blank">CheckBox</a>
+        </div>
+        <div class='control-item'>
+            <span class="icon-circulargauge e-sb-icon control-icon"></span>
+            <a class='control-name' href="https://ej2.syncfusion.com/aspnetcore/documentation/circulargauge/getting-started-core.html" target="_blank">CircularGauge</a>
+        </div>
+        <div class='control-item'>
+            <span class="icon-dialog e-sb-icon control-icon"></span>
+            <a class='control-name' href="https://ej2.syncfusion.com/aspnetcore/documentation/dialog/getting-started-core.html" target="_blank">Dialog</a>
+        </div>
+        <div class='control-item'>
+            <span class="icon-grid e-sb-icon control-icon"></span>
+            <a class='control-name' href="https://ej2.syncfusion.com/aspnetcore/documentation/grid/getting-started-core.html" target="_blank">Grid</a>
+        </div>
+        <div class='control-item'>
+            <span class="icon-maskedtextbox e-sb-icon control-icon"></span>
+            <a class='control-name' href="https://ej2.syncfusion.com/aspnetcore/documentation/maskedtextbox/getting-started.html" target="_blank">MaskedTextBox</a>
+        </div>
+        <div class='control-item'>
+            <span class="icon-radiobutton e-sb-icon control-icon"></span>
+            <a class='control-name' href="https://ej2.syncfusion.com/aspnetcore/documentation/radio-button/getting-started-core.html" target="_blank">RadioButton</a>
+        </div>
+        <div class='control-item'>
+            <span class="icon-sidebar e-sb-icon control-icon"></span>
+            <a class='control-name' href="https://ej2.syncfusion.com/aspnetcore/documentation/sidebar/getting-started-asp-core.html" target="_blank">Sidebar</a>
+        </div>
+        <div class='control-item'>
+            <span class="icon-spinner e-sb-icon control-icon"></span>
+            <a class='control-name' href="http://ej2.syncfusion.com/documentation/spinner" target="_blank">Spinner</a>
+        </div>
+        <div class='control-item'>
+            <span class="icon-splitbutton e-sb-icon control-icon"></span>
+            <a class='control-name' href="https://ej2.syncfusion.com/aspnetcore/documentation/split-button/getting-started-core.html" target="_blank">SplitButton</a>
+        </div>
+        <div class='control-item'>
+            <span class="icon-toast e-sb-icon control-icon"></span>
+            <a class='control-name' href="https://ej2.syncfusion.com/documentation/toast/getting-started.html" target="_blank">Toast</a>
+        </div>
+        <div class='control-item'>
+            <span class="icon-uploader e-sb-icon control-icon"></span>
+            <a class='control-name' href="https://ej2.syncfusion.com/aspnetcore/documentation/uploader/getting-started-asp-core.html" target="_blank">Uploader</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    #progressDialogModal {
+        display: none;
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var windowWidth = $(window).width();
+        if (windowWidth < 961) {
+            var windowHeight = $(window).height();
+            var aboutContPadTop = 0;
+            if ($(".about-container").css("padding-bottom")) {
+                aboutContPadTop = parseInt($(".about-container").css("padding-bottom"));
+            }
+            $("#targetId").css("display", "block").css("height", windowHeight - aboutContPadTop).css("overflow-y", "scroll");
+            $("#appHeaderInner").css("display", "block");
+            $("#userProfile").css("display", "flex");
+            $("#layourcurrentusernameDiv").addClass("hide");
+            $(".userprofile").removeClass("hide");
+            $("#signout-dropdown").css("width", "130px");
+        }
+        else {
+            $("#layourcurrentusernameDiv").removeClass("hide");
+            $(".userprofile").addClass("hide");
+            $("#signout-dropdown").css("width", "");
+        }
+    });
+</script>

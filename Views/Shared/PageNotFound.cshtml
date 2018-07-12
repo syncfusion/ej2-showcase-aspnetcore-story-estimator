@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Page Not Found";
+}
+
+<header class="app-header navbar-fixed-top" style="padding: 0 16px !important">
+    <div style="display: flex; justify-content: space-between; height: inherit;">
+        <div style="height: inherit; flex:1;">
+            <div id="appHeaderInner" class="default-logo">
+                <a href="#/dashboard">
+                    <img id="logoImage" src="https://cdn.syncfusion.com/planningpoker/images/general/story_estimator_logo.svg">
+                </a>
+            </div>
+        </div>
+        <div id="userProfile" style="margin-top: 10px; flex:1; justify-content: flex-end; display: flex;">
+            <div class="header-divider hide"></div>
+            <a id="about" href="#/about" target="_blank" title="About" class="about-icon">
+                <img id="aboutIcon" src="https://cdn.syncfusion.com/planningpoker/images/general/AboutIcon.svg">
+            </a>
+            <a class="dropdown-toggle" data-target="#" data-toggle="dropdown" aria-expanded="true" style="display: flex;">
+                <div>
+                    <img class="img-circle" src="~/images/4.png" style="height: 28px; width: 28px;">
+                </div>
+                <div id="layourcurrentusernameDiv" style="padding-left: 5px; padding-top: 5px;">
+                    <span id="layourcurrentusername" class="ellipsis">
+                        Andrew Fuller
+                    </span>
+                </div>
+            </a>
+            <ul class="dropdown-menu pull-right material-menu-popup" id="signout-dropdown" style="top: 40px;right: 15px;">
+                <li class="userprofile hide">
+                    <span class="popup-profile sficon-user-wf usernameicon"></span>
+                    <span class="usernamelabel ellipsis" id="usernameLabel">Andrew Fuller</span>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <span class="popup-profile glyphicon glyphicon-off"></span>
+                        <span>Sign out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div>
+    <h4>Page Not Found</h4>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var windowWidth = $(window).width();
+        if (windowWidth < 961) {
+            $("#targetId").css("display", "block");
+            $("#appHeaderInner").css("display", "block");
+            $("#userProfile").css("display", "flex");
+            $("#layourcurrentusernameDiv").addClass("hide");
+            $(".userprofile").removeClass("hide");
+            $("#signout-dropdown").css("width", "130px");
+        }
+        else {
+            $("#layourcurrentusernameDiv").removeClass("hide");
+            $(".userprofile").addClass("hide");
+            $("#signout-dropdown").css("width", "");
+        }
+    });
+</script>

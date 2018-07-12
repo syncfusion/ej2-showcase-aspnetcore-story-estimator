@@ -1,0 +1,46 @@
+﻿// sass-lint:disable quotes
+@import "../Common/Colors.scss";
+// sass-lint:enable quotes
+
+.navbar,
+.navbar.navbar-default {
+    background-color: $color-white;
+    color: $color-btn-content-black;
+    font-size: 14px;
+    height: 45px;
+    min-height: 45px;
+}
+
+.navbar,
+.navbar.navbar-default {
+    li {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+.tab-view {
+    .logo-menu {
+        left: 30px;
+    }
+}
+
+.tab-view {
+    .main-nav {
+        .link {
+            .glyphicon {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+.tab-view {
+    .main-nav {
+        .link {
+            span {
+                display: none;
+            }
+        }
+    }
+}
