@@ -1,24 +1,24 @@
 # Overview
 
-Story Estimator is an agile based effective tool for estimating the stories by using Planning Poker techniques. Planning Poker is an agile estimating and planning technique that is consensus based. Agile teams around the world using this kind of tools to estimate their product backlogs that how long a certain amount of work will take to complete.
+Story Estimator is an agile based tool to effectively estimate stories using planning poker technique. Planning Poker is a consensus based technique used for estimating and planning. Agile teams around the world use this kind of tool to estimate their product backlogs and how long a certain amount of work will take to complete.
 
 ## Prerequisites
 
-.NET Core SDK has to be installed, please follow this link to get this https://www.microsoft.com/net/download/windows
+To run the sample, .NET Core SDK must be installed. Follow this link to download: https://www.microsoft.com/net/download/windows
 
 ## Deployment
 
-Follow the below steps to run the application using command prompt.
+To run the sample using command prompt do the following.
 
 ### Install
 
-To install all dependent packages, use the below command
+To install all dependent packages, use the following command.
 
 ```
 npm install
 ```
 
-Run the following gulp commands one by one for css, js minification.
+Run the following gulp commands one by one for CSS and JS minification.
 
 ```
 gulp css-clean
@@ -30,7 +30,7 @@ gulp min:js
 
 ### Build
 
-To compile the source files, use the below command
+To compile the source files, use the following command.
 
 ```
 dotnet build
@@ -38,13 +38,13 @@ dotnet build
 
 ### Run
 
-To run the sample, use the below command
+Use the given command to run the sample.
 
 ```
 dotnet run
 ```
 
-Now open the listening URL in browser to check the application.
+Now, open the listening URL in the browser to check the application.
 
 ## Demo
 
