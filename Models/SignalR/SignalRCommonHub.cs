@@ -38,7 +38,7 @@
         public override Task OnConnectedAsync()
         {
             string roomGUID = new RoomList().DefaultRoomId;
-            string currentUserId = this.Context.Connection.GetHttpContext().Request.Query["userId"];
+            string currentUserId = this.Context.GetHttpContext().Request.Query["userId"];
             if (!string.IsNullOrWhiteSpace(currentUserId) && currentUserId != "undefined")
             {
                 int currentUserIdValue = Convert.ToInt32(currentUserId);
@@ -56,7 +56,7 @@
         public override Task OnDisconnectedAsync(Exception exp)
         {
             string roomGUID = new RoomList().DefaultRoomId;
-            string currentUserId = this.Context.Connection.GetHttpContext().Request.Query["userId"];
+            string currentUserId = this.Context.GetHttpContext().Request.Query["userId"];
             if (!string.IsNullOrWhiteSpace(currentUserId) && currentUserId != "undefined")
             {
                 int currentUserIdValue = Convert.ToInt32(currentUserId);

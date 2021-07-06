@@ -7,9 +7,9 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.0-preview1-final" />
-    <PackageReference Include="Syncfusion.EJ2" Version="16.1.0.37" />
-    <PackageReference Include="Syncfusion.XlsIO.NETStandard" Version="16.1.0.32" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.0" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="19.2.0.44" />
+    <PackageReference Include="Syncfusion.XlsIO.Net.Core" Version="19.2.0.44" />
   </ItemGroup>
 
   <ItemGroup>

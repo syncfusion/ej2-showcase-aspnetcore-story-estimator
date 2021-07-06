@@ -1,7 +1,7 @@
 ﻿namespace StoryEstimator.Showcase.Models
 {
     using System;
-    using Syncfusion.XlsIO;
+    using System.ComponentModel;
     using StoryEstimator.Showcase.Utils;
 
     public class StoryObjects : TransactionResult

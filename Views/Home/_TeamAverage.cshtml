@@ -1,6 +1,7 @@
 ﻿@model StoryEstimator.Showcase.Models.StoryObjects
 @using StoryEstimator.Showcase.Models.Data;
 @using StoryEstimator.Showcase.Utils;
+@using Syncfusion.EJ2.Charts
 @using Syncfusion.EJ2
 
 @{
@@ -174,17 +175,17 @@
                             }
                         </div>
                         @{ 
-                            var dataLabel = new
+                            AccumulationDataLabelSettings dataLabel = new AccumulationDataLabelSettings()
                             {
-                                visible = true,
-                                name = "Text",
-                                position = "Inside",
-                                template = "<div>${point.text}</div>",
-                                font = new
+                                Visible = true,
+                                Name = "Text",
+                                Position = AccumulationLabelPosition.Inside,
+                                Template = "<div>${point.text}</div>",
+                                Font = new AccumulationChartFont()
                                 {
-                                    color = "white",
-                                    fontWeight = "600",
-                                    size = "14px",
+                                    Color = "white",
+                                    FontWeight = "600",
+                                    Size = "14px",
                                 }
                             };
                         }
