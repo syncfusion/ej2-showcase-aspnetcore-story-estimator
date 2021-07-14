@@ -1,6 +1,7 @@
 ﻿@model StoryEstimator.Showcase.Models.PlayObjects
 @using StoryEstimator.Showcase.Models.Data
 @using StoryEstimator.Showcase.Utils;
+@using Syncfusion.EJ2.CircularGauge
 @using Syncfusion.EJ2
 
 @{
@@ -160,60 +161,60 @@
                             }
                             <input type="hidden" id="storyTimer" value="@Model.RoomDetails.Timer.Value" />
                             @{
-                                var lineStyle = new
+                                CircularGaugeLine lineStyle = new CircularGaugeLine()
                                 {
-                                    width = "0",
+                                    Width = 0,
                                 };
-                                var majorTicks = new
+                                CircularGaugeTick majorTicks = new CircularGaugeTick()
                                 {
-                                    color = "white",
-                                    offset = -5,
-                                    height = 12,
+                                    Color = "white",
+                                    Offset = -5,
+                                    Height = 12,
                                 };
-                                var minorTicks = new
+                                CircularGaugeTick minorTicks = new CircularGaugeTick()
                                 {
-                                    width = "0",
+                                    Width = 0,
                                 };
-                                var labelStyle = new
+                                CircularGaugeLabel labelStyle = new CircularGaugeLabel
                                 {
-                                    offset = -10,
-                                    useRangeColor = true,
-                                    font = new
+                                    Offset = -10,
+                                    UseRangeColor = true,
+                                    Font = new CircularGaugeFont()
                                     {
-                                        color = "#424242",
-                                        size = "13px",
-                                        fontFamily = "Roboto",
+                                        Color = "#424242",
+                                        Size = "13px",
+                                        FontFamily = "Roboto",
                                     }
                                 };
-                                List<Syncfusion.EJ2.CircularGauge.CircularGaugePointer> pointers = new List<Syncfusion.EJ2.CircularGauge.CircularGaugePointer>();
-                                pointers.Add(new Syncfusion.EJ2.CircularGauge.CircularGaugePointer
+                                List<CircularGaugePointer> pointers = new List<CircularGaugePointer>();
+                                pointers.Add(new CircularGaugePointer
                                 {
                                     Radius = "65%",
                                     Color = "#000000",
-                                    Cap = new
+                                    Cap = new CircularGaugeCap()
                                     {
-                                        radius = 6,
-                                        border = new
+                                        Radius = 6,
+                                        Border = new CircularGaugeBorder()
                                         {
-                                            color = "#000000",
-                                            width = 6,
+                                            Color = "#000000",
+                                            Width = 6,
                                         },
                                     },
-                                    Animation = new
+                                    Animation = new CircularGaugeAnimation()
                                     {
-                                        enable = true,
-                                        duration = 100,
+                                        Enable = true,
+                                        Duration = 100,
                                     }
                                 });
-                                List<Syncfusion.EJ2.CircularGauge.CircularGaugeRange> ranges = new List<Syncfusion.EJ2.CircularGauge.CircularGaugeRange>();
-                                ranges.Add(new Syncfusion.EJ2.CircularGauge.CircularGaugeRange
+                                List<CircularGaugeRange> ranges = new List<CircularGaugeRange>();
+                                ranges.Add(new CircularGaugeRange
                                 {
                                     StartWidth = "10px",
                                     EndWidth = "10px",
                                     Radius = "102%",
                                     Color = "#69d5e8"
                                 });
-                                ranges.Add(new Syncfusion.EJ2.CircularGauge.CircularGaugeRange
+                                ranges.Add(new CircularGaugeRange
                                 {
                                     StartWidth = "10px",
                                     EndWidth = "10px",
