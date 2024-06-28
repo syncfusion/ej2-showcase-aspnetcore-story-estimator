@@ -1,5 +1,5 @@
 {
-  "name": "ej2-aspcore-story-estimator",
+  "name": "ej2-aspcore-planning-poker",
   "version": "1.0.0",
   "description": "Essential JS 2 ASP.Net Core - Story Estimator",
   "author": "Syncfusion Inc.",
@@ -15,31 +15,26 @@
   },
   "devDependencies": {
     "del": "^3.0.0",
-    "elasticlunr": "0.9.5",
     "glob": "^7.1.2",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-clean": "0.3.2",
-    "gulp-clean-css": "3.9.0",
     "gulp-concat": "^2.6.1",
     "gulp-cssmin": "^0.2.0",
     "gulp-dotnet-cli": "^1.0.2",
     "gulp-htmlmin": "^3.0.0",
     "gulp-load-plugins": "1.5.0",
-    "gulp-sass": "3.1.0",
-    "gulp-sourcemaps": "2.6.1",
+    "gulp-sass": "5.1.0",
+    "sass": "1.69.6",
     "gulp-typescript": "^3.1.6",
     "gulp-uglify": "^3.0.0",
-    "gulp-replace": "0.6.1",
     "json-beautify": "^1.0.1",
     "merge-stream": "^1.0.1",
     "require-dir": "^0.3.2",
-    "shelljs": "^0.7.0",
-    "simple-git": "^1.43.0"
+    "shelljs": "^0.8.5",
+    "simple-git": "^3.16.0"
   },
   "config": {
   },
   "scripts": {
-    "aspnet-publish": "gulp dotnet-publish",
-    "ci-deploy": "gulp ftp-deploy"
   }
 }

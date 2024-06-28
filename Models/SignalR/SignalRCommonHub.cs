@@ -1,10 +1,10 @@
-﻿namespace StoryEstimator.Showcase.Models.SignalR
+﻿namespace PlanningPoker.Showcase.Models.SignalR
 {
     using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.SignalR;
-    using StoryEstimator.Showcase.Models.Data;
+    using PlanningPoker.Showcase.Models.Data;
 
     /// <summary>
     /// Class for SignalR functionality
@@ -38,7 +38,7 @@
         public override Task OnConnectedAsync()
         {
             string roomGUID = new RoomList().DefaultRoomId;
-            string currentUserId = this.Context.GetHttpContext().Request.Query["userId"];
+            string currentUserId = this.Context.GetHttpContext()?.Request.Query["userId"];
             if (!string.IsNullOrWhiteSpace(currentUserId) && currentUserId != "undefined")
             {
                 int currentUserIdValue = Convert.ToInt32(currentUserId);
@@ -56,7 +56,7 @@
         public override Task OnDisconnectedAsync(Exception exp)
         {
             string roomGUID = new RoomList().DefaultRoomId;
-            string currentUserId = this.Context.GetHttpContext().Request.Query["userId"];
+            string currentUserId = this.Context.GetHttpContext()?.Request.Query["userId"];
             if (!string.IsNullOrWhiteSpace(currentUserId) && currentUserId != "undefined")
             {
                 int currentUserIdValue = Convert.ToInt32(currentUserId);

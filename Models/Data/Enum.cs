@@ -1,4 +1,4 @@
-﻿namespace StoryEstimator.Showcase.Models.Data
+﻿namespace PlanningPoker.Showcase.Models.Data
 {
     public enum RoomStatusEnum
     {

@@ -1,4 +1,4 @@
-﻿namespace StoryEstimator.Showcase.Utils
+﻿namespace PlanningPoker.Showcase.Utils
 {
     using System;
     using System.Collections.Generic;

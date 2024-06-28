@@ -1,4 +1,4 @@
-﻿namespace StoryEstimator.Showcase.Models.SignalR
+﻿namespace PlanningPoker.Showcase.Models.SignalR
 {
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.SignalR;

@@ -1,4 +1,4 @@
-﻿var StoryEstimator;
+﻿var PlanningPoker;
 var currentPage;
 var targetId = document.getElementById('spinner');
 var toastObj;
@@ -18,22 +18,22 @@ var toastInformation = {
     icon: 'e-information toast-icons'
 };
 
-(function (StoryEstimator) {
-    StoryEstimator[StoryEstimator["dashboard"] = 0] = "dashboard";
-    StoryEstimator[StoryEstimator["play"] = 1] = "play";
-    StoryEstimator[StoryEstimator["playuser"] = 2] = "playuser";
-    StoryEstimator[StoryEstimator["about"] = 3] = "about";
-})(StoryEstimator || (StoryEstimator = {}));
+(function (PlanningPoker) {
+    PlanningPoker[PlanningPoker["dashboard"] = 0] = "dashboard";
+    PlanningPoker[PlanningPoker["play"] = 1] = "play";
+    PlanningPoker[PlanningPoker["playuser"] = 2] = "playuser";
+    PlanningPoker[PlanningPoker["about"] = 3] = "about";
+})(PlanningPoker || (PlanningPoker = {}));
 
 function getCurrentPage() {
-    if (window.location.hash === '#/' + StoryEstimator[StoryEstimator.dashboard]) {
-        currentPage = StoryEstimator[StoryEstimator.dashboard];
-    } else if (window.location.hash === '#/' + StoryEstimator[StoryEstimator.play]) {
-        currentPage = StoryEstimator[StoryEstimator.play];
-    } else if (window.location.hash === '#/' + StoryEstimator[StoryEstimator.playuser]) {
-        currentPage = StoryEstimator[StoryEstimator.playuser];
-    } else if (window.location.hash === '#/' + StoryEstimator[StoryEstimator.about]) {
-        currentPage = StoryEstimator[StoryEstimator.about];
+    if (window.location.hash === '#/' + PlanningPoker[PlanningPoker.dashboard]) {
+        currentPage = PlanningPoker[PlanningPoker.dashboard];
+    } else if (window.location.hash === '#/' + PlanningPoker[PlanningPoker.play]) {
+        currentPage = PlanningPoker[PlanningPoker.play];
+    } else if (window.location.hash === '#/' + PlanningPoker[PlanningPoker.playuser]) {
+        currentPage = PlanningPoker[PlanningPoker.playuser];
+    } else if (window.location.hash === '#/' + PlanningPoker[PlanningPoker.about]) {
+        currentPage = PlanningPoker[PlanningPoker.about];
     }
     return currentPage;
 }
@@ -71,22 +71,22 @@ crossroads.addRoute('/:lang:', function () {
             });
             toastObj.appendTo('#toast_msg_container');
 
-            if (currentPage === StoryEstimator[StoryEstimator.dashboard] ||
-                '#/' + StoryEstimator[StoryEstimator.dashboard] === window.location.hash) {
+            if (currentPage === PlanningPoker[PlanningPoker.dashboard] ||
+                '#/' + PlanningPoker[PlanningPoker.dashboard] === window.location.hash) {
                 handleResize();
                 if (window.dashboard) {
                     window.dashboard();
                 }
-            } else if (currentPage === StoryEstimator[StoryEstimator.play] ||
-                '#/' + StoryEstimator[StoryEstimator.play] === window.location.hash ||
-                currentPage === StoryEstimator[StoryEstimator.playuser] ||
-                '#/' + StoryEstimator[StoryEstimator.playuser] === window.location.hash) {
+            } else if (currentPage === PlanningPoker[PlanningPoker.play] ||
+                '#/' + PlanningPoker[PlanningPoker.play] === window.location.hash ||
+                currentPage === PlanningPoker[PlanningPoker.playuser] ||
+                '#/' + PlanningPoker[PlanningPoker.playuser] === window.location.hash) {
                 handleResize();
                 if (window.play) {
                     window.play();
                 }
-            } else if (currentPage === StoryEstimator[StoryEstimator.about] ||
-                '#/' + StoryEstimator[StoryEstimator.about] === window.location.hash) {
+            } else if (currentPage === PlanningPoker[PlanningPoker.about] ||
+                '#/' + PlanningPoker[PlanningPoker.about] === window.location.hash) {
                 handleResize();
             }
             ej.popups.hideSpinner(targetId);
