@@ -29,11 +29,23 @@ gulp min:css
 gulp min:js
 ```
 
+### Build
+
+To compile the source files, use the following command.
+
+```
+dotnet build
+```
+
 ### Run
 
-1. Clone this repository.
-2. Open the `.csproj` file in VS 2022.
-3. Click the green run button in the toolbar.
+Use the given command to run the sample.
+
+```
+dotnet run
+```
+
+Now, open the listening URL in the browser to check the application.
 
 ## Demo
 
