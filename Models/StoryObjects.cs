@@ -1,8 +1,9 @@
-﻿namespace StoryEstimator.Showcase.Models
+﻿namespace PlanningPoker.Showcase.Models
 {
     using System;
+    using Syncfusion.XlsIO;
+    using PlanningPoker.Showcase.Utils;
     using System.ComponentModel;
-    using StoryEstimator.Showcase.Utils;
 
     public class StoryObjects : TransactionResult
     {
@@ -31,7 +32,7 @@
         public int RoomId { get; set; }
         public int Points { get; set; }
         public string TaskId { get; set; }
-        [DisplayNameAttribute("TaskUrl(Optional)")]
+        [DisplayName("TaskUrl(Optional)")]
         public string TaskUrl { get; set; }
         public string Summary { get; set; }
         public string Description { get; set; }

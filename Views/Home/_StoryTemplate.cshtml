@@ -1,7 +1,6 @@
-﻿@model StoryEstimator.Showcase.Models.PlayObjects
-@using StoryEstimator.Showcase.Models.Data
-@using StoryEstimator.Showcase.Utils;
-@using Syncfusion.EJ2.CircularGauge
+﻿@model PlanningPoker.Showcase.Models.PlayObjects
+@using PlanningPoker.Showcase.Models.Data
+@using PlanningPoker.Showcase.Utils;
 @using Syncfusion.EJ2
 
 @{
@@ -161,60 +160,41 @@
                             }
                             <input type="hidden" id="storyTimer" value="@Model.RoomDetails.Timer.Value" />
                             @{
-                                CircularGaugeLine lineStyle = new CircularGaugeLine()
+                                var labelFont = new Syncfusion.EJ2.CircularGauge.CircularGaugeFont
                                 {
-                                    Width = 0,
+                                    Color = "#424242",
+                                    Size = "13px",
+                                    FontFamily = "Roboto",
                                 };
-                                CircularGaugeTick majorTicks = new CircularGaugeTick()
-                                {
-                                    Color = "white",
-                                    Offset = -5,
-                                    Height = 12,
-                                };
-                                CircularGaugeTick minorTicks = new CircularGaugeTick()
-                                {
-                                    Width = 0,
-                                };
-                                CircularGaugeLabel labelStyle = new CircularGaugeLabel
-                                {
-                                    Offset = -10,
-                                    UseRangeColor = true,
-                                    Font = new CircularGaugeFont()
-                                    {
-                                        Color = "#424242",
-                                        Size = "13px",
-                                        FontFamily = "Roboto",
-                                    }
-                                };
-                                List<CircularGaugePointer> pointers = new List<CircularGaugePointer>();
-                                pointers.Add(new CircularGaugePointer
+                                List<Syncfusion.EJ2.CircularGauge.CircularGaugePointer> pointers = new List<Syncfusion.EJ2.CircularGauge.CircularGaugePointer>();
+                                pointers.Add(new Syncfusion.EJ2.CircularGauge.CircularGaugePointer
                                 {
                                     Radius = "65%",
                                     Color = "#000000",
-                                    Cap = new CircularGaugeCap()
+                                    Cap = new Syncfusion.EJ2.CircularGauge.CircularGaugeCap
                                     {
                                         Radius = 6,
-                                        Border = new CircularGaugeBorder()
+                                        Border = new Syncfusion.EJ2.CircularGauge.CircularGaugeBorder
                                         {
                                             Color = "#000000",
                                             Width = 6,
                                         },
                                     },
-                                    Animation = new CircularGaugeAnimation()
+                                    Animation = new Syncfusion.EJ2.CircularGauge.CircularGaugeAnimation
                                     {
                                         Enable = true,
                                         Duration = 100,
                                     }
                                 });
-                                List<CircularGaugeRange> ranges = new List<CircularGaugeRange>();
-                                ranges.Add(new CircularGaugeRange
+                                List<Syncfusion.EJ2.CircularGauge.CircularGaugeRange> ranges = new List<Syncfusion.EJ2.CircularGauge.CircularGaugeRange>();
+                                ranges.Add(new Syncfusion.EJ2.CircularGauge.CircularGaugeRange
                                 {
                                     StartWidth = "10px",
                                     EndWidth = "10px",
                                     Radius = "102%",
                                     Color = "#69d5e8"
                                 });
-                                ranges.Add(new CircularGaugeRange
+                                ranges.Add(new Syncfusion.EJ2.CircularGauge.CircularGaugeRange
                                 {
                                     StartWidth = "10px",
                                     EndWidth = "10px",
@@ -224,8 +204,12 @@
                             }
                             <ejs-circulargauge id="timerGauge" enablePointerDrag="false" height="150px" width="200px">
                                 <e-circulargauge-axes>
-                                    <e-circulargauge-axis lineStyle="@lineStyle" labelStyle="@labelStyle" minorTicks="@minorTicks" majorTicks="@majorTicks"
-                                        startAngle="-90" endAngle="90" radius="100%" pointers="@pointers" ranges="@ranges"></e-circulargauge-axis>
+                                    <e-circulargauge-axis startAngle="-90" endAngle="90" radius="100%" pointers="@pointers" ranges="@ranges">
+                                        <e-axis-linestyle width="0"></e-axis-linestyle>
+                                        <e-axis-labelstyle offset = "-10" useRangeColor="true" font="labelFont"> </e-axis-labelstyle>
+                                        <e-axis-majorticks color="white" height="12" offset="-5"></e-axis-majorticks>
+                                        <e-axis-minorticks width="0"></e-axis-minorticks>
+                                    </e-circulargauge-axis>
                                 </e-circulargauge-axes>
                             </ejs-circulargauge>
                             <span id="storyDigitalTimer"></span>

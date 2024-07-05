@@ -3,21 +3,16 @@
 var gulp = require("gulp"),
     concat = require("gulp-concat"),
     cssmin = require("gulp-cssmin"),
-    sass = require("gulp-sass"),
-    sourcemap = require("gulp-sourcemaps"),
+    sass = require("gulp-sass")(require('sass')),
     uglify = require("gulp-uglify"),
     merge = require("merge-stream"),
     del = require("del"),
-    cleanCSS = require("gulp-clean-css"),
     clean = require("gulp-clean"),
-    replace = require('gulp-replace'),
     gutil = require('gulp-util'),
     bundleconfig = require("./bundleconfig.json");
 module.exports = gulp;
 var window = {};
 var fs = require('fs');
-var elasticlunr = require('elasticlunr');
-var beautify = require('json-beautify');
 
 var regex = {
     css: /\.css$/,
@@ -28,7 +23,7 @@ var regex = {
 /* Gulp to convert all Scss to css while saving */
 gulp.task('sass-to-css', function () {
     return gulp.src(['./wwwroot/css/**/*.scss',
-        , '!./wwwroot/css/Common/*.scss'])
+         '!./wwwroot/css/Common/*.scss'])
         .pipe(sass.sync().on('error', sass.logError))
         .pipe(gulp.dest('./wwwroot/dist/css'));
 });
@@ -44,9 +39,10 @@ gulp.task('css-clean', function () {
 });
 
 /*Minifying using Bundle*/
-gulp.task("bundle-min", ["min:js", "min:css"]);
+gulp.task('bundle-min', gulp.series(minjs, mincss));
 
-gulp.task("min:js", function () {
+gulp.task("min:js", minjs);
+function minjs () {
     var tasks = getBundles(regex.js).map(function (bundle) {
         return gulp.src(bundle.inputFiles, { base: "." })
             .pipe(concat(bundle.outputFileName))
@@ -55,17 +51,20 @@ gulp.task("min:js", function () {
             .pipe(gulp.dest("."));
     });
     return merge(tasks);
-});
+};
+exports.minjs = minjs;
 
-gulp.task("min:css", function () {
-    var tasks = getBundles(regex.css).map(function (bundle) {
-        return gulp.src(bundle.inputFiles, { base: "." })
-            .pipe(concat(bundle.outputFileName))
-            .pipe(cssmin())
-            .pipe(gulp.dest("."));
-    });
-    return merge(tasks);
-});
+gulp.task("min:css", mincss);
+function mincss() {
+  var tasks = getBundles(regex.css).map(function (bundle) {
+    return gulp.src(bundle.inputFiles, { base: "." })
+      .pipe(concat(bundle.outputFileName))
+      .pipe(cssmin())
+      .pipe(gulp.dest("."));
+  });
+  return merge(tasks);
+};
+exports.mincss = mincss;
 
 gulp.task("clean-bundle", function () {
     var files = bundleconfig.map(function (bundle) {

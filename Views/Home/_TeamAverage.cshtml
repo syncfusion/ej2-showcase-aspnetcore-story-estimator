@@ -1,7 +1,6 @@
-﻿@model StoryEstimator.Showcase.Models.StoryObjects
-@using StoryEstimator.Showcase.Models.Data;
-@using StoryEstimator.Showcase.Utils;
-@using Syncfusion.EJ2.Charts
+﻿@model PlanningPoker.Showcase.Models.StoryObjects
+@using PlanningPoker.Showcase.Models.Data;
+@using PlanningPoker.Showcase.Utils;
 @using Syncfusion.EJ2
 
 @{
@@ -175,17 +174,17 @@
                             }
                         </div>
                         @{ 
-                            AccumulationDataLabelSettings dataLabel = new AccumulationDataLabelSettings()
+                            var dataLabel = new
                             {
-                                Visible = true,
-                                Name = "Text",
-                                Position = AccumulationLabelPosition.Inside,
-                                Template = "<div>${point.text}</div>",
-                                Font = new AccumulationChartFont()
+                                visible = true,
+                                name = "Text",
+                                position = "Inside",
+                                template = "<div>${point.text}</div>",
+                                font = new
                                 {
-                                    Color = "white",
-                                    FontWeight = "600",
-                                    Size = "14px",
+                                    color = "white",
+                                    fontWeight = "600",
+                                    size = "14px",
                                 }
                             };
                         }
@@ -193,7 +192,10 @@
                             <e-accumulationchart-tooltipsettings enable="true" format="${point.x}"></e-accumulationchart-tooltipsettings>
                             <e-accumulationchart-legendsettings toggleVisibility=false visible="true" position="Bottom"></e-accumulationchart-legendsettings>
                             <e-accumulation-series-collection>
-                                <e-accumulation-series xName="EstimatedPoint" yName="PlayerCount" startAngle="0" endAngle="360" dataLabel="@dataLabel">
+                                <e-accumulation-series xName="EstimatedPoint" yName="PlayerCount" startAngle="0" endAngle="360" >
+                                    <e-accumulationseries-datalabel name="Text" visible="true" position="@Syncfusion.EJ2.Charts.AccumulationLabelPosition.Inside" Template="<div>${point.text}</div>">
+                                        <e-font fontWeight="600" color="white" size="14px"></e-font>
+                                    </e-accumulationseries-datalabel>
                                 </e-accumulation-series>
                             </e-accumulation-series-collection>
                         </ejs-accumulationchart>

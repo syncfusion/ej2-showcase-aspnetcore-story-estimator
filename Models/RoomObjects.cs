@@ -1,6 +1,6 @@
-﻿namespace StoryEstimator.Showcase.Models
+﻿namespace PlanningPoker.Showcase.Models
 {
-    using StoryEstimator.Showcase.Utils;
+    using PlanningPoker.Showcase.Utils;
     using System;
     using System.Collections.Generic;
 
