@@ -128,7 +128,9 @@ window.dashboard = function () {
         $('#createroombutton')[0].ej2_instances[0].disabled = true;
         ej.popups.showSpinner(targetId);
         var ajax = new ej.base.Ajax("createnewroom", "GET", true);
-        ajax.send().then();
+        ajax.send().then(function (data) {
+            $('#form-element').html(data);
+        });
         ajax.onSuccess = function (data) {
             createRoomDialogObj.setProperties({
                 content: data
@@ -1038,6 +1040,8 @@ function importStoryBtnClick(fileType) {
         },
         type: 'POST',
         url: 'importstory',
+    }).done(function(data) {
+        $('#importstoryForm').html(data);
     });
 
     $("#uploads").html(messages.nofilechosenMessage);

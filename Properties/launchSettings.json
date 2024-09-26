@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "PlanningPoker.Showcase": {
+    "StoryEstimator.Showcase": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

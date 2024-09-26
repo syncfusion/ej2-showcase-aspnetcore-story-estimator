@@ -1,4 +1,4 @@
-﻿namespace PlanningPoker.Showcase.Controllers
+﻿namespace StoryEstimator.Showcase.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -8,10 +8,10 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.FileProviders;
     using Newtonsoft.Json;
-    using PlanningPoker.Showcase.Models;
-    using PlanningPoker.Showcase.Models.Data;
-    using PlanningPoker.Showcase.Models.SignalR;
-    using PlanningPoker.Showcase.Utils;
+    using StoryEstimator.Showcase.Models;
+    using StoryEstimator.Showcase.Models.Data;
+    using StoryEstimator.Showcase.Models.SignalR;
+    using StoryEstimator.Showcase.Utils;
 
     /// <summary>
     /// Home controller

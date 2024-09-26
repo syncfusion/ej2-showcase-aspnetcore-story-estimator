@@ -1,4 +1,4 @@
-﻿namespace PlanningPoker.Showcase.Models.Data
+﻿namespace StoryEstimator.Showcase.Models.Data
 {
     using System.Collections.Generic;
 

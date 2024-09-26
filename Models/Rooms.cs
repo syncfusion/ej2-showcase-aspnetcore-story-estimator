@@ -1,4 +1,4 @@
-﻿namespace PlanningPoker.Showcase.Models
+﻿namespace StoryEstimator.Showcase.Models
 {
     using System;
     using System.Collections.Generic;
@@ -6,9 +6,9 @@
     using System.Linq;
     using Microsoft.AspNetCore.Http;
     using Newtonsoft.Json;
-    using PlanningPoker.Showcase.Utils;
-    using PlanningPoker.Showcase.Models.Data;
-    using PlanningPoker.Showcase.Models.SignalR;
+    using StoryEstimator.Showcase.Utils;
+    using StoryEstimator.Showcase.Models.Data;
+    using StoryEstimator.Showcase.Models.SignalR;
     using Syncfusion.XlsIO;
     using System.Web;
     using System.Text.RegularExpressions;
@@ -2073,7 +2073,7 @@
                           }).FirstOrDefault();
                 result.IsSuccess = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 result.IsSuccess = false;
                 return null;
