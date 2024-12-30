@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html id="planningpokerpageid">
+<html id="storyestimatorpageid">
 <head>
     <title>Essential JS 2 for ASP.NET Core - Story Estimator</title>
     <meta charset="utf-8" />
@@ -12,6 +12,11 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
     <link href="~/css/fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://ej2aspnetcore-staging.azurewebsites.net/showcase/aspnetcore/story-estimator/dist/cssminify/ej2.min.css?v=J5H0Z_xjHw5uvrBfeyLQonHKZOe-uf76QL5xE3p2tl0">
+    <link rel="stylesheet" href="https://ej2aspnetcore-staging.azurewebsites.net/showcase/aspnetcore/story-estimator/dist/cssminify/site.min.css?v=_P_gkVlacSDIFdsVMLWtheVmI7kDgNzw6NpjSFSfZK0">
+    <link rel="stylesheet" href="https://ej2aspnetcore-staging.azurewebsites.net/showcase/aspnetcore/story-estimator/dist/cssminify/dashboard.min.css?v=zSJyfcb_OXlf4s7FXJkHJtz0vnuUbEJf5BLqerARHxc">
+    <link rel="stylesheet" href="https://ej2aspnetcore-staging.azurewebsites.net/showcase/aspnetcore/story-estimator/dist/cssminify/play.min.css?v=hMZo9qHxE0uOzZwpcz-_NkKtSQq1-8509GvrGrIvcEw">
+    <link rel="stylesheet" href="https://ej2aspnetcore-staging.azurewebsites.net/showcase/aspnetcore/story-estimator/dist/cssminify/about.min.css?v=d8ZgUW7vi8ipBUzY4Utbg-ujBLI_Qwr7YnUIOguoDj8">
     <environment names="Development">
         <link href="~/css/ej2/ej2-notifications.css" rel="stylesheet" />
         <link href="~/css/ej2/material.css" rel="stylesheet" />
@@ -36,13 +41,6 @@
         <link href="~/dist/css/Play/Play.css" rel="stylesheet" />
         <link href="~/dist/css/About/About.css" rel="stylesheet" />
     </environment>
-    <environment names="Staging,Production">
-        <link rel="stylesheet" href="~/dist/cssminify/ej2.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/dist/cssminify/site.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/dist/cssminify/dashboard.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/dist/cssminify/play.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/dist/cssminify/about.min.css" asp-append-version="true" />
-    </environment>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 
@@ -55,7 +53,7 @@
     <script src="~/js/crossroads.js"></script>
     <script src="~/js/hasher.min.js"></script>
     <script src="~/js/common.data.js"></script>
-    <script src="~/js/ej2.min.js"></script>
+    <script src="https://cdn.syncfusion.com/ej2/28.1.33/dist/ej2.min.js"></script>
     <script src="~/js/timer.jquery.js"></script>
     <script src="~/js/signalr.min.js"></script>
     <script src="~/js/jquery.qrcode.js"></script>
