@@ -1,9 +1,9 @@
-using Microsoft.Extensions.FileProviders;
-using PlanningPoker.Showcase.Models.SignalR;
+﻿using StoryEstimator.Showcase.Models.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add Services to the container.
+// Add services to the container.
+builder.Services.AddControllersWithViews();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<ISignalRModel, SignalRModel>();
 builder.Services.AddCors(options =>
@@ -15,14 +15,9 @@ builder.Services.AddCors(options =>
         .AllowAnyHeader();
     });
 });
-builder.Services.AddControllersWithViews()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.PropertyNamingPolicy = null;
-    });
-builder.Services.AddMvc(options =>
+builder.Services.AddMvc().AddJsonOptions(x =>
 {
-    options.EnableEndpointRouting = false;
+    x.JsonSerializerOptions.PropertyNamingPolicy = null;
 });
 builder.Services.AddSignalR();
 builder.Services.AddSession(options =>
@@ -31,210 +26,177 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromMinutes(30);
 });
 builder.Services.AddDirectoryBrowser();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    //app.UseBrowserLink();
-    app.UseDeveloperExceptionPage();
-}
-else
+if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
-app.UseStaticFiles();
-app.UseSession();
-app.UseCors("AllowSpecificOrigins");
-app.UseMvc(routes =>
-{
-    routes.MapRoute(
-        name: "default",
-        template: "{controller}/{action}/{id?}",
-        defaults: new { controller = "Home", action = "Index" });
-
-    routes.MapRoute(
-        name: "Play",
-        template: "playpage",
-        defaults: new { controller = "Home", action = "Play" });
-
-    routes.MapRoute(
-        name: "PlayUser",
-        template: "playuserpage",
-        defaults: new { controller = "Home", action = "PlayUser" });
-
-    routes.MapRoute(
-        name: "SearchRoomDetails",
-        template: "searchroomlist/{searchText?}/{roomFilter?}/{roomQuickFilter?}",
-        defaults: new { controller = "Home", action = "SearchRoom" });
-
-    routes.MapRoute(
-        name: "SearchStoryDetails",
-        template: "searchstorylist/{roomId?}/{searchText?}",
-        defaults: new { controller = "Home", action = "SearchStory" });
-
-    routes.MapRoute(
-        name: "FilterRoomDetails",
-        template: "roomquickfilter/{searchText?}/{roomFilter?}/{roomQuickFilter?}",
-        defaults: new { controller = "Home", action = "DashboardRoomFilterDetails" });
-
-    routes.MapRoute(
-        name: "CreateNewRoom",
-        template: "createnewroom",
-        defaults: new { controller = "Home", action = "CreateNewRoom" });
-
-    routes.MapRoute(
-        name: "ImportStory",
-        template: "importstory/{fileType?}",
-        defaults: new { controller = "Home", action = "ImportStoryDialog" });
-
-    routes.MapRoute(
-        name: "CardValue",
-        template: "getcardvalue/{type?}",
-        defaults: new { controller = "Home", action = "GetCardValue" });
-
-    routes.MapRoute(
-        name: "AddRoomDetails",
-        template: "addroomdetails/{roomName?}/{roomDescription?}/{minutes?}/{cardtype?}/{players?}",
-        defaults: new { controller = "Home", action = "UpdateRoomDetails" });
-
-    routes.MapRoute(
-        name: "RemoveStoryInDashboard",
-        template: "dashboard/removestory/{storyId?}/{createdBy?}/{roomId?}",
-        defaults: new { controller = "Home", action = "RemoveStoryInDashboard" });
-
-    routes.MapRoute(
-        name: "RemoveRoomInDashboard",
-        template: "dashboard/deleteroom/{roomId?}",
-        defaults: new { controller = "Home", action = "DeleteRoom" });
-
-    routes.MapRoute(
-        name: "Import Story Details",
-        template: "importstorydetails/{file?}/{roomId?}/{activeUserId?}/{fileType?}",
-        defaults: new { controller = "Home", action = "GetImportDetails" });
-
-    routes.MapRoute(
-        name: "downloadexcel",
-        template: "download/{name?}/{extension?}",
-        defaults: new { controller = "Home", action = "DownloadFiles" });
-
-    routes.MapRoute(
-        name: "GetRequestedStory",
-        template: "play/getstory/{roomId?}/{storyId?}/{filter?}/{checkPendingStory?}/{searchText?}/{userId?}",
-        defaults: new { controller = "Home", action = "GetRequestedStory" });
-
-    routes.MapRoute(
-        name: "GetFilteredStory",
-        template: "play/storieslist/{roomId?}/{filter?}",
-        defaults: new { controller = "Home", action = "FilterStories" });
-
-    routes.MapRoute(
-        name: "GetTeamAverageList",
-        template: "teamavglist/{roomId?}/{storyId?}",
-        defaults: new { controller = "Home", action = "GetTeamAverageList" });
-
-    routes.MapRoute(
-        name: "GetRoomPlayerDetails",
-        template: "getplayerdetails/{roomId?}/{storyId?}/{chartView?}/{userId?}",
-        defaults: new { controller = "Home", action = "GetRoomPlayerDetails" });
-
-    routes.MapRoute(
-        name: "StartGame",
-        template: "startplan/{roomId?}/{currentStoryId?}",
-        defaults: new { controller = "Home", action = "StartGame" });
-
-    routes.MapRoute(
-        name: "PauseGame",
-        template: "pauseplan/{roomId?}/{currentStoryId?}",
-        defaults: new { controller = "Home", action = "PauseGame" });
-
-    routes.MapRoute(
-        name: "ResumeGame",
-        template: "resumeplan/{roomId?}/{currentStoryId?}",
-        defaults: new { controller = "Home", action = "ResumeGame" });
-
-    routes.MapRoute(
-        name: "StopGame",
-        template: "stopplan/{roomId?}/{currentStoryId?}/{filter?}",
-        defaults: new { controller = "Home", action = "StopGame" });
-
-    routes.MapRoute(
-        name: "EndGame",
-        template: "endgame/{roomId?}/{currentStoryId?}",
-        defaults: new { controller = "Home", action = "EndGame" });
-
-    routes.MapRoute(
-        name: "ResetStory",
-        template: "resetstory/{roomId?}/{currentStoryId?}/{nextStoryId?}/{filter?}/{checkPendingStory?}/{searchText?}",
-        defaults: new { controller = "Home", action = "ResetStory" });
-
-    routes.MapRoute(
-        name: "ResetEstimatedStory",
-        template: "resetestimatedstory/{roomId?}/{currentStoryId?}/{nextStoryId?}/{searchText?}",
-        defaults: new { controller = "Home", action = "ResetEstimatedStory" });
-
-    routes.MapRoute(
-        name: "RemoveStory",
-        template: "removestory/{storyId?}",
-        defaults: new { controller = "Home", action = "RemoveStory" });
-
-    routes.MapRoute(
-        name: "CompleteVote",
-        template: "completevote/{roomId?}/{storyId?}/{currentStoryIndex?}/{filter?}",
-        defaults: new { controller = "Home", action = "CompleteVotingProcess" });
-
-    routes.MapRoute(
-        name: "EditAverageEstimation",
-        template: "editavgestimation/{roomId?}/{storyId?}/{estimatedPoint?}",
-        defaults: new { controller = "Home", action = "EditAverageEstimation" });
-
-    routes.MapRoute(
-        name: "FinishVoting",
-        template: "finishvoting/{roomId?}/{storyId?}/{currentStoryIndex?}/{filter?}",
-        defaults: new { controller = "Home", action = "FinishVoting" });
-
-    routes.MapRoute(
-        name: "UpdateVote",
-        template: "updatevote/{roomId?}/{storyId?}/{estimatedPoint?}/{userId?}",
-        defaults: new { controller = "Home", action = "UpdateVote" });
-});
-
-app.UseFileServer();
-
-app.UseStaticFiles(new StaticFileOptions
-{
-    ServeUnknownFileTypes = true,
-    DefaultContentType = "plain/text",
-    FileProvider = new PhysicalFileProvider(
-Path.Combine(Directory.GetCurrentDirectory(), "Controllers")),
-    RequestPath = "/Controllers"
-});
-
-app.UseStaticFiles(new StaticFileOptions
-{
-    ServeUnknownFileTypes = true,
-    DefaultContentType = "plain/text",
-    FileProvider = new PhysicalFileProvider(
-Path.Combine(Directory.GetCurrentDirectory(), "Views")),
-    RequestPath = "/Views"
-});
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
+app.UseSession();
+app.UseCors("AllowSpecificOrigins");
 
-app.UseEndpoints(routes =>
-{
-    routes.MapHub<SignalRCommonHub>("/refresh");
-});
+app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller}/{action}/{id?}",
+    defaults: new { controller = "Home", action = "Index" });
+
+app.MapControllerRoute(
+    name: "Play",
+    pattern: "playpage",
+    defaults: new { controller = "Home", action = "Play" });
+
+app.MapControllerRoute(
+    name: "PlayUser",
+    pattern: "playuserpage",
+    defaults: new { controller = "Home", action = "PlayUser" });
+
+app.MapControllerRoute(
+    name: "SearchRoomDetails",
+    pattern: "searchroomlist/{searchText?}/{roomFilter?}/{roomQuickFilter?}",
+    defaults: new { controller = "Home", action = "SearchRoom" });
+
+app.MapControllerRoute(
+    name: "SearchStoryDetails",
+    pattern: "searchstorylist/{roomId?}/{searchText?}",
+    defaults: new { controller = "Home", action = "SearchStory" });
+
+app.MapControllerRoute(
+    name: "FilterRoomDetails",
+    pattern: "roomquickfilter/{searchText?}/{roomFilter?}/{roomQuickFilter?}",
+    defaults: new { controller = "Home", action = "DashboardRoomFilterDetails" });
+
+app.MapControllerRoute(
+    name: "CreateNewRoom",
+    pattern: "createnewroom",
+    defaults: new { controller = "Home", action = "CreateNewRoom" });
+
+app.MapControllerRoute(
+    name: "ImportStory",
+    pattern: "importstory/{fileType?}",
+    defaults: new { controller = "Home", action = "ImportStoryDialog" });
+
+app.MapControllerRoute(
+    name: "CardValue",
+    pattern: "getcardvalue/{type?}",
+    defaults: new { controller = "Home", action = "GetCardValue" });
+
+app.MapControllerRoute(
+    name: "AddRoomDetails",
+    pattern: "addroomdetails/{roomName?}/{roomDescription?}/{minutes?}/{cardtype?}/{players?}",
+    defaults: new { controller = "Home", action = "UpdateRoomDetails" });
+
+app.MapControllerRoute(
+    name: "RemoveStoryInDashboard",
+    pattern: "dashboard/removestory/{storyId?}/{createdBy?}/{roomId?}",
+    defaults: new { controller = "Home", action = "RemoveStoryInDashboard" });
+
+app.MapControllerRoute(
+    name: "RemoveRoomInDashboard",
+    pattern: "dashboard/deleteroom/{roomId?}",
+    defaults: new { controller = "Home", action = "DeleteRoom" });
+
+app.MapControllerRoute(
+    name: "Import Story Details",
+    pattern: "importstorydetails/{file?}/{roomId?}/{activeUserId?}/{fileType?}",
+    defaults: new { controller = "Home", action = "GetImportDetails" });
+
+app.MapControllerRoute(
+    name: "downloadexcel",
+    pattern: "download/{name?}/{extension?}",
+    defaults: new { controller = "Home", action = "DownloadFiles" });
+
+app.MapControllerRoute(
+    name: "GetRequestedStory",
+    pattern: "play/getstory/{roomId?}/{storyId?}/{filter?}/{checkPendingStory?}/{searchText?}/{userId?}",
+    defaults: new { controller = "Home", action = "GetRequestedStory" });
+
+app.MapControllerRoute(
+    name: "GetFilteredStory",
+    pattern: "play/storieslist/{roomId?}/{filter?}",
+    defaults: new { controller = "Home", action = "FilterStories" });
+
+app.MapControllerRoute(
+    name: "GetTeamAverageList",
+    pattern: "teamavglist/{roomId?}/{storyId?}",
+    defaults: new { controller = "Home", action = "GetTeamAverageList" });
+
+app.MapControllerRoute(
+    name: "GetRoomPlayerDetails",
+    pattern: "getplayerdetails/{roomId?}/{storyId?}/{chartView?}/{userId?}",
+    defaults: new { controller = "Home", action = "GetRoomPlayerDetails" });
+
+app.MapControllerRoute(
+    name: "StartGame",
+    pattern: "startplan/{roomId?}/{currentStoryId?}",
+    defaults: new { controller = "Home", action = "StartGame" });
+
+app.MapControllerRoute(
+    name: "PauseGame",
+    pattern: "pauseplan/{roomId?}/{currentStoryId?}",
+    defaults: new { controller = "Home", action = "PauseGame" });
+
+app.MapControllerRoute(
+    name: "ResumeGame",
+    pattern: "resumeplan/{roomId?}/{currentStoryId?}",
+    defaults: new { controller = "Home", action = "ResumeGame" });
+
+app.MapControllerRoute(
+    name: "StopGame",
+    pattern: "stopplan/{roomId?}/{currentStoryId?}/{filter?}",
+    defaults: new { controller = "Home", action = "StopGame" });
+
+app.MapControllerRoute(
+    name: "EndGame",
+    pattern: "endgame/{roomId?}/{currentStoryId?}",
+    defaults: new { controller = "Home", action = "EndGame" });
+
+app.MapControllerRoute(
+    name: "ResetStory",
+    pattern: "resetstory/{roomId?}/{currentStoryId?}/{nextStoryId?}/{filter?}/{checkPendingStory?}/{searchText?}",
+    defaults: new { controller = "Home", action = "ResetStory" });
+
+app.MapControllerRoute(
+    name: "ResetEstimatedStory",
+    pattern: "resetestimatedstory/{roomId?}/{currentStoryId?}/{nextStoryId?}/{searchText?}",
+    defaults: new { controller = "Home", action = "ResetEstimatedStory" });
+
+app.MapControllerRoute(
+    name: "RemoveStory",
+    pattern: "removestory/{storyId?}",
+    defaults: new { controller = "Home", action = "RemoveStory" });
+
+app.MapControllerRoute(
+    name: "CompleteVote",
+    pattern: "completevote/{roomId?}/{storyId?}/{currentStoryIndex?}/{filter?}",
+    defaults: new { controller = "Home", action = "CompleteVotingProcess" });
+
+app.MapControllerRoute(
+    name: "EditAverageEstimation",
+    pattern: "editavgestimation/{roomId?}/{storyId?}/{estimatedPoint?}",
+    defaults: new { controller = "Home", action = "EditAverageEstimation" });
+
+app.MapControllerRoute(
+    name: "FinishVoting",
+    pattern: "finishvoting/{roomId?}/{storyId?}/{currentStoryIndex?}/{filter?}",
+    defaults: new { controller = "Home", action = "FinishVoting" });
+
+app.MapControllerRoute(
+    name: "UpdateVote",
+    pattern: "updatevote/{roomId?}/{storyId?}/{estimatedPoint?}/{userId?}",
+    defaults: new { controller = "Home", action = "UpdateVote" });
+
+app.UseFileServer();
 
 app.Run();
