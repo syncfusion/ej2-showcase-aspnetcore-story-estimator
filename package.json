@@ -1,19 +1,19 @@
 {
-  "name": "ej2-aspnetcore-story-estimator",
-  "version": "1.0.0",
-  "description": "Essential JS 2 ASP.Net Core - Story Estimator",
-  "author": "Syncfusion Inc.",
-  "license": "SEE LICENSE IN license",
-  "keywords": [
-    "ej2",
-    "ej2-aspcore",
-    "ej2-aspcore-samples"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://gitlab.syncfusion.com/essential-studio/ej2-aspcore-samples.git"
-  },
-  "devDependencies": {
+	"name": "ej2-aspnetcore-story-estimator",
+	"version": "1.0.0",
+	"description": "Essential JS 2 ASP.Net core - Story-Estimator",
+	"author": "Syncfusion Inc.",
+	"license": "SEE LICENSE IN license",
+	"keywords": [
+		"aspnetcore-story-estimator",
+		"ej2-aspnetcore-story-estimator",
+		"core-story-estimator"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/essential-studio/ej2-aspnetcore-story-estimator.git"
+	},
+	"devDependencies": {
     "del": "^3.0.0",
     "glob": "^7.1.2",
     "gulp": "^4.0.2",
@@ -32,7 +32,10 @@
     "require-dir": "^0.3.2",
     "shelljs": "^0.8.5",
     "simple-git": "^3.16.0"
-  },
-  "config": {},
-  "scripts": {}
+	},
+	"config": {},
+	"scripts": {
+		"aspnet-publish": "gulp dotnet-publish",
+		"ci-deploy": "gulp ftp-deploy"
+	}
 }
