@@ -1,3 +1,5 @@
+[![.NET](https://github.com/SubathraKaliamoorthy/ej2-showcase-aspnetcore-story-estimator/actions/workflows/dotnet.yml/badge.svg)](https://github.com/SubathraKaliamoorthy/ej2-showcase-aspnetcore-story-estimator/actions/workflows/dotnet.yml)
+
 # Overview
 
 Story Estimator is an agile based tool to effectively estimate stories using planning poker technique. Planning Poker is a consensus based technique used for estimating and planning. Agile teams around the world use this kind of tool to estimate their product backlogs and how long a certain amount of work will take to complete.
