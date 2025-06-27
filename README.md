@@ -1,4 +1,4 @@
-[![.NET](https://github.com/SubathraKaliamoorthy/ej2-showcase-aspnetcore-story-estimator/actions/workflows/dotnet.yml/badge.svg)](https://github.com/SubathraKaliamoorthy/ej2-showcase-aspnetcore-story-estimator/actions/workflows/dotnet.yml)
+[![.NET](https://github.com/syncfusion/ej2-showcase-aspnetcore-story-estimator/actions/workflows/dotnet.yml/badge.svg)](https://github.com/syncfusion/ej2-showcase-aspnetcore-story-estimator/actions/workflows/dotnet.yml)
 
 # Overview
 
