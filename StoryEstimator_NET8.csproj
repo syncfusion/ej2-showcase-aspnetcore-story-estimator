@@ -12,15 +12,9 @@
   </ItemGroup>
 
   <Target Name="ProductionBuild" BeforeTargets="BeforeBuild">
-    <Exec Command="npm install" />
-    <Exec Command="gulp sass-to-css" />
-  </Target>
-
-  <Target Name="ProductionBuild" BeforeTargets="BeforeBuild"
-    Condition="'$(Configuration)'=='Release'">
-    <Exec Command="npm install" />
-    <Exec Command="gulp sass-to-css" />
-    <Exec Command="gulp bundle-min" />
+     <Exec Command="npm install" />
+     <Exec Command="gulp sass-to-css" />
+     <Exec Command="gulp bundle-min" />
   </Target>
 
 </Project>
