@@ -7,14 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="*" />
-	<PackageReference Include="Syncfusion.XlsIO.Net.Core" Version="*" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="31.1.17" />
+	<PackageReference Include="Syncfusion.XlsIO.Net.Core" Version="31.1.17" />
   </ItemGroup>
 
   <Target Name="ProductionBuild" BeforeTargets="BeforeBuild">
-     <Exec Command="npm install" />
-     <Exec Command="gulp sass-to-css" />
-     <Exec Command="gulp bundle-min" />
+    <Exec Command="npm install" />
+    <Exec Command="gulp sass-to-css" />
   </Target>
+
 
 </Project>
