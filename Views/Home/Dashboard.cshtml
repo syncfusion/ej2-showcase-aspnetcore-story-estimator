@@ -81,7 +81,7 @@
                 <div style="display: table-cell">
                     <ejs-button id="removestorybutton" content="Remove" style="visibility: hidden"></ejs-button>
                     <ejs-dialog id="confirmDialog" closeOnEscape="true" isModal="true" width="500px" target="#targetId" 
-                        beforeOpen="dialogBeforeOpen" beforeClose="dialogBeforeClose" showCloseIcon="false" visible="false" cssClass="hide">
+                        beforeOpen="dialogBeforeOpen" beforeClose="dialogBeforeClose" showCloseIcon="false">
                         <e-dialog-buttons> 
                             <e-dialog-dialogbutton buttonModel="ViewBag.yesBtn" click="storyDeleteYesBtnClick"></e-dialog-dialogbutton> 
                             <e-dialog-dialogbutton buttonModel="ViewBag.noBtn" click="storyDeleteNoBtnClick"></e-dialog-dialogbutton> 
@@ -108,7 +108,7 @@
         </ejs-dialog>
     </div>
     <ejs-dialog id="deleteroomdialog" closeOnEscape="false" isModal="true" height="154px" width="278px" target="#targetId" content="Once you delete this Room, it cannot be undone."
-        beforeOpen="dialogBeforeOpen" beforeClose="dialogBeforeClose" showCloseIcon="true" cssClass="hide" header="Delete This Room?">
+        beforeOpen="dialogBeforeOpen" beforeClose="dialogBeforeClose" showCloseIcon="true" header="Delete This Room?">
         <e-dialog-buttons>
             <e-dialog-dialogbutton buttonModel="ViewBag.cancelBtn" click="cancelDeleteRoomClick"></e-dialog-dialogbutton>
             <e-dialog-dialogbutton buttonModel="ViewBag.delRoomBtn" click="deleteRoomBtnClick"></e-dialog-dialogbutton>

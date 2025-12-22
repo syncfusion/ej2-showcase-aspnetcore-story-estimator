@@ -46,7 +46,7 @@ app.UseCors("AllowSpecificOrigins");
 app.UseRouting();
 
 app.UseAuthorization();
-
+app.MapHub<SignalRCommonHub>("/refresh");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action}/{id?}",
