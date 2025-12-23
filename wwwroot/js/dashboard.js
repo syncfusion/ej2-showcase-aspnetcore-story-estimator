@@ -61,7 +61,6 @@ window.dashboard = function () {
         dialogObj.setProperties({
             content: '<div class="confirmdialog-icon confirmdialog-warning" style="display: block;">!</div><h2 class="confirmdialog-title" id="confirmdialog-title">Are you sure?</h2><div id="confirmdialog-content" class="confirmdialog-content" style="display: block;">You want to remove <span class="confirmdialog-bold-content">' + storyIds.length + '</span> ' + storycontent + ' </div>'
         });
-        $("#confirmDialog").removeClass("hide");
         dialogObj.show();
     };
 
@@ -921,7 +920,6 @@ function onCheckBoxClick() {
 function deleteRoomClick(roomId, roomName) {
     deleteRoomId = roomId;
     deletedRoomName = roomName;
-    $("#deleteroomdialog").removeClass("hide");
     deleteRoomDialogObj.show();
 }
 
