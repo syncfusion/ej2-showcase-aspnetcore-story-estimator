@@ -7,14 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="33.1.44" />
-	<PackageReference Include="Syncfusion.XlsIO.Net.Core" Version="33.1.44" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="34.1.29" />
+	<PackageReference Include="Syncfusion.XlsIO.Net.Core" Version="34.1.29" />
   </ItemGroup>
 
   <Target Name="ProductionBuild" BeforeTargets="BeforeBuild">
-     <Exec Command="npm install" />
-     <Exec Command="gulp sass-to-css" />
-     <Exec Command="gulp bundle-min" />
+    <Exec Command="npm install" />
+    <Exec Command="gulp sass-to-css" />
+  </Target>
+
+  <Target Name="ProductionBuild" BeforeTargets="BeforeBuild"
+    Condition="'$(Configuration)'=='Release'">
+    <Exec Command="npm install" />
+    <Exec Command="gulp sass-to-css" />
+    <Exec Command="gulp bundle-min" />
   </Target>
 
 </Project>
